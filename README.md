@@ -14,7 +14,7 @@
 
   그래서 만들어 보았습니다.
 
-
+<br>
 
 디자인 레퍼런스
 
@@ -24,7 +24,7 @@
 
 [ProtoPie Cloud - Cinema booking app](https://cloud.protopie.io/p/39162ab9c8391d5d462fc075?sceneId=9f5bdf92-6304-4279-a4c1-b6cb0eb67d01)
 
-
+<br>
 
 ## 💾 API
 
@@ -46,7 +46,7 @@
 
   Discover의 TV api에서 파라미터 값들로 필터를 준 TV 정보 json 데이터를 가져옵니다.
 
-  
+<br>
 
 ## 🧷 Git 브랜치 전략
 
@@ -54,7 +54,7 @@
 
   소규모 개인 프로젝트에는 훨씬 간단하면서 추후 확장성을 고려했을 때 편리한 **Github-flow**를 적용했습니다. 
 
-
+<br>
 
 ## ⚙️ 아키텍처
 
