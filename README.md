@@ -62,21 +62,37 @@
 
   스플래시 화면
 
+  ​	데이터 없이 일정 시간 후 rootViewController를 선택 화면 1로 변경
+
   <img width=500 src="https://github.com/user-attachments/assets/4b152766-a4ae-44a1-a298-6db2bc020860">
 
   선택 화면 1
 
-  <img width=500 src="https://github.com/user-attachments/assets/fe96cda6-8b91-42d5-be15-41d508aedc4e">
+  ​	데이터 없이 선택된 카테고리를 내부 저장하고 선택 화면 2로 이동
+
+  <img width=500 src="https://github.com/user-attachments/assets/35cc7e85-85b2-4ecd-90d2-3dca8b5b27aa">
 
   선택 화면 2
+
+  ​	TMDB - Genres - Movie/TV Series 에서 데이터를 받아 장르 카테고리 노출
+
+  ​	선택된 장르를 내부 저장하여 추천작 화면으로 이동
 
   <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
 
   추천작 화면
 
+  ​	TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
+
+  ​	작품이 선택되면 상세 화면으로 이동
+
   <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
 
   상세 화면
+
+  ​	TMDB - Movies/TV Series
+
+  ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
 
   <img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
 
