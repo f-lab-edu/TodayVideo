@@ -6,7 +6,7 @@
 
 
 
-<img src="https://github.com/user-attachments/assets/13c637dc-29a8-4688-92b1-4dddc88bbc05">
+<img src="https://github.com/user-attachments/assets/38c14767-65ef-49d7-974a-7b5a7fbb8b10">
 
 ### 넷플릭스는 볼 건 많은데 볼 만한게 없어...
 
@@ -30,37 +30,7 @@
 
 - TMDB
 
-  -> https://developer.themoviedb.org/reference/genre-movie-list
-
-  Genres에서 영화 장르 json 데이터를 가져옵니다.
-
-  -> https://developer.themoviedb.org/reference/genre-tv-list
-
-  Genres에서 TV 장르 json 데이터를 가져옵니다.
-
-  -> https://developer.themoviedb.org/reference/discover-movie
-
-  Discover의 movie api에서 파라미터 값들로 필터를 준 영화 리스트를 json 데이터를 가져옵니다.
-
-  -> https://developer.themoviedb.org/reference/genre-tv-list
-
-  Discover의 TV api에서 파라미터 값들로 필터를 준 TV 리스트를 json 데이터를 가져옵니다.
-  
-  -> https://developer.themoviedb.org/reference/movie-details
-  
-  Movies의 Details에서 영화의 상세 정보 json 데이터를 가져옵니다.
-  
-  -> https://developer.themoviedb.org/reference/movie-videos
-  
-  Movies의 Videos에서 영화의 영상 json 데이터를 가져옵니다.
-  
-  -> https://developer.themoviedb.org/reference/tv-series-details
-  
-  TV Series의 Details에서 TV의 상세 정보 json 데이터를 가져옵니다.
-  
-  -> https://developer.themoviedb.org/reference/tv-series-videos
-  
-  TV Series의 Viedos에서 TV의 영상 json 데이터를 가져옵니다.
+  -> https://developer.themoviedb.org/reference/intro/getting-started
 
 <br>
 
@@ -89,3 +59,4 @@
 ## ⚙️ 아키텍처
 
 - VIPER
+
