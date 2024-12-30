@@ -31,8 +31,193 @@
 - TMDB
 
   -> https://developer.themoviedb.org/reference/intro/getting-started
-
-<br>
+  
+  <br>
+  
+  - 장르 선택 화면
+  
+    -> https://developer.themoviedb.org/reference/genre-movie-list
+  
+    -> https://developer.themoviedb.org/reference/genre-tv-list
+  
+    **request**
+  
+    | parameter | value |
+    | :-------- | :---- |
+    | language  | ko    |
+  
+    **response**
+  
+    | key    | type  |
+    | ------ | ----- |
+    | genres | Array |
+  
+    | key  | type   |
+    | ---- | ------ |
+    | id   | Int    |
+    | name | String |
+  
+    <br>
+  
+  - 추천작 화면
+  
+    -> https://developer.themoviedb.org/reference/discover-movie
+  
+    -> https://developer.themoviedb.org/reference/discover-tv
+  
+    **request**
+  
+    | parameter            | value             |
+    | :------------------- | :---------------- |
+    | language             | ko-KR             |
+    | page                 | 랜덤 숫자 넣기    |
+    | vote_count.gte       | 7                 |
+    | watch_region         | KR                |
+    | with_genres          | 장르 필터 값 넣기 |
+    | with_watch_providers | 8                 |
+  
+    **response**
+  
+    | key     | type  |
+    | ------- | ----- |
+    | results | Array |
+  
+    | key                         | type   |                                                              |
+    | --------------------------- | ------ | ------------------------------------------------------------ |
+    | genre_ids                   | [Int]  |                                                              |
+    | id                          | Int    |                                                              |
+    | poster_path                 | String | [https://image.tmdb.org/t/p/w500/](https://image.tmdb.org/t/p/w500/){poster_path} |
+    | title/name                  | String |                                                              |
+    | release_date/first_air_date | String |                                                              |
+    | total_pages                 | Int    |                                                              |
+  
+    <br>
+  
+  - 상세 화면
+  
+    -> https://developer.themoviedb.org/reference/movie-details
+  
+    -> https://developer.themoviedb.org/reference/tv-series-details
+  
+    **request**
+  
+    | parameter          | value                          |
+    | :----------------- | :----------------------------- |
+    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
+    | language           | ko-KR                          |
+  
+    **response**
+  
+    | key                         | type   |                                                 |
+    | --------------------------- | ------ | ----------------------------------------------- |
+    | backdrop_path               | String | https://image.tmdb.org/t/p/w500/{backdrop_path} |
+    | genres                      | Array  |                                                 |
+    | id                          | Int    |                                                 |
+    | overview                    | String |                                                 |
+    | release_date/first_air_date | String |                                                 |
+    | title/name                  | String |                                                 |
+    | runtime                     | Int    | 영화 상세 화면용                                |
+    | last_episode_to_airruntime  | Object | TV 시리즈 상세 화면용                           |
+  
+    *genres
+  
+    | key  | type   |
+    | ---- | ------ |
+    | id   | Int    |
+    | name | String |
+  
+    *last_episode_to_airruntime
+  
+    | key     | type |
+    | ------- | ---- |
+    | runtime | Int  |
+  
+    <br>
+  
+    -> https://developer.themoviedb.org/reference/movie-credits
+  
+    -> https://developer.themoviedb.org/reference/tv-series-credits
+  
+    출연진
+  
+    **request**
+  
+    | parameter          | value                          |
+    | :----------------- | :----------------------------- |
+    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
+    | language           | ko-KR                          |
+  
+    **response**
+  
+    | key  | type  |
+    | ---- | ----- |
+    | cast | Array |
+  
+    | key          | type   |                                                |
+    | ------------ | ------ | ---------------------------------------------- |
+    | name         | String |                                                |
+    | profile_path | String | https://image.tmdb.org/t/p/w500/{profile_path} |
+    | character    | String |                                                |
+  
+    <br>
+  
+    -> https://developer.themoviedb.org/reference/movie-release-dates
+  
+    -> https://developer.themoviedb.org/reference/tv-series-content-ratings
+  
+    시청 연령
+  
+    **request**
+  
+    | parameter          | value                          |
+    | :----------------- | :----------------------------- |
+    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
+  
+    **response**
+  
+    | key     | type  |
+    | ------- | ----- |
+    | results | Array |
+  
+    | key          | type   |                       |
+    | ------------ | ------ | --------------------- |
+    | iso_3166_1   | String | KR인 것만 사용        |
+    | release_date | Array  | 영화 상세 화면용      |
+    | rating       | String | TV 시리즈 상세 화면용 |
+  
+    *release_date
+  
+    | key           | type   |
+    | ------------- | ------ |
+    | certification | String |
+  
+    <br>
+  
+    -> https://developer.themoviedb.org/reference/movie-videos
+  
+    -> https://developer.themoviedb.org/reference/tv-series-videos
+  
+    영상
+  
+    **request**
+  
+    | parameter          | value                          |
+    | :----------------- | :----------------------------- |
+    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
+    | language           | ko-KR                          |
+  
+    **response**
+  
+    | key     | type  |                          |
+    | ------- | ----- | ------------------------ |
+    | results | Array | 비어있으면 view 숨김처리 |
+  
+    | key  | type   |                                       |
+    | ---- | ------ | ------------------------------------- |
+    | site | String | YouTube인 것만 사용                   |
+    | key  | String | https://www.youtube.com/watch?v={key} |
+  
+    <br>
 
 ## 🧷 Git
 
