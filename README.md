@@ -248,6 +248,10 @@
 
 - VIPER
 
+  <img align=left width=200 src="https://github.com/user-attachments/assets/fc337395-208a-4687-b480-0cb250b7b6a8">
+
+  <br>
+
   스플래시 화면
 
   ​	데이터 없이 일정 시간 후 rootViewController를 선택 화면 1로 변경
@@ -268,21 +272,210 @@
 
   <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
 
-  추천작 화면
+  ```swift
+  struct GenresRequest: Encodable {
+    let language: String = "ko"
+  }
+  ```
 
-  ​	TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
-
-  ​	작품이 선택되면 상세 화면으로 이동
-
-  <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
-
-  상세 화면
-
-  ​	TMDB - Movies/TV Series
-
-  ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
-
-  <img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
-
+  ```swift
+  struct GenresResponse: Decodable {
+    let id: Int
+    let name: String
+  }
+  ```
   
-
+  <br>
+  
+  추천작 화면
+  
+  ​	TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
+  
+  ​	작품이 선택되면 상세 화면으로 이동
+  
+  <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
+  
+  ```swift
+  struct RecommendRequest: Encodable {
+    let language: String = "ko-KR"
+    let page: Int
+    let voteCount: Int = 7
+    let watchRegion: String = "KR"
+    let withGenres: Int
+    let withWatchProviders: Int = 8
+  }
+  ```
+  
+  ```swift
+  struct RecommendMovieResponse: Decodable {
+    let results: [RecommendMovieResultsResponse]
+  }
+  struct RecommendMovieResultsResponse: Decodable {
+      let gnereIds: [Int]
+      let id: Int
+      let posterPath: String
+      let title: String
+      let releaseDate: String
+      let totlaPages: Int
+  }
+  
+  
+  struct RecommendTVResponse: Decodable {
+    let results: [RecommendTVResultsResponse]
+  }
+  struct RecommendTVResultsResponse: Decodable {
+      let gnereIds: [Int]
+      let id: Int
+      let posterPath: String
+      let name: String
+      let firstAirDate: String
+      let totlaPages: Int
+  }
+  ```
+  
+  <br>
+  
+  상세 화면
+  
+  ​	TMDB - Movies/TV Series
+  
+  ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
+  
+  <img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
+  
+  ```swift
+  struct DetailMovieRequest: Encodable {
+    let movieId: Int
+    let language: String = "ko-KR"
+  }
+  
+  struct DetailTVRequest: Encodable {
+    let seriesId: Int
+    let language: String = "ko-KR"
+  }
+  ```
+  
+  ```swift
+  struct DetailMovieResponse: Decodable {
+    let backDropPath: String
+    let genres:[DetailMovieGenresResponse]
+    let id: Int
+    let overview: String
+    let releaseDate: String
+    let title: String
+    let runtime: Int
+  }
+  struct DetailMovieGenresResponse: Decodable {
+    let id: Int
+    let name: String
+  }
+  
+  
+  struct DetailTVResponse: Decodable {
+    let backDropPath: String
+    let genres:[DetailTVGenresResponse]
+    let id: Int
+    let overview: String
+    let firstAirDate: String
+    let name: String
+    let lastEpisodeToAirruntime: DetailTVLastEpisodeToAirruntimeResponse
+  }
+  struct DetailTVGenresResponse: Decodable {
+    let id: Int
+    let name: String
+  }
+  struct DetailTVLastEpisodeToAirruntimeResponse: Decodable {
+    let runtime: Int
+  }
+  ```
+  
+  <br>
+  
+  출연진 조회
+  
+  ```swift
+  struct CreditsMovieRequest: Encodable {
+    let movieId: Int
+    let language: String = "ko-KR"
+  }
+  
+  struct CreditsTVRequest: Encodable {
+    let seriesId: Int
+    let language: String = "ko-KR"
+  }
+  ```
+  
+  ```swift
+  struct CreditsResponse: Decodable {
+    let cast: [CreditsCastResponse]
+  }
+  struct CreditsCastResponse: Decodable {
+    let name: String
+    let profielPath: String
+    let character: String
+  }
+  ```
+  
+  <br>
+  
+  시청 연령 조회
+  
+  ```swift
+  struct CertificationMovieRequest: Encodable {
+    let movieId: Int
+  }
+  
+  struct CertificationTVRequest: Encodable {
+    let seriesId: Int
+  }
+  ```
+  
+  ```swift
+  struct CertificationMovieResponse: Decodable {
+    let results: [CertificationMovieResultsResponse]
+  }
+  struct CertificationMovieResultsResponse: Decodable {
+    let iso: String
+    let releaseDates: [CertificationMovieReleaseDatesResponse]
+  }
+  struct CertificationMovieReleaseDatesResponse: Decodable {
+    let certification: String
+  }
+    
+  
+  struct CertificationTVResponse: Decodable {
+    let results: [CertificationTVResultsResponse]
+  }
+  struct CertificationTVResultsResponse: Decodable {
+    let iso: String
+    let rating: String
+  }
+  ```
+  
+  <br>
+  
+  영상 조회
+  
+  ```swift
+  struct VideoMovieRequest: Encodable {
+    let movieId: Int
+    let language: String = "ko-KR"
+  }
+  
+  struct VideoTVRequest: Encodable {
+    let seriesId: Int
+    let language: String = "ko-KR"
+  }
+  ```
+  
+  ```swift
+  struct VideoMovieResponse: Decodable {
+    let results: [VideoMovieResultsResponse]
+  }
+  struct VideoMovieResultsResponse: Decodable {
+    let site: String
+    let key: String
+  }
+  ```
+  
+  
