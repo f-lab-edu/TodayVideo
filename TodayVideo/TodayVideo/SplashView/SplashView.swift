@@ -7,13 +7,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class SplashView: UIViewController {
 
+    var presenter: SplashPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        drawUI()
     }
 
+    private func drawUI() {
+        self.view.backgroundColor = .red
+        
+//        let title1 = UILabel()
+//        let title2 = UILabel()
+//        let title3 = UILabel()
+        
+        
+        presenter.showMain()
+        
+    }
 
 }
-
