@@ -7,19 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE8A68BB2D2D00A0002CF22D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A68BA2D2D00A0002CF22D /* Color.swift */; };
 		CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC172D2239E100971DB4 /* AppDelegate.swift */; };
 		CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */; };
-		CE9EAC1C2D2239E100971DB4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* View.swift */; };
+		CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* SplashView.swift */; };
 		CE9EAC1F2D2239E100971DB4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC1E2D2239E100971DB4 /* Base */; };
 		CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC202D2239E200971DB4 /* Assets.xcassets */; };
 		CE9EAC242D2239E200971DB4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC232D2239E200971DB4 /* Base */; };
 		CE9EAC2F2D2239E300971DB4 /* TodayVideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC2E2D2239E300971DB4 /* TodayVideoTests.swift */; };
 		CE9EAC392D2239E300971DB4 /* TodayVideoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC382D2239E300971DB4 /* TodayVideoUITests.swift */; };
 		CE9EAC3B2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC3A2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift */; };
-		CE9EAC492D223B2300971DB4 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC482D223B2300971DB4 /* Presenter.swift */; };
-		CE9EAC4B2D223B2D00971DB4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4A2D223B2D00971DB4 /* Router.swift */; };
-		CE9EAC4D2D223B3800971DB4 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4C2D223B3800971DB4 /* Interactor.swift */; };
-		CE9EAC4F2D223B3F00971DB4 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4E2D223B3F00971DB4 /* Entity.swift */; };
+		CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */; };
+		CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE8A68BA2D2D00A0002CF22D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE9EAC142D2239E100971DB4 /* TodayVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9EAC172D2239E100971DB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9EAC1B2D2239E100971DB4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		CE9EAC1B2D2239E100971DB4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CE9EAC1E2D2239E100971DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9EAC202D2239E200971DB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9EAC232D2239E200971DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,10 +53,8 @@
 		CE9EAC342D2239E300971DB4 /* TodayVideoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodayVideoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9EAC382D2239E300971DB4 /* TodayVideoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVideoUITests.swift; sourceTree = "<group>"; };
 		CE9EAC3A2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVideoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CE9EAC482D223B2300971DB4 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		CE9EAC4A2D223B2D00971DB4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		CE9EAC4C2D223B3800971DB4 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		CE9EAC4E2D223B3F00971DB4 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE8A68B92D2D0076002CF22D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CE8A68BA2D2D00A0002CF22D /* Color.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CE9EAC0B2D2239E100971DB4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,13 +113,14 @@
 		CE9EAC162D2239E100971DB4 /* TodayVideo */ = {
 			isa = PBXGroup;
 			children = (
-				CE9EAC472D223ACC00971DB4 /* View */,
 				CE9EAC172D2239E100971DB4 /* AppDelegate.swift */,
 				CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */,
 				CE9EAC1D2D2239E100971DB4 /* Main.storyboard */,
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
+				CE8A68B92D2D0076002CF22D /* Extension */,
+				CE9EAC472D223ACC00971DB4 /* SplashView */,
 			);
 			path = TodayVideo;
 			sourceTree = "<group>";
@@ -135,16 +142,14 @@
 			path = TodayVideoUITests;
 			sourceTree = "<group>";
 		};
-		CE9EAC472D223ACC00971DB4 /* View */ = {
+		CE9EAC472D223ACC00971DB4 /* SplashView */ = {
 			isa = PBXGroup;
 			children = (
-				CE9EAC1B2D2239E100971DB4 /* View.swift */,
-				CE9EAC482D223B2300971DB4 /* Presenter.swift */,
-				CE9EAC4A2D223B2D00971DB4 /* Router.swift */,
-				CE9EAC4C2D223B3800971DB4 /* Interactor.swift */,
-				CE9EAC4E2D223B3F00971DB4 /* Entity.swift */,
+				CE9EAC1B2D2239E100971DB4 /* SplashView.swift */,
+				CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */,
+				CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */,
 			);
-			path = View;
+			path = SplashView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,12 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9EAC4D2D223B3800971DB4 /* Interactor.swift in Sources */,
-				CE9EAC1C2D2239E100971DB4 /* View.swift in Sources */,
-				CE9EAC4F2D223B3F00971DB4 /* Entity.swift in Sources */,
+				CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */,
+				CE8A68BB2D2D00A0002CF22D /* Color.swift in Sources */,
 				CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */,
-				CE9EAC4B2D223B2D00971DB4 /* Router.swift in Sources */,
-				CE9EAC492D223B2300971DB4 /* Presenter.swift in Sources */,
+				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
+				CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */,
 				CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
