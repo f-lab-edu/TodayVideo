@@ -1,0 +1,6 @@
+framework module Pods_TodayVideo {
+  umbrella header "Pods-TodayVideo-umbrella.h"
+
+  export *
+  module * { export * }
+}
