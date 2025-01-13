@@ -5,20 +5,18 @@
 //  Created by iOS Dev on 12/30/24.
 //
 
-import Foundation
+import UIKit
 
 protocol SplashPresenterProtocol {
-    func showMain()
+    func pushToContentsView()
 }
 
 final class SplashPresenter: SplashPresenterProtocol {
-    let router: SplashRouterProtocol!
-
-    init(router: SplashRouterProtocol) {
-        self.router = router
-    }
+    var router: SplashRouterProtocol?
     
-    func showMain() {
-        router.showMain()
+    func pushToContentsView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.router?.pushToContentsView()
+        }
     }
 }

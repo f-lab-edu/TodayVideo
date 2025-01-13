@@ -8,22 +8,25 @@
 import UIKit
 
 protocol SplashRouterProtocol {
-    func showMain()
+    func pushToContentsView()
 }
 
-final class SplashRouter {
-    let presentingViewController: UIViewController
+final class SplashRouter: SplashRouterProtocol {
+    weak var splashView: SplashView?
     
-    init(presentingViewController: UIViewController) {
-        self.presentingViewController = presentingViewController
+    static func createSplashViewModule() -> SplashView {
+        let view = SplashView()
+        var presenter = SplashPresenter()
+        let router = SplashRouter()
+        
+        view.presenter = presenter
+        presenter.router = router
+        
+        return view
     }
     
-    func showMain() {
-        guard let navigationController = presentingViewController.navigationController else { return }
-        let main = UIViewController()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            navigationController.pushViewController(main, animated: true)
-        }
+    func pushToContentsView() {
+        // 영화, 드라마 선택화면으로 push
+        splashView?.navigationController?.setViewControllers([UIViewController()], animated: true)
     }
 }
