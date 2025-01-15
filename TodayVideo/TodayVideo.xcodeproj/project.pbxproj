@@ -140,13 +140,13 @@
 		CE9EAC162D2239E100971DB4 /* TodayVideo */ = {
 			isa = PBXGroup;
 			children = (
-				CE0F3FF12D374B0F0058CEAE /* Extension */,
 				CE9EAC172D2239E100971DB4 /* AppDelegate.swift */,
 				CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */,
 				CE9EAC1D2D2239E100971DB4 /* Main.storyboard */,
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
+				CE0F3FF12D374B0F0058CEAE /* Extension */,
 				CE9EAC472D223ACC00971DB4 /* SplashView */,
 			);
 			path = TodayVideo;

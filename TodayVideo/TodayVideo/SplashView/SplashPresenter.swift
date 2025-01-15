@@ -15,7 +15,9 @@ final class SplashPresenter: SplashPresenterProtocol {
     var router: SplashRouterProtocol?
     
     func pushToContentsView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        let freezeMargin = 2.0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + freezeMargin) {
             self.router?.pushToContentsView()
         }
     }

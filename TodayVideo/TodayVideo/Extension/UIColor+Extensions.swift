@@ -18,7 +18,8 @@ extension UIColor {
 extension UIColor {
     public convenience init?(hex: String) {
         let hexFormatted = hex.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "#", with: "")
-        guard hexFormatted.count == 6,
+        let hexSize = 6
+        guard hexFormatted.count == hexSize,
               let hexNumber = UInt64(hexFormatted, radix: 16) else {
             return nil
         }
