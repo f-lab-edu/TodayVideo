@@ -11,6 +11,13 @@
 		47B663CC8D8E3B9C6597D6A8 /* Pods_TodayVideo_TodayVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */; };
 		642F696B881908AADE34D680 /* Pods_TodayVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A000755573841D92675025D /* Pods_TodayVideoTests.framework */; };
 		CE0F3FF32D374BA40058CEAE /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FF22D374BA40058CEAE /* UIColor+Extensions.swift */; };
+		CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FF52D37714B0058CEAE /* ContentView.swift */; };
+		CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FF72D3771C80058CEAE /* ContentPresenter.swift */; };
+		CE0F3FFA2D3771D40058CEAE /* ContentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FF92D3771D40058CEAE /* ContentRouter.swift */; };
+		CE0F3FFE2D38A2850058CEAE /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FFD2D38A2850058CEAE /* UIImage+Extension.swift */; };
+		CE0F40012D38A6590058CEAE /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F40002D38A6590058CEAE /* FilterButton.swift */; };
+		CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F40022D38E0720058CEAE /* NextButton.swift */; };
+		CE0F40052D39D2B80058CEAE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F40042D39D2B80058CEAE /* String+Extension.swift */; };
 		CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC172D2239E100971DB4 /* AppDelegate.swift */; };
 		CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */; };
 		CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* SplashView.swift */; };
@@ -51,6 +58,13 @@
 		BDE0F86382A97508FF432E23 /* Pods-TodayVideo-TodayVideoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo-TodayVideoUITests.debug.xcconfig"; path = "Target Support Files/Pods-TodayVideo-TodayVideoUITests/Pods-TodayVideo-TodayVideoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7E44DA69C861B3423EEE105 /* Pods-TodayVideo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo.debug.xcconfig"; path = "Target Support Files/Pods-TodayVideo/Pods-TodayVideo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0F3FF22D374BA40058CEAE /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		CE0F3FF52D37714B0058CEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CE0F3FF72D3771C80058CEAE /* ContentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPresenter.swift; sourceTree = "<group>"; };
+		CE0F3FF92D3771D40058CEAE /* ContentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRouter.swift; sourceTree = "<group>"; };
+		CE0F3FFD2D38A2850058CEAE /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		CE0F40002D38A6590058CEAE /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
+		CE0F40022D38E0720058CEAE /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
+		CE0F40042D39D2B80058CEAE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CE9EAC142D2239E100971DB4 /* TodayVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9EAC172D2239E100971DB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,8 +125,29 @@
 			isa = PBXGroup;
 			children = (
 				CE0F3FF22D374BA40058CEAE /* UIColor+Extensions.swift */,
+				CE0F3FFD2D38A2850058CEAE /* UIImage+Extension.swift */,
+				CE0F40042D39D2B80058CEAE /* String+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CE0F3FF42D3771220058CEAE /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F3FF52D37714B0058CEAE /* ContentView.swift */,
+				CE0F3FF72D3771C80058CEAE /* ContentPresenter.swift */,
+				CE0F3FF92D3771D40058CEAE /* ContentRouter.swift */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		CE0F3FFF2D38A63F0058CEAE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F40002D38A6590058CEAE /* FilterButton.swift */,
+				CE0F40022D38E0720058CEAE /* NextButton.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		CE9EAC0B2D2239E100971DB4 = {
@@ -146,8 +181,10 @@
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
+				CE0F3FFF2D38A63F0058CEAE /* Common */,
 				CE0F3FF12D374B0F0058CEAE /* Extension */,
 				CE9EAC472D223ACC00971DB4 /* SplashView */,
+				CE0F3FF42D3771220058CEAE /* ContentView */,
 			);
 			path = TodayVideo;
 			sourceTree = "<group>";
@@ -433,10 +470,17 @@
 			files = (
 				CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */,
 				CE0F3FF32D374BA40058CEAE /* UIColor+Extensions.swift in Sources */,
+				CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */,
 				CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */,
+				CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */,
 				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
+				CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */,
+				CE0F40012D38A6590058CEAE /* FilterButton.swift in Sources */,
 				CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */,
+				CE0F3FFE2D38A2850058CEAE /* UIImage+Extension.swift in Sources */,
+				CE0F40052D39D2B80058CEAE /* String+Extension.swift in Sources */,
 				CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */,
+				CE0F3FFA2D3771D40058CEAE /* ContentRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
