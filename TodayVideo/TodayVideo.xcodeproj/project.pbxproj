@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		254D7B3D2D3CD64E00754A38 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B3C2D3CD64E00754A38 /* Genre.swift */; };
+		254D7B402D3CD9B000754A38 /* GenreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B3F2D3CD9B000754A38 /* GenreInteractor.swift */; };
 		3C6E5A33D507ABB76B8E24C4 /* Pods_TodayVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */; };
 		47B663CC8D8E3B9C6597D6A8 /* Pods_TodayVideo_TodayVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */; };
 		642F696B881908AADE34D680 /* Pods_TodayVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A000755573841D92675025D /* Pods_TodayVideoTests.framework */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		254D7B3C2D3CD64E00754A38 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		254D7B3F2D3CD9B000754A38 /* GenreInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreInteractor.swift; sourceTree = "<group>"; };
 		279EED45062696CDB6194350 /* Pods-TodayVideo-TodayVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-TodayVideo-TodayVideoUITests/Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490756C7EB6012C404FAB2E3 /* Pods-TodayVideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo.release.xcconfig"; path = "Target Support Files/Pods-TodayVideo/Pods-TodayVideo.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +115,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		254D7B3A2D3CD5CD00754A38 /* GenreView */ = {
+			isa = PBXGroup;
+			children = (
+				254D7B3E2D3CD99000754A38 /* GenreInterator */,
+			);
+			path = GenreView;
+			sourceTree = "<group>";
+		};
+		254D7B3B2D3CD63600754A38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				254D7B3C2D3CD64E00754A38 /* Genre.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		254D7B3E2D3CD99000754A38 /* GenreInterator */ = {
+			isa = PBXGroup;
+			children = (
+				254D7B3B2D3CD63600754A38 /* Model */,
+				254D7B3F2D3CD9B000754A38 /* GenreInteractor.swift */,
+			);
+			path = GenreInterator;
+			sourceTree = "<group>";
+		};
 		A1336E4CE0BFF2843C2B8602 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +214,7 @@
 				CE0F3FF12D374B0F0058CEAE /* Extension */,
 				CE9EAC472D223ACC00971DB4 /* SplashView */,
 				CE0F3FF42D3771220058CEAE /* ContentView */,
+				254D7B3A2D3CD5CD00754A38 /* GenreView */,
 			);
 			path = TodayVideo;
 			sourceTree = "<group>";
@@ -472,6 +502,7 @@
 				CE0F3FF32D374BA40058CEAE /* UIColor+Extensions.swift in Sources */,
 				CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */,
 				CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */,
+				254D7B402D3CD9B000754A38 /* GenreInteractor.swift in Sources */,
 				CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */,
 				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
 				CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */,
@@ -481,6 +512,7 @@
 				CE0F40052D39D2B80058CEAE /* String+Extension.swift in Sources */,
 				CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */,
 				CE0F3FFA2D3771D40058CEAE /* ContentRouter.swift in Sources */,
+				254D7B3D2D3CD64E00754A38 /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +704,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -702,6 +735,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
