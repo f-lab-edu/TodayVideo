@@ -28,6 +28,7 @@ final class ContentRouter: ContentRouterProtocol {
     
     // 장르 선택 화면으로 push
     func pushToGenreView() {
+        // 다음 화면으로 이동을 위한 처리 코드 입니다.
 //        let genreView = GenreRouter.createGenre
 //        contentView?.navigationController?.pushViewController(genreView, animated: true)
     }
