@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class NextButton: UIButton {
-    var currentView: UIViewController!
+final class NextButton: UIButton {
+    private var currentView: UIViewController!
     
     init(location: UIViewController) {
         super.init(frame: .zero)

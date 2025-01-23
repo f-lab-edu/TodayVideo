@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ContentView: UIViewController {
+final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
     
     private var movieButton: FilterButton!
@@ -29,9 +29,9 @@ class ContentView: UIViewController {
         
         // 영화, 드라마 버튼
         /// 컨테이너
-        let height = 50.0
+        let height: CGFloat = 50.0
         let containerView = UIView()
-        let containerViewWidth = 300.0
+        let containerViewWidth: CGFloat = 300.0
         
         self.view.addSubview(containerView)
         
@@ -50,7 +50,7 @@ class ContentView: UIViewController {
             containerView.addSubview(button)
         }
         
-        let margin = 8.0
+        let margin: CGFloat = 8.0
         let buttonWidth = (containerViewWidth / 2) - margin
         
         movieButton.snp.makeConstraints { make in

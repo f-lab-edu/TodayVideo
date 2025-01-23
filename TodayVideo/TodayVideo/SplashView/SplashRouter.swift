@@ -16,7 +16,7 @@ final class SplashRouter: SplashRouterProtocol {
     
     static func createSplashViewModule() -> SplashView {
         let view = SplashView()
-        var presenter = SplashPresenter()
+        let presenter = SplashPresenter()
         let router = SplashRouter()
         
         view.presenter = presenter

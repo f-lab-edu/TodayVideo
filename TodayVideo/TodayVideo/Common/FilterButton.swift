@@ -7,9 +7,10 @@
 
 import UIKit
 
-class FilterButton: UIButton {
-    let height = 50.0
-    var title = ""
+final class FilterButton: UIButton {
+    private let height: CGFloat = 50.0
+    private let leftRightMargin: CGFloat = 70.0
+    private var title = ""
     
     init(title: String) {
         super.init(frame: .zero)
@@ -25,17 +26,19 @@ class FilterButton: UIButton {
     
     func width() -> CGFloat {
         let titleWidth = title.width(size: 20)
-        let leftRightMargin = 70.0
         return titleWidth + leftRightMargin
     }
     
     func updateState() {
         if isSelected {
-            self.setTitleColor(.buttonSelectedText, for: .normal)
-            self.backgroundColor = .buttonSelectedBackground
+            changeColor(title: .buttonSelectedText, background: .buttonSelectedBackground)
         } else {
-            self.setTitleColor(.buttonDefaultText, for: .normal)
-            self.backgroundColor = .buttonDefaultBackground
+            changeColor(title: .buttonDefaultText, background: .buttonDefaultBackground)
         }
+    }
+    
+    private func changeColor(title: UIColor, background: UIColor) {
+        self.setTitleColor(title, for: .normal)
+        self.backgroundColor = background
     }
 }
