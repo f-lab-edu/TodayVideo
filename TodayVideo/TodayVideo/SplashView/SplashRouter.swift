@@ -16,17 +16,19 @@ final class SplashRouter: SplashRouterProtocol {
     
     static func createSplashViewModule() -> SplashView {
         let view = SplashView()
-        var presenter = SplashPresenter()
+        let presenter = SplashPresenter()
         let router = SplashRouter()
         
         view.presenter = presenter
         presenter.router = router
+        router.splashView = view
         
         return view
     }
     
+    // 영화, 드라마 선택화면으로 push
     func pushToContentsView() {
-        // 영화, 드라마 선택화면으로 push
-        splashView?.navigationController?.setViewControllers([UIViewController()], animated: true)
+        let contentView = ContentRouter.createContentViewModule()
+        splashView?.navigationController?.setViewControllers([contentView], animated: true)
     }
 }

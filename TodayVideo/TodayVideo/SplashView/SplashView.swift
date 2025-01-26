@@ -15,6 +15,7 @@ final class SplashView: UIViewController {
         super.viewDidLoad()
         
         drawUI()
+        presenter?.pushToContentsView()
     }
     
     func drawUI() {
@@ -39,8 +40,8 @@ final class SplashView: UIViewController {
             make.center.equalToSuperview()
         }
         title2.snp.makeConstraints { make in
-            make.centerX.equalTo(title3.snp.centerX).offset(2)
-            make.centerY.equalTo(title3)
+            make.centerX.equalTo(title3).offset(2)
+            make.centerY.equalTo(title3).offset(1)
         }
         title1.snp.makeConstraints { make in
             make.centerX.equalTo(title3.snp.centerX).offset(-4)

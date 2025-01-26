@@ -13,6 +13,11 @@ extension UIColor {
     static let title1 = UIColor(hex: "#4AFFF3") ?? .red
     static let title2 = UIColor(hex: "#264CA5") ?? .red
     static let title3 = UIColor(hex: "#000000") ?? .black
+    // ContentView
+    static let buttonDefaultBackground = UIColor(hex: "#1E2122") ?? .gray
+    static let buttonDefaultText = UIColor(hex: "#FDFDFD") ?? .white
+    static let buttonSelectedBackground = UIColor(hex: "#3B84A8") ?? .blue
+    static let buttonSelectedText = UIColor(hex: "#1E2122") ?? .black
 }
 
 extension UIColor {
