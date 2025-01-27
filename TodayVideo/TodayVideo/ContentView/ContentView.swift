@@ -8,14 +8,16 @@
 import UIKit
 import SnapKit
 
+enum Content: String {
+    case movie = "영화"
+    case tv = "TV"
+}
+
 final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
     
     private var movieButton: FilterButton!
     private var tvButton: FilterButton!
-    private let movie = "영화"
-    private let tv = "TV"
-    private lazy var selectedContent = movie
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +44,8 @@ final class ContentView: UIViewController {
         }
         
         /// 버튼
-        movieButton = FilterButton(title: movie)
-        tvButton = FilterButton(title: tv)
+        movieButton = FilterButton(title: Content.movie.rawValue)
+        tvButton = FilterButton(title: Content.tv.rawValue)
         
         [movieButton, tvButton].forEach { button in
             button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
@@ -77,12 +79,12 @@ final class ContentView: UIViewController {
         
         DispatchQueue.main.async {
             if sender == self.movieButton {
-                self.selectedContent = self.movie
+                UserDefaults.standard.setValue(Content.movie.rawValue, forKey: UserdefaultKey.selectContent.rawValue)
                 self.tvButton.isSelected = false
                 self.tvButton.updateState()
                 self.movieButton.updateState()
             } else {
-                self.selectedContent = self.tv
+                UserDefaults.standard.setValue(Content.tv.rawValue, forKey: UserdefaultKey.selectContent.rawValue)
                 self.movieButton.isSelected = false
                 self.movieButton.updateState()
                 self.tvButton.updateState()
