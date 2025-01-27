@@ -8,8 +8,9 @@
 import UIKit
 
 final class FilterButton: UIButton {
-    private let height: CGFloat = 50.0
-    private let leftRightMargin: CGFloat = 70.0
+    let height: CGFloat = 50.0
+    private let leftRightMargin: CGFloat = 60.0
+    private let fontSize: CGFloat = 17
     private var title = ""
     
     init(title: String) {
@@ -17,6 +18,7 @@ final class FilterButton: UIButton {
         
         self.title = title
         self.setTitle(title, for: .normal)
+        self.titleLabel?.font = .systemFont(ofSize: fontSize)
         self.layer.cornerRadius = height / 2
     }
     
@@ -25,7 +27,7 @@ final class FilterButton: UIButton {
     }
     
     func width() -> CGFloat {
-        let titleWidth = title.width(size: 20)
+        let titleWidth = title.width(size: fontSize)
         return titleWidth + leftRightMargin
     }
     
