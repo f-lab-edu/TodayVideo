@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct GenresRequest: Encodable {
-  let language: String = "ko"
+struct GenresResponse: Decodable {
+    let genres: [Genre]
 }
 
-struct GenresResponse: Decodable {
-  let id: Int
-  let name: String
+struct Genre: Codable {
+    let id: Int?
+    let name: String?
 }
