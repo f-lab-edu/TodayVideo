@@ -15,7 +15,6 @@
 		254D7B492D46B49900754A38 /* GenreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B482D46B49900754A38 /* GenreRouter.swift */; };
 		254D7B4F2D4784D900754A38 /* UserdefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B4E2D4784D900754A38 /* UserdefaultKey.swift */; };
 		254D7B512D47A9C000754A38 /* PreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B502D47A9C000754A38 /* PreviousButton.swift */; };
-		254D7B552D4F99DC00754A38 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 254D7B542D4F99DC00754A38 /* Secret.plist */; };
 		254D7B572D4F9A4400754A38 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */; };
 		3C6E5A33D507ABB76B8E24C4 /* Pods_TodayVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */; };
 		47B663CC8D8E3B9C6597D6A8 /* Pods_TodayVideo_TodayVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */; };
@@ -39,6 +38,13 @@
 		CE9EAC3B2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC3A2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift */; };
 		CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */; };
 		CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */; };
+		CEDBD8842D5055960086F6A3 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDBD8832D5055960086F6A3 /* Secret.plist */; };
+		CEDBD8862D509D290086F6A3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8852D509D290086F6A3 /* Endpoint.swift */; };
+		CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */; };
+		CEDBD88B2D50A91E0086F6A3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */; };
+		CEDBD88D2D50A9500086F6A3 /* Responsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88C2D50A9500086F6A3 /* Responsable.swift */; };
+		CEDBD88F2D50A9E00086F6A3 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */; };
+		CEDBD8912D50ABB10086F6A3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8902D50ABB10086F6A3 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +73,6 @@
 		254D7B482D46B49900754A38 /* GenreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRouter.swift; sourceTree = "<group>"; };
 		254D7B4E2D4784D900754A38 /* UserdefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultKey.swift; sourceTree = "<group>"; };
 		254D7B502D47A9C000754A38 /* PreviousButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousButton.swift; sourceTree = "<group>"; };
-		254D7B542D4F99DC00754A38 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
 		254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		279EED45062696CDB6194350 /* Pods-TodayVideo-TodayVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-TodayVideo-TodayVideoUITests/Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +105,13 @@
 		CE9EAC3A2D2239E300971DB4 /* TodayVideoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVideoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		CEDBD8832D5055960086F6A3 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
+		CEDBD8852D509D290086F6A3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		CEDBD88C2D50A9500086F6A3 /* Responsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsable.swift; sourceTree = "<group>"; };
+		CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
+		CEDBD8902D50ABB10086F6A3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayVideo_TodayVideoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -163,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				254D7B422D46977E00754A38 /* Network.swift */,
+				CEDBD8902D50ABB10086F6A3 /* NetworkError.swift */,
+				CEDBD8892D50A9100086F6A3 /* Endpoint */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -192,6 +206,7 @@
 				CE0F3FFD2D38A2850058CEAE /* UIImage+Extension.swift */,
 				CE0F40042D39D2B80058CEAE /* String+Extension.swift */,
 				254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */,
+				CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -247,7 +262,7 @@
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
-				254D7B542D4F99DC00754A38 /* Secret.plist */,
+				CEDBD8832D5055960086F6A3 /* Secret.plist */,
 				254D7B4D2D4784BE00754A38 /* Manager */,
 				254D7B412D46975400754A38 /* Network */,
 				CE0F3FFF2D38A63F0058CEAE /* Common */,
@@ -284,6 +299,17 @@
 				CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */,
 			);
 			path = SplashView;
+			sourceTree = "<group>";
+		};
+		CEDBD8892D50A9100086F6A3 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */,
+				CEDBD88C2D50A9500086F6A3 /* Responsable.swift */,
+				CEDBD8852D509D290086F6A3 /* Endpoint.swift */,
+				CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		DEB378AA6A5B467FAB2AF79E /* Pods */ = {
@@ -408,7 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				254D7B552D4F99DC00754A38 /* Secret.plist in Resources */,
+				CEDBD8842D5055960086F6A3 /* Secret.plist in Resources */,
 				CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */,
 				CE9EAC242D2239E200971DB4 /* Base in Resources */,
 				CE9EAC1F2D2239E100971DB4 /* Base in Resources */,
@@ -546,17 +572,23 @@
 				254D7B432D46977E00754A38 /* Network.swift in Sources */,
 				254D7B452D46B47000754A38 /* GenreView.swift in Sources */,
 				CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */,
+				CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */,
 				CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */,
 				254D7B472D46B48A00754A38 /* GenrePresenter.swift in Sources */,
+				CEDBD88B2D50A91E0086F6A3 /* Requestable.swift in Sources */,
 				254D7B402D3CD9B000754A38 /* GenreInteractor.swift in Sources */,
+				CEDBD8912D50ABB10086F6A3 /* NetworkError.swift in Sources */,
 				254D7B492D46B49900754A38 /* GenreRouter.swift in Sources */,
 				CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */,
 				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
 				254D7B572D4F9A4400754A38 /* Bundle+Extensions.swift in Sources */,
 				CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */,
 				CE0F40012D38A6590058CEAE /* FilterButton.swift in Sources */,
+				CEDBD88D2D50A9500086F6A3 /* Responsable.swift in Sources */,
 				CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */,
+				CEDBD8862D509D290086F6A3 /* Endpoint.swift in Sources */,
 				CE0F3FFE2D38A2850058CEAE /* UIImage+Extension.swift in Sources */,
+				CEDBD88F2D50A9E00086F6A3 /* Encodable+Extensions.swift in Sources */,
 				CE0F40052D39D2B80058CEAE /* String+Extension.swift in Sources */,
 				CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */,
 				CE0F3FFA2D3771D40058CEAE /* ContentRouter.swift in Sources */,
