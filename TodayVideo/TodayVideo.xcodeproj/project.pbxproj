@@ -15,6 +15,8 @@
 		254D7B492D46B49900754A38 /* GenreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B482D46B49900754A38 /* GenreRouter.swift */; };
 		254D7B4F2D4784D900754A38 /* UserdefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B4E2D4784D900754A38 /* UserdefaultKey.swift */; };
 		254D7B512D47A9C000754A38 /* PreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B502D47A9C000754A38 /* PreviousButton.swift */; };
+		254D7B552D4F99DC00754A38 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 254D7B542D4F99DC00754A38 /* Secret.plist */; };
+		254D7B572D4F9A4400754A38 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */; };
 		3C6E5A33D507ABB76B8E24C4 /* Pods_TodayVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */; };
 		47B663CC8D8E3B9C6597D6A8 /* Pods_TodayVideo_TodayVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */; };
 		642F696B881908AADE34D680 /* Pods_TodayVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A000755573841D92675025D /* Pods_TodayVideoTests.framework */; };
@@ -65,6 +67,8 @@
 		254D7B482D46B49900754A38 /* GenreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRouter.swift; sourceTree = "<group>"; };
 		254D7B4E2D4784D900754A38 /* UserdefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultKey.swift; sourceTree = "<group>"; };
 		254D7B502D47A9C000754A38 /* PreviousButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousButton.swift; sourceTree = "<group>"; };
+		254D7B542D4F99DC00754A38 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
+		254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		279EED45062696CDB6194350 /* Pods-TodayVideo-TodayVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-TodayVideo-TodayVideoUITests/Pods-TodayVideo-TodayVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2BCFF433EB8A6D8B17F3CEB3 /* Pods_TodayVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490756C7EB6012C404FAB2E3 /* Pods-TodayVideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayVideo.release.xcconfig"; path = "Target Support Files/Pods-TodayVideo/Pods-TodayVideo.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				CE0F3FF22D374BA40058CEAE /* UIColor+Extensions.swift */,
 				CE0F3FFD2D38A2850058CEAE /* UIImage+Extension.swift */,
 				CE0F40042D39D2B80058CEAE /* String+Extension.swift */,
+				254D7B562D4F9A4400754A38 /* Bundle+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
+				254D7B542D4F99DC00754A38 /* Secret.plist */,
 				254D7B4D2D4784BE00754A38 /* Manager */,
 				254D7B412D46975400754A38 /* Network */,
 				CE0F3FFF2D38A63F0058CEAE /* Common */,
@@ -402,6 +408,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254D7B552D4F99DC00754A38 /* Secret.plist in Resources */,
 				CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */,
 				CE9EAC242D2239E200971DB4 /* Base in Resources */,
 				CE9EAC1F2D2239E100971DB4 /* Base in Resources */,
@@ -545,6 +552,7 @@
 				254D7B492D46B49900754A38 /* GenreRouter.swift in Sources */,
 				CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */,
 				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
+				254D7B572D4F9A4400754A38 /* Bundle+Extensions.swift in Sources */,
 				CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */,
 				CE0F40012D38A6590058CEAE /* FilterButton.swift in Sources */,
 				CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */,

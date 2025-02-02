@@ -17,6 +17,7 @@ final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
     var selectedGenre: [Int:Bool] = [:]
 
+    let containerView = UIView()
     let allButton = FilterButton(title: "무관")
     var genreButtons = [FilterButton]()
     
@@ -39,79 +40,94 @@ final class GenreView: UIViewController {
     }
 }
 
-
-
+// MARK: - GenreViewProtocol
 extension GenreView: GenreViewProtocol {
     func makeGenreButton(_ genres: [Genre]) {
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             
             // 컨테이너
-            let containerView = UIView()
-            let containerLeftRightMargin: CGFloat = 68
-            let maxContainerWidth = Int(self.view.frame.size.width - containerLeftRightMargin)
-            self.view.addSubview(containerView)
+            view.addSubview(containerView)
             
             // all 버튼
-            allButton.tag = -1
-            allButton.isSelected = true
-            allButton.updateState()
-            allButton.addTarget(self, action: #selector(allGenreSelect), for: .touchUpInside)
             containerView.addSubview(allButton)
-            allButton.snp.makeConstraints { make in
-                make.leading.equalToSuperview()
-                make.top.equalToSuperview()
-                make.width.equalTo(allButton.width())
-                make.height.equalTo(allButton.height)
-            }
+            makeAllButton()
             
             // 장르 버튼
-            let buttonMargin: Int = 6
-            var height: Int = Int(allButton.height) + buttonMargin
-            var width: Int = 0
-            var buttonWidth: Int = 0
-            var buttonHeight: Int = 0
+            createGenreButtons(genres)
+        }
+    }
+    
+    private func makeAllButton() {
+        allButton.tag = -1
+        allButton.isSelected = true
+        allButton.updateState()
+        allButton.addTarget(self, action: #selector(allGenreSelect), for: .touchUpInside)
+        
+        allButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.width.equalTo(allButton.width())
+            make.height.equalTo(allButton.height)
+        }
+    }
+    
+    private func createGenreButtons(_ genres: [Genre]) {
+        let containerLeftRightMargin: CGFloat = 68
+        let maxContainerWidth = Int(self.view.frame.size.width - containerLeftRightMargin)
+        let buttonMargin = 6
+        let buttonHeight = Int(allButton.height)
+        var height = buttonHeight + buttonMargin
+        var width = 0
+        
+        for genre in genres {
+            guard let title = genre.name,
+                  let id = genre.id else { continue }
+            let button = createButton(title: title, id: id)
+            let buttonWidth = Int(button.width())
             
-            for idx in 0 ..< genres.count {
-                if let title = genres[idx].name, let id = genres[idx].id {
-                    let button = FilterButton(title: title)
-                    buttonWidth = Int(button.width())
-                    buttonHeight = Int(button.height)
-                    
-                    button.tag = id
-                    button.isSelected = false
-                    button.updateState()
-                    button.addTarget(self, action: #selector(genreSelect(_:)), for: .touchUpInside)
-                    self.genreButtons.append(button)
-                    self.selectedGenre.updateValue(true, forKey: id)
-                    containerView.addSubview(button)
-                    
-                    // 버튼이 들어갈 자리가 충분한지 확인
-                    if (maxContainerWidth - width) < (buttonWidth + buttonMargin) {
-                        width = 0
-                        height += buttonHeight + buttonMargin
-                    }
-                                        
-                    button.snp.makeConstraints { make in
-                        make.leading.equalToSuperview().offset(width)
-                        make.top.equalToSuperview().offset(height)
-                        make.width.equalTo(buttonWidth)
-                        make.height.equalTo(buttonHeight)
-                    }
-                    
-                    width += (buttonWidth + buttonMargin)
-                }
+            // 버튼이 들어갈 자리가 충분한지 확인
+            if (maxContainerWidth - width) < (buttonWidth + buttonMargin) {
+                width = 0
+                height += buttonHeight + buttonMargin
             }
             
-            containerView.snp.makeConstraints { make in
-                make.center.equalToSuperview()
-                make.width.equalTo(maxContainerWidth)
-                make.height.equalTo(height + buttonHeight)
+            containerView.addSubview(button)
+            button.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(width)
+                make.top.equalToSuperview().offset(height)
+                make.width.equalTo(buttonWidth)
+                make.height.equalTo(buttonHeight)
             }
+            
+            width += (buttonWidth + buttonMargin)
+        }
+
+        containerViewConstraints(width: maxContainerWidth, height: height + buttonHeight)
+    }
+
+    private func createButton(title: String, id: Int) -> FilterButton {
+        let button = FilterButton(title: title)
+        button.tag = id
+        button.isSelected = false
+        button.updateState()
+        button.addTarget(self, action: #selector(genreSelect(_:)), for: .touchUpInside)
+        
+        genreButtons.append(button)
+        selectedGenre[id] = true
+        return button
+    }
+
+    private func containerViewConstraints(width: Int, height: Int) {
+        containerView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(width)
+            make.height.equalTo(height)
         }
     }
     
     func makeGenreFail(_ error: Error) {
-        let alert = UIAlertController(title: "", message: "일시적인 오류가 발생하였습니다.\n나중에 다시 시도해주세요.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: NetworkError.unknownError.errorDescription, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default){ action in
             alert.dismiss(animated: true)
             }

@@ -69,6 +69,12 @@ final class ContentView: UIViewController {
         let _ = NextButton(location: self)
     }
     
+    func selectEvent(button1: FilterButton, button2: FilterButton) {
+        button1.isSelected = false
+        button1.updateState()
+        button2.updateState()
+    }
+    
     @objc private func buttonSelected(_ sender: UIButton) {
         // 이미 선택되어 있는 버튼이면 return
         if sender.isSelected {
@@ -79,15 +85,11 @@ final class ContentView: UIViewController {
         
         DispatchQueue.main.async {
             if sender == self.movieButton {
-                UserDefaults.standard.setValue(Content.movie.rawValue, forKey: UserdefaultKey.selectContent.rawValue)
-                self.tvButton.isSelected = false
-                self.tvButton.updateState()
-                self.movieButton.updateState()
+                UserDefault.shared.setValue(Content.movie.rawValue, key: .selectContent)
+                self.selectEvent(button1: self.tvButton, button2: self.movieButton)
             } else {
-                UserDefaults.standard.setValue(Content.tv.rawValue, forKey: UserdefaultKey.selectContent.rawValue)
-                self.movieButton.isSelected = false
-                self.movieButton.updateState()
-                self.tvButton.updateState()
+                UserDefault.shared.setValue(Content.tv.rawValue, key: .selectContent)
+                self.selectEvent(button1: self.movieButton, button2: self.tvButton)
             }
         }
     }
