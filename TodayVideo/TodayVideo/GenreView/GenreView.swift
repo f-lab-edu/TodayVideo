@@ -127,7 +127,7 @@ extension GenreView: GenreViewProtocol {
     }
     
     func makeGenreFail(_ error: Error) {
-        let alert = UIAlertController(title: "", message: NetworkError.unknownError.errorDescription, preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default){ action in
             alert.dismiss(animated: true)
             }

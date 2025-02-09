@@ -19,11 +19,11 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unknownError: return "일시적인 오류가 발생하였습니다.\n나중에 다시 시도해주세요."
-        case .invalidHttpStatusCode: return "status코드가 200~299가 아닙니다."
+        case .invalidHttpStatusCode: return "서버에서 오류가 발생했습니다.\n잠시 후 다시 시도해주세요." //status코드가 200~299가 아닙니다.
         case .components: return "components를 생성 에러가 발생했습니다."
         case .urlRequest: return "URL request 관련 에러가 발생했습니다."
         case .parsing: return "데이터 parsing 중에 에러가 발생했습니다."
-        case .emptyData: return "data가 비어있습니다."
+        case .emptyData: return "서버에서 오류가 발생했습니다.\n잠시 후 다시 시도해주세요." // data가 비어있습니다.
         case .decodeError: return "decode 에러가 발생했습니다."
         }
     }
