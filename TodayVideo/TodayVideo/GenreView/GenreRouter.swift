@@ -31,8 +31,7 @@ final class GenreRouter: GenreRouterProtocol {
     }
     
     func pushToRecommendView() {
-        // 다음 화면으로 이동을 위한 처리 코드 입니다.
-//        let recommendView = RecommendRouter.createRecommendViewModule
-//        genreView?.navigationController?.pushViewController(recommendView, animated: true)
+        let recommendView = RecommendRouter.createRecommendViewModule()
+        genreView?.navigationController?.pushViewController(recommendView, animated: true)
     }
 }

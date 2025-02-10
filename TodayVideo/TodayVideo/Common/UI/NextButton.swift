@@ -39,6 +39,9 @@ final class NextButton: UIButton {
         case is ContentView:
             guard let contentView = currentView as? ContentView else { return }
             contentView.presenter?.pushToGenreView()
+        case is GenreView:
+            guard let genreView = currentView as? GenreView else { return }
+            genreView.presenter?.pushToRecommendView()
         default: break
         }
     }

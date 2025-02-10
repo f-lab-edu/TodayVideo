@@ -9,6 +9,7 @@ import Foundation
 
 enum UserdefaultKey: String {
     case selectContent // 영화, 드라마 선택
+    case selectGenre // 선택한 장르
 }
 
 final class UserDefault {

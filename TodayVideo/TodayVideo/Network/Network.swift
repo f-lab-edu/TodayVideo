@@ -13,12 +13,24 @@ import Foundation
  */
 
 final class Network {
+    static let shared = Network()
+    private var isFetching = false  // 중복 요청 방지 플래그
+    
+    private init() {}
+    
     func request<R: Decodable, E: RequesteResponsable>(with endpoint: E, completion: @escaping (Result<R, Error>) -> Void) where E.Response == R {
+        guard !isFetching else {
+            print("이미 요청이 진행 중입니다.")
+            return
+        }
+        isFetching = true
         
         do {
             let urlRequest = try endpoint.getUrlRequest()
 
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                self.isFetching = false
+                
                 DispatchQueue.main.async {
                     self.checkError(with: data, response, error) { [weak self] result in
                         guard let self = self else { return }

@@ -46,7 +46,7 @@ final class GenreViewTest: XCTestCase {
         let expectation = self.expectation(description: "API 응답이 200 OK인지 확인")
         let endpoint = APIEndpoint.shared.getMovieGenres()
         
-        Network().request(with: endpoint) { result in
+        Network.shared.request(with: endpoint) { result in
             switch result {
             case .success:
                 XCTAssertTrue(true)

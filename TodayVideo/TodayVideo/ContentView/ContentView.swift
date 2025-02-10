@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-enum Content: String {
-    case movie = "영화"
-    case tv = "TV"
-}
+//enum Content: String {
+//    case movie = "영화"
+//    case tv = "TV"
+//}
 
 final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
@@ -44,8 +44,8 @@ final class ContentView: UIViewController {
         }
         
         /// 버튼
-        movieButton = FilterButton(title: Content.movie.rawValue)
-        tvButton = FilterButton(title: Content.tv.rawValue)
+        movieButton = FilterButton(title: Movie().title)
+        tvButton = FilterButton(title: TV().title)
         
         [movieButton, tvButton].forEach { button in
             button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
@@ -84,11 +84,15 @@ final class ContentView: UIViewController {
         sender.isSelected = !sender.isSelected
         
         DispatchQueue.main.async {
+            let content = Content.shared
+            
             if sender == self.movieButton {
-                UserDefault.shared.setValue(Content.movie.rawValue, key: .selectContent)
+                let movie = Movie()
+                content.configure(content: movie)
                 self.selectEvent(button1: self.tvButton, button2: self.movieButton)
             } else {
-                UserDefault.shared.setValue(Content.tv.rawValue, key: .selectContent)
+                let tv = TV()
+                content.configure(content: tv)
                 self.selectEvent(button1: self.movieButton, button2: self.tvButton)
             }
         }

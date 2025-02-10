@@ -38,6 +38,84 @@ final class GenreView: UIViewController {
         let _ = PreviousButton(location: self)
         let _ = NextButton(location: self)
     }
+    
+    // MARK: - 버튼 기능
+    private func controlAllButton(_ select: Bool) {
+        allButton.isSelected = select
+        allButton.updateState()
+        
+        selectedGenre.forEach { key,value in
+            selectedGenre[key] = select
+        }
+        
+        makeSelectedGenreString()
+    }
+    
+    @objc private func allGenreSelect() {
+        controlAllButton(!allButton.isSelected)
+        
+        let selectFilter = selectedGenre.filter{$0.value == true}
+        if selectFilter.count > 0 {
+            genreButtons.forEach { button in
+                button.isSelected = false
+                button.updateState()
+            }
+        }
+        
+        makeSelectedGenreString()
+    }
+    
+    @objc private func genreSelect(_ sender: FilterButton) {
+        sender.isSelected = !sender.isSelected
+        sender.updateState()
+        
+        if allButton.isSelected {
+            controlAllButton(false)
+        }
+        
+        let id = sender.tag
+        selectedGenre[id] = sender.isSelected
+        
+        let selectFilter = selectedGenre.filter{$0.value == true}
+        if selectFilter.count == 0 {
+            controlAllButton(true)
+        }
+        
+        makeSelectedGenreString()
+    }
+    
+    private func makeSelectedGenresString(genreIDs: [Int]) -> String {
+        if genreIDs.count == 1 {
+            return String(genreIDs[0])
+        }
+        else if genreIDs.count > 1 {
+            var genreString = ""
+            
+            for idx in 0 ..< genreIDs.count {
+                genreString += "\(genreIDs[idx]),"
+            }
+            
+            genreString.removeLast(1)
+            genreString = genreString.replacingOccurrences(of: ",", with: "%2C")
+            
+            return genreString
+        }
+        
+        return ""
+    }
+    
+    private func makeSelectedGenreString() {
+        let genreCount = genreButtons.count
+        let genre = (selectedGenre.filter { $0.value == true }).map{ $0.key }
+        
+        if genreCount == genre.count {
+            let genreString = ""
+            UserDefault.shared.setValue(genreString, key: .selectGenre)
+        } else {
+            let genreString = makeSelectedGenresString(genreIDs: genre)
+            UserDefault.shared.setValue(genreString, key: .selectGenre)
+        }
+    }
 }
 
 // MARK: - GenreViewProtocol
@@ -70,6 +148,8 @@ extension GenreView: GenreViewProtocol {
             make.width.equalTo(allButton.width())
             make.height.equalTo(allButton.height)
         }
+        
+        makeSelectedGenreString()
     }
     
     private func createGenreButtons(_ genres: [Genre]) {
@@ -133,43 +213,5 @@ extension GenreView: GenreViewProtocol {
             }
         alert.addAction(ok)
         self.present(alert, animated: true)
-    }
-    
-    private func controlAllButton(_ select: Bool) {
-        allButton.isSelected = select
-        allButton.updateState()
-        
-        selectedGenre.forEach { key,value in
-            selectedGenre[key] = select
-        }
-    }
-    
-    @objc private func allGenreSelect() {
-        controlAllButton(!allButton.isSelected)
-        
-        let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count > 0 {
-            genreButtons.forEach { button in
-                button.isSelected = false
-                button.updateState()
-            }
-        }
-    }
-    
-    @objc private func genreSelect(_ sender: FilterButton) {
-        sender.isSelected = !sender.isSelected
-        sender.updateState()
-        
-        if allButton.isSelected {
-            controlAllButton(false)
-        }
-        
-        let id = sender.tag
-        selectedGenre[id] = sender.isSelected
-        
-        let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count == 0 {
-            controlAllButton(true)
-        }
     }
 }
