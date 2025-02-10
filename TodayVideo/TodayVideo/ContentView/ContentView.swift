@@ -8,14 +8,16 @@
 import UIKit
 import SnapKit
 
+enum Content: String {
+    case movie = "영화"
+    case tv = "TV"
+}
+
 final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
     
     private var movieButton: FilterButton!
     private var tvButton: FilterButton!
-    private let movie = "영화"
-    private let tv = "TV"
-    private lazy var selectedContent = movie
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +44,8 @@ final class ContentView: UIViewController {
         }
         
         /// 버튼
-        movieButton = FilterButton(title: movie)
-        tvButton = FilterButton(title: tv)
+        movieButton = FilterButton(title: Content.movie.rawValue)
+        tvButton = FilterButton(title: Content.tv.rawValue)
         
         [movieButton, tvButton].forEach { button in
             button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
@@ -67,6 +69,12 @@ final class ContentView: UIViewController {
         let _ = NextButton(location: self)
     }
     
+    func selectEvent(button1: FilterButton, button2: FilterButton) {
+        button1.isSelected = false
+        button1.updateState()
+        button2.updateState()
+    }
+    
     @objc private func buttonSelected(_ sender: UIButton) {
         // 이미 선택되어 있는 버튼이면 return
         if sender.isSelected {
@@ -77,15 +85,11 @@ final class ContentView: UIViewController {
         
         DispatchQueue.main.async {
             if sender == self.movieButton {
-                self.selectedContent = self.movie
-                self.tvButton.isSelected = false
-                self.tvButton.updateState()
-                self.movieButton.updateState()
+                UserDefault.shared.setValue(Content.movie.rawValue, key: .selectContent)
+                self.selectEvent(button1: self.tvButton, button2: self.movieButton)
             } else {
-                self.selectedContent = self.tv
-                self.movieButton.isSelected = false
-                self.movieButton.updateState()
-                self.tvButton.updateState()
+                UserDefault.shared.setValue(Content.tv.rawValue, key: .selectContent)
+                self.selectEvent(button1: self.movieButton, button2: self.tvButton)
             }
         }
     }
