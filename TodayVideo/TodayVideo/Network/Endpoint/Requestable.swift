@@ -60,7 +60,7 @@ extension Requestable {
     private func makeURL() throws -> URLComponents {
         let baseUrl = Bundle.main.baseUrl
         let fullPath = "\(baseUrl)\(path)"
-        guard var urlComponents = URLComponents(string: fullPath) else { throw NetworkError.components }
+        guard let urlComponents = URLComponents(string: fullPath) else { throw NetworkError.components }
         
         return urlComponents
     }

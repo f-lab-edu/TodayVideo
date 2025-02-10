@@ -17,9 +17,9 @@ final class GenreInteractor: GenreInteractorProtocol {
     func endpoint() -> Endpoint<GenresResponse> {
         let selectedContent = UserDefault.shared.stringForKey(.selectContent)
         if selectedContent == Content.tv.rawValue {
-            return APIEndpoint.getTVGenres()
+            return APIEndpoint.shared.getTVGenres()
         } else {
-            return APIEndpoint.getMovieGenres()
+            return APIEndpoint.shared.getMovieGenres()
         }
     }
     
@@ -34,15 +34,6 @@ final class GenreInteractor: GenreInteractorProtocol {
             case .failure(let error):
                 self.presenter?.fetchFail(with: error)
             }
-        }
-    }
-    
-    private func resultProcess(_ result: Result<GenresResponse, Error>) {
-        switch result {
-        case .success(let response):
-            presenter?.fetchSuccess(with: response.genres)
-        case .failure(let error):
-            presenter?.fetchFail(with: error)
         }
     }
 }
