@@ -11,8 +11,6 @@ final class FilterButton: UIButton {
     let height: CGFloat = 50.0
     private let leftRightMargin: CGFloat = 60.0
     private let fontSize: CGFloat = 17
-    private let height: CGFloat = 50.0
-    private let leftRightMargin: CGFloat = 70.0
     private var title = ""
     
     init(title: String) {
@@ -30,7 +28,6 @@ final class FilterButton: UIButton {
     
     func width() -> CGFloat {
         let titleWidth = title.width(size: fontSize)
-        let titleWidth = title.width(size: 20)
         return titleWidth + leftRightMargin
     }
     
