@@ -30,5 +30,9 @@ final class ContentRouter: ContentRouterProtocol {
     func pushToGenreView() {
         let genreView = GenreRouter.createGenreViewModule()
         contentView?.navigationController?.pushViewController(genreView, animated: true)
+
+      // 다음 화면으로 이동을 위한 처리 코드 입니다.
+//        let genreView = GenreRouter.createGenre
+//        contentView?.navigationController?.pushViewController(genreView, animated: true)
     }
 }
