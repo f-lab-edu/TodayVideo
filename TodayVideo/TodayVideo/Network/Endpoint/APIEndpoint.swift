@@ -15,15 +15,17 @@ class APIEndpoint {
         case TVGenre = "/genre/tv/list"
     }
     
-    func getMovieGenres() -> Endpoint<GenresResponse> {
-        return Endpoint(path: Path.movieGenre.rawValue,
+    func getGenres(path: Path.RawValue) -> Endpoint<GenresResponse> {
+        return Endpoint(path: path,
                         method: .get,
                         queryParameters: ["language":"ko"])
     }
     
+    func getMovieGenres() -> Endpoint<GenresResponse> {
+        return getGenres(path: Path.movieGenre.rawValue)
+    }
+    
     func getTVGenres() -> Endpoint<GenresResponse> {
-        return Endpoint(path: Path.TVGenre.rawValue,
-                        method: .get,
-                        queryParameters: ["language":"ko"])
+        return getGenres(path: Path.TVGenre.rawValue)
     }
 }
