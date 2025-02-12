@@ -7,21 +7,25 @@
 
 import Foundation
 
-struct APIEndpoint {
+class APIEndpoint {
+    static let shared = APIEndpoint()
+    
     enum Path: String {
         case movieGenre = "/genre/movie/list"
         case TVGenre = "/genre/tv/list"
     }
     
-    static func getMovieGenres() -> Endpoint<GenresResponse> {
-        return Endpoint(path: Path.movieGenre.rawValue,
+    func getGenres(path: Path.RawValue) -> Endpoint<GenresResponse> {
+        return Endpoint(path: path,
                         method: .get,
                         queryParameters: ["language":"ko"])
     }
     
-    static func getTVGenres() -> Endpoint<GenresResponse> {
-        return Endpoint(path: Path.TVGenre.rawValue,
-                        method: .get,
-                        queryParameters: ["language":"ko"])
+    func getMovieGenres() -> Endpoint<GenresResponse> {
+        return getGenres(path: Path.movieGenre.rawValue)
+    }
+    
+    func getTVGenres() -> Endpoint<GenresResponse> {
+        return getGenres(path: Path.TVGenre.rawValue)
     }
 }
