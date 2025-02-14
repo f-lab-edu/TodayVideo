@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol GenreViewProtocol {
-    func makeGenreButton(_ genres: [Genre])
+    func makeGenreSuccess(_ genres: [Genre])
     func makeGenreFail(_ error: Error)
 }
 
@@ -17,7 +17,10 @@ final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
     var selectedGenre: [Int:Bool] = [:]
 
-    let containerView = UIView()
+    var previousButton: PreviousButton!
+    var nextButton: NextButton!
+    let scrollView = UIScrollView()
+    let scrollViewContainer = UIView()
     let allButton = FilterButton(title: "무관")
     var genreButtons = [FilterButton]()
     
@@ -35,8 +38,8 @@ final class GenreView: UIViewController {
     private func drawUI() {
         view.backgroundColor = .background
         
-        let _ = PreviousButton(location: self)
-        let _ = NextButton(location: self)
+        previousButton = PreviousButton(location: self)
+        nextButton = NextButton(location: self)
     }
     
     // MARK: - 버튼 기능
@@ -120,15 +123,26 @@ final class GenreView: UIViewController {
 
 // MARK: - GenreViewProtocol
 extension GenreView: GenreViewProtocol {
-    func makeGenreButton(_ genres: [Genre]) {
+    func makeGenreFail(_ error: Error) {
+        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default){ action in
+            alert.dismiss(animated: true)
+            }
+        alert.addAction(ok)
+        self.present(alert, animated: true)
+    }
+    
+    func makeGenreSuccess(_ genres: [Genre]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
             // 컨테이너
-            view.addSubview(containerView)
+            scrollView.showsVerticalScrollIndicator = false
+            scrollView.isScrollEnabled = true
+            view.addSubview(scrollView)
             
             // all 버튼
-            containerView.addSubview(allButton)
+            scrollView.addSubview(allButton)
             makeAllButton()
             
             // 장르 버튼
@@ -172,7 +186,7 @@ extension GenreView: GenreViewProtocol {
                 height += buttonHeight + buttonMargin
             }
             
-            containerView.addSubview(button)
+            scrollView.addSubview(button)
             button.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(width)
                 make.top.equalToSuperview().offset(height)
@@ -183,7 +197,8 @@ extension GenreView: GenreViewProtocol {
             width += (buttonWidth + buttonMargin)
         }
 
-        containerViewConstraints(width: maxContainerWidth, height: height + buttonHeight)
+        scrollViewConstraints(width: maxContainerWidth, height: height + buttonHeight)
+        
     }
 
     private func createButton(title: String, id: Int) -> FilterButton {
@@ -198,20 +213,29 @@ extension GenreView: GenreViewProtocol {
         return button
     }
 
-    private func containerViewConstraints(width: Int, height: Int) {
-        containerView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(width)
-            make.height.equalTo(height)
-        }
-    }
-    
-    func makeGenreFail(_ error: Error) {
-        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default){ action in
-            alert.dismiss(animated: true)
+    private func scrollViewConstraints(width: Int, height: Int) {
+        let topMargin: CGFloat = 20
+        let bottomMargin: CGFloat = 14
+        let top = previousButton.frame.origin.x + previousButton.frame.size.height + topMargin
+        let bottom = nextButton.frame.size.height + bottomMargin + self.view.safeAreaInsets.bottom
+        let areaHeight = Int(self.view.frame.size.height - top - bottom)
+
+        scrollView.contentSize = CGSize(width: width, height: height)
+        
+        // 장르 버튼 들을 놓을 수 있는 영역의 높이 > 장르 버튼 들을 놓기위해 필요한 높이
+        if areaHeight > height {
+            scrollView.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+                make.width.equalTo(width)
+                make.height.equalTo(height)
             }
-        alert.addAction(ok)
-        self.present(alert, animated: true)
+        } else {
+            scrollView.snp.makeConstraints { make in
+                make.top.equalTo(previousButton.snp.bottom).offset(topMargin)
+                make.bottom.equalTo(nextButton.snp.top).offset(-bottomMargin)
+                make.width.equalTo(width)
+                make.centerX.equalToSuperview()
+            }
+        }
     }
 }

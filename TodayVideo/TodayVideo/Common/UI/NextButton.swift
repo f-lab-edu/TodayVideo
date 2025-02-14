@@ -30,7 +30,7 @@ final class NextButton: UIButton {
             make.width.equalTo(15.4)
             make.height.equalTo(23)
             make.trailing.equalTo(view.snp.trailing).offset(-41.6)
-            make.bottom.equalTo(view.snp.bottom).offset(-78)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-27.27)
         }
     }
     

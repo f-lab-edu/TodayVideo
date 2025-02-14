@@ -14,19 +14,18 @@ protocol GenreInteractorProtocol {
 final class GenreInteractor: GenreInteractorProtocol {
     var presenter: GenrePresenterProtocol?
     
-    func endpoint() -> Endpoint<GenresResponse> {
-        let content = Content.shared.content
-        return content.genres()
+    func content() -> SelectedContent {
+        return Content.shared.content
     }
     
     func fetchGenres() {
-        let endpoint = endpoint()
+        let content = content()
+        let endpoint = content.genres()
         
-        Network.shared.request(with: endpoint) { [weak self] result in
-            guard let self = self else { return }
+        content.requestGenre(endpoint: endpoint) { result in
             switch result {
-            case .success(let response):
-                self.presenter?.fetchSuccess(with: response.genres)
+            case .success(let genres):
+                self.presenter?.fetchSuccess(with: genres)
             case .failure(let error):
                 self.presenter?.fetchFail(with: error)
             }

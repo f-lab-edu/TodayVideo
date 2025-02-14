@@ -24,7 +24,7 @@ final class GenrePresenter: GenrePresenterProtocol {
     }
     
     func fetchSuccess(with genres: [Genre]) {
-        view?.makeGenreButton(genres)
+        view?.makeGenreSuccess(genres)
     }
     
     func fetchFail(with error: Error) {
