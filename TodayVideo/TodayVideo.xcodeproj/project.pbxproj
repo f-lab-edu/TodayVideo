@@ -36,6 +36,7 @@
 		CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */; };
 		CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */; };
 		CEB800B42D59DECE00CB5A98 /* GenreViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800B22D59DECE00CB5A98 /* GenreViewTest.swift */; };
+		CEB800CC2D5DD8F700CB5A98 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CEB800CB2D5DD8F700CB5A98 /* .swiftlint.yml */; };
 		CEDBD8862D509D290086F6A3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8852D509D290086F6A3 /* Endpoint.swift */; };
 		CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */; };
 		CEDBD88B2D50A91E0086F6A3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */; };
@@ -93,6 +94,7 @@
 		CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		CE9EAC4A2D223B2D00971DB4 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		CEB800B22D59DECE00CB5A98 /* GenreViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreViewTest.swift; sourceTree = "<group>"; };
+		CEB800CB2D5DD8F700CB5A98 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CEDBD8852D509D290086F6A3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		CE9EAC0B2D2239E100971DB4 = {
 			isa = PBXGroup;
 			children = (
+				CEB800CB2D5DD8F700CB5A98 /* .swiftlint.yml */,
 				CE9EAC162D2239E100971DB4 /* TodayVideo */,
 				CE9EAC2D2D2239E300971DB4 /* TodayVideoTests */,
 				CE9EAC152D2239E100971DB4 /* Products */,
@@ -309,6 +312,7 @@
 			buildConfigurationList = CE9EAC3E2D2239E300971DB4 /* Build configuration list for PBXNativeTarget "TodayVideo" */;
 			buildPhases = (
 				1D015C5F919ABAF769C658F6 /* [CP] Check Pods Manifest.lock */,
+				CEB800CA2D5DD84600CB5A98 /* SwiftLint */,
 				CE9EAC102D2239E100971DB4 /* Sources */,
 				CE9EAC112D2239E100971DB4 /* Frameworks */,
 				CE9EAC122D2239E100971DB4 /* Resources */,
@@ -385,6 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB800CC2D5DD8F700CB5A98 /* .swiftlint.yml in Resources */,
 				254D7B5B2D58CF0C00754A38 /* Secret.plist in Resources */,
 				CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */,
 				CE9EAC242D2239E200971DB4 /* Base in Resources */,
@@ -462,6 +467,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TodayVideo/Pods-TodayVideo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CEB800CA2D5DD84600CB5A98 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
