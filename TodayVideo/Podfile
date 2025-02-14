@@ -7,12 +7,9 @@ target 'TodayVideo' do
 
   # Pods for TodayVideo
 pod 'SnapKit'
+pod 'SwiftLint'
   target 'TodayVideoTests' do
     inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'TodayVideoUITests' do
     # Pods for testing
   end
 

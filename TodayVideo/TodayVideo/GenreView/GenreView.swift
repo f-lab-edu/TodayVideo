@@ -15,7 +15,7 @@ protocol GenreViewProtocol {
 
 final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
-    var selectedGenre: [Int:Bool] = [:]
+    var selectedGenre: [Int: Bool] = [:]
 
     let containerView = UIView()
     let allButton = FilterButton(title: "무관")
@@ -35,8 +35,8 @@ final class GenreView: UIViewController {
     private func drawUI() {
         view.backgroundColor = .background
         
-        let _ = PreviousButton(location: self)
-        let _ = NextButton(location: self)
+        _ = PreviousButton(location: self)
+        _ = NextButton(location: self)
     }
 }
 
@@ -128,9 +128,9 @@ extension GenreView: GenreViewProtocol {
     
     func makeGenreFail(_ error: Error) {
         let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default){ action in
+        let ok = UIAlertAction(title: "확인", style: .default) { action in
             alert.dismiss(animated: true)
-            }
+        }
         alert.addAction(ok)
         self.present(alert, animated: true)
     }
@@ -139,7 +139,7 @@ extension GenreView: GenreViewProtocol {
         allButton.isSelected = select
         allButton.updateState()
         
-        selectedGenre.forEach { key,value in
+        selectedGenre.forEach { key, value in
             selectedGenre[key] = select
         }
     }
@@ -148,7 +148,7 @@ extension GenreView: GenreViewProtocol {
         controlAllButton(!allButton.isSelected)
         
         let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count > 0 {
+        if !selectFilter.isEmpty {
             genreButtons.forEach { button in
                 button.isSelected = false
                 button.updateState()
@@ -168,7 +168,7 @@ extension GenreView: GenreViewProtocol {
         selectedGenre[id] = sender.isSelected
         
         let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count == 0 {
+        if selectFilter.isEmpty {
             controlAllButton(true)
         }
     }

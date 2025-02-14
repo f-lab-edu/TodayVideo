@@ -8,9 +8,9 @@
 import Foundation
 
 /*
- 네트워킹 로직 출처
- https://ios-development.tistory.com/719
- */
+네트워킹 로직 출처
+https://ios-development.tistory.com/719
+*/
 
 final class Network {
     func request<R: Decodable, E: RequesteResponsable>(with endpoint: E, completion: @escaping (Result<R, Error>) -> Void) where E.Response == R {
@@ -38,7 +38,7 @@ final class Network {
         }
     }
     
-    private func checkError(with data: Data?, _ response: URLResponse?, _ error: Error?, completion: @escaping (Result<Data, Error>) -> ()) {
+    private func checkError(with data: Data?, _ response: URLResponse?, _ error: Error?, completion: @escaping (Result<Data, Error>) -> Void) {
         if let error = error {
             completion(.failure(error))
             return
@@ -46,11 +46,11 @@ final class Network {
 
         do {
             let response = try checkResponse(response)
-            let _ = try checkStatusCode(response!.statusCode)
+            _ = try checkStatusCode(response!.statusCode)
             let data = try checkData(data)
             
             completion(.success((data!)))
-        } catch(let error) {
+        } catch let error {
             completion(.failure(error))
         }
     }
