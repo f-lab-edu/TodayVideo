@@ -10,4 +10,5 @@ import UIKit
 extension UIImage {
     static let nextButton = UIImage(named: "next")
     static let previousButton = UIImage(named: "previous")
+    static let filmBackground = UIImage(named: "film")
 }

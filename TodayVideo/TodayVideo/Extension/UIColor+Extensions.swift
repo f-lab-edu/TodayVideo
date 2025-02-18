@@ -18,6 +18,8 @@ extension UIColor {
     static let buttonDefaultText = UIColor(hex: "#FDFDFD") ?? .white
     static let buttonSelectedBackground = UIColor(hex: "#3B84A8") ?? .blue
     static let buttonSelectedText = UIColor(hex: "#1E2122") ?? .black
+    // RecommendView
+    static let cardBackground = UIColor(hex: "#D9D9D9") ?? .gray
 }
 
 extension UIColor {
