@@ -16,8 +16,14 @@ final class RecommendInteractor: RecommendInteractorProtocol {
     
     func fetchRecommend() {
         let content = Content.shared.content
+        
         content.requestRecommends { result in
-            //
+            switch result {
+            case .success(let recommend):
+                self.presenter?.fetchSuccess(response: recommend)
+            case .failure(let error):
+                self.presenter?.fetchFail(with: error)
+            }
         }
     }
 }

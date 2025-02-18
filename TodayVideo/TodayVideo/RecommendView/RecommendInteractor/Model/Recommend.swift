@@ -32,8 +32,10 @@ struct RecommendRequest: Codable, Equatable {
 }
 
 // MARK: - response
+protocol RecommendItems {}
+
 // 영화
-struct RecommendMovieResponse: Decodable, Equatable {
+struct RecommendMovieResponse: Decodable, RecommendItems {
     let results: [Items]
     let totalPages: Int
     
@@ -41,12 +43,8 @@ struct RecommendMovieResponse: Decodable, Equatable {
         case results
         case totalPages = "total_pages"
     }
-    
-    static func == (lhs: RecommendMovieResponse, rhs: RecommendMovieResponse) -> Bool {
-        return lhs.results == rhs.results
-    }
-    
-    struct Items: Decodable, Equatable {
+
+    struct Items: Decodable, RecommendItems {
         let genreIds: [Int]
         let id: Int
         let posterPath: String
@@ -64,7 +62,7 @@ struct RecommendMovieResponse: Decodable, Equatable {
 }
 
 // 드라마
-struct RecommendTVResponse: Decodable, Equatable {
+struct RecommendTVResponse: Decodable, RecommendItems {
     let results: [Items]
     let totalPages: Int
     
@@ -73,11 +71,7 @@ struct RecommendTVResponse: Decodable, Equatable {
         case totalPages = "total_pages"
     }
     
-    static func == (lhs: RecommendTVResponse, rhs: RecommendTVResponse) -> Bool {
-        return lhs.results == rhs.results
-    }
-    
-    struct Items: Decodable, Equatable {
+    struct Items: Decodable, RecommendItems {
         let genreIds: [Int]
         let id: Int
         let posterPath: String
