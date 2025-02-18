@@ -14,12 +14,8 @@ protocol GenreInteractorProtocol {
 final class GenreInteractor: GenreInteractorProtocol {
     var presenter: GenrePresenterProtocol?
     
-    func content() -> SelectedContent {
-        return Content.shared.content
-    }
-    
     func fetchGenres() {
-        let content = content()
+        let content = Content.shared.content
         let endpoint = content.genres()
         
         content.requestGenre(endpoint: endpoint) { result in

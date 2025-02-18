@@ -16,9 +16,9 @@ protocol SelectedContent {
     func recommendRequest(by page: Int) -> RecommendRequest
     func recommends<T: Decodable, R: Endpoint<T>>(page: Int) -> R
     func requestTotalPage(completion:@escaping (Int) -> Void)
-    func requestRecommends<T: Decodable>(completion: @escaping (Result<[T], Error>) -> Void)
-    
+    func requestRecommends(completion: @escaping (Result<[RecommendItems], Error>) -> Void)
 }
+
 extension SelectedContent {
     func requestGenre(endpoint: Endpoint<GenresResponse>, completion: @escaping (Result<[Genre], Error>)->()) {
         Network.shared.request(with: endpoint) { result in
@@ -65,24 +65,20 @@ class Movie: SelectedContent {
         }
     }
     
-    func requestRecommends<T>(completion: @escaping (Result<[T], any Error>) -> Void) where T : Decodable {
+    func requestRecommends(completion: @escaping (Result<[RecommendItems], any Error>) -> Void) {
         requestTotalPage() { totalPage in
             guard let endpoint = self.recommends(page: totalPage) as? Endpoint<RecommendMovieResponse> else { return }
             
             Network.shared.request(with: endpoint) { result in
                 switch result {
                 case .success(let response):
-                    guard let response = response.results as? [T] else { return }
+                    guard let response = response.results as? [RecommendItems] else { return }
                     completion(.success(response))
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
         }
-    }
-    
-    func items() -> Result<[RecommendMovieResponse.Items], Error> {
-        
     }
 }
 
@@ -111,14 +107,14 @@ class TV: SelectedContent {
         }
     }
     
-    func requestRecommends<T>(completion: @escaping (Result<[T], any Error>) -> Void) where T : Decodable {
+    func requestRecommends(completion: @escaping (Result<[RecommendItems], any Error>) -> Void) {
         requestTotalPage() { totalPage in
             guard let endpoint = self.recommends(page: totalPage) as? Endpoint<RecommendTVResponse> else { return }
             
             Network.shared.request(with: endpoint) { result in
                 switch result {
                 case .success(let response):
-                    guard let response = response.results as? [T] else { return }
+                    guard let response = response.results as? [RecommendItems] else { return }
                     completion(.success(response))
                 case .failure(let error):
                     completion(.failure(error))

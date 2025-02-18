@@ -8,11 +8,6 @@
 import UIKit
 import SnapKit
 
-//enum Content: String {
-//    case movie = "영화"
-//    case tv = "TV"
-//}
-
 final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
     
