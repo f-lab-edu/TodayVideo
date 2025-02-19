@@ -17,11 +17,11 @@ final class GenreInteractor: GenreInteractorProtocol {
     func fetchGenres() {
         let content = Content.shared.content
         let endpoint = content.genres()
-        
-        content.requestGenre(endpoint: endpoint) { result in
+     
+        Network.shared.request(with: endpoint) { result in
             switch result {
-            case .success(let genres):
-                self.presenter?.fetchSuccess(with: genres)
+            case .success(let response):
+                self.presenter?.fetchSuccess(with: response.genres)
             case .failure(let error):
                 self.presenter?.fetchFail(with: error)
             }

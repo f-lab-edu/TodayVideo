@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol NextButtonDelegate {
+    func pressed()
+}
+
 final class NextButton: UIButton {
     private var currentView: UIViewController!
+    var delegate: NextButtonDelegate?
     
     init(location: UIViewController) {
         super.init(frame: .zero)
@@ -42,6 +47,7 @@ final class NextButton: UIButton {
         case is GenreView:
             guard let genreView = currentView as? GenreView else { return }
             genreView.presenter?.pushToRecommendView()
+            delegate?.pressed()
         default: break
         }
     }

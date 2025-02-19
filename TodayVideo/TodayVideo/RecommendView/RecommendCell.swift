@@ -9,11 +9,12 @@ import UIKit
 
 class RecommendCell: UICollectionViewCell {
     static let identifier = "RecommendCell"
+    private let leftRightMargin = 50
     
-    let poster = UIImageView()
-    let title = ""
-    let genre = ""
-    let year = ""
+    var poster = UIImageView()
+    var title = UILabel()
+    var genre = UILabel()
+    var year = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,21 +27,68 @@ class RecommendCell: UICollectionViewCell {
     }
     
     private func drawUI() {
+        contentView.addSubview(poster)
+        contentView.addSubview(title)
+        contentView.addSubview(genre)
+        contentView.addSubview(year)
+        
         makePoster()
+        makeTitle()
+        makeGenre()
+        makeYear()
     }
     
     private func makePoster() {
-        let height = self.bounds.size.height / 1.4
-        
-        contentView.addSubview(poster)
+        let rate = 1.4
         poster.layer.cornerRadius = 30
-        poster.backgroundColor = . cardBackground
-//        poster.frame = contentView.bounds
-//        poster.snp.makeConstraints { make in
-//            make.top.equalToSuperview()
-//            make.centerX.equalToSuperview()
-//            make.width.equalTo(200)
-//            make.height.equalTo(height)
-//        }
+        poster.backgroundColor = .cardBackground
+        poster.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(leftRightMargin)
+            make.height.equalTo(frame.height / rate)
+        }
+    }
+    
+    private func makeTitle() {
+        title.numberOfLines = 0
+        title.textAlignment = .center
+        title.textColor = .buttonDefaultText
+        title.snp.makeConstraints { make in
+            make.top.equalTo(poster.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview().inset(leftRightMargin)
+        }
+    }
+    
+    private func makeGenre() {
+        genre.numberOfLines = 0
+        genre.textAlignment = .center
+        genre.textColor = .buttonDefaultText
+        genre.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(7)
+            make.leading.trailing.equalToSuperview().inset(leftRightMargin)
+        }
+    }
+    
+    private func makeYear() {
+        year.numberOfLines = 1
+        year.textAlignment = .center
+        year.textColor = .buttonDefaultText
+        year.snp.makeConstraints { make in
+            make.top.equalTo(genre.snp.bottom).offset(7)
+            make.leading.trailing.equalToSuperview().inset(leftRightMargin)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    func configTVCell(with item: RecommendTVResponse.Items) {
+        title.text = item.name
+        genre.text = "item.genreIds[0]"
+        year.text = item.firstAirDate
+    }
+    
+    func configMovieCell(with item: RecommendMovieResponse.Items) {
+        title.text = item.title
+        genre.text = "item.genreIds[0]"
+        year.text = item.releaseDate
     }
 }

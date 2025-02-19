@@ -65,6 +65,16 @@ final class ContentView: UIViewController {
     }
     
     func selectEvent(button1: FilterButton, button2: FilterButton) {
+        let content = Content.shared
+        
+        if button2 == movieButton {
+            let movie = Movie()
+            content.configure(content: movie)
+        } else {
+            let tv = TV()
+            content.configure(content: tv)
+        }
+        
         button1.isSelected = false
         button1.updateState()
         button2.updateState()
@@ -78,16 +88,10 @@ final class ContentView: UIViewController {
         
         sender.isSelected = !sender.isSelected
         
-        DispatchQueue.main.async {
-            let content = Content.shared
-            
+        DispatchQueue.main.async {            
             if sender == self.movieButton {
-                let movie = Movie()
-                content.configure(content: movie)
                 self.selectEvent(button1: self.tvButton, button2: self.movieButton)
             } else {
-                let tv = TV()
-                content.configure(content: tv)
                 self.selectEvent(button1: self.movieButton, button2: self.tvButton)
             }
         }

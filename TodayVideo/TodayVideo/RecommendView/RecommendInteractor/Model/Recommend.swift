@@ -10,13 +10,13 @@ import Foundation
 // MARK: - request
 struct RecommendRequest: Codable, Equatable {
     var language: String = "ko-KR"
-    var page: Int32 // 1 부터
+    var page: Int32? // 1 부터
     var voteCount: Float = 7
     var watchRegion: String = "KR"
-    var withGenres: String
+    var withGenres: String?
     var withWatchProviders: String = "8" // 넷플릭스
     
-    init(page: Int32, withGenres: String) {
+    init(page: Int32? = nil, withGenres: String? = nil) {
         self.page = page
         self.withGenres = withGenres
     }
@@ -29,13 +29,19 @@ struct RecommendRequest: Codable, Equatable {
         case withGenres = "with_genres"
         case withWatchProviders = "with_watch_providers"
     }
+    
+    func create(by page: Int) -> RecommendRequest {
+        let page = Int.random(in: 1 ... page)
+        let genre = UserDefault.shared.stringForKey(.selectGenre) ?? ""
+        
+        return RecommendRequest(page: Int32(page), withGenres: genre)
+    }
 }
 
 // MARK: - response
-protocol RecommendItems {}
-
+protocol RecommendItem {}
 // 영화
-struct RecommendMovieResponse: Decodable, RecommendItems {
+struct RecommendMovieResponse: Decodable {
     let results: [Items]
     let totalPages: Int
     
@@ -44,7 +50,7 @@ struct RecommendMovieResponse: Decodable, RecommendItems {
         case totalPages = "total_pages"
     }
 
-    struct Items: Decodable, RecommendItems {
+    struct Items: Decodable, RecommendItem {
         let genreIds: [Int]
         let id: Int
         let posterPath: String
@@ -62,7 +68,7 @@ struct RecommendMovieResponse: Decodable, RecommendItems {
 }
 
 // 드라마
-struct RecommendTVResponse: Decodable, RecommendItems {
+struct RecommendTVResponse: Decodable {
     let results: [Items]
     let totalPages: Int
     
@@ -71,7 +77,7 @@ struct RecommendTVResponse: Decodable, RecommendItems {
         case totalPages = "total_pages"
     }
     
-    struct Items: Decodable, RecommendItems {
+    struct Items: Decodable, RecommendItem {
         let genreIds: [Int]
         let id: Int
         let posterPath: String
