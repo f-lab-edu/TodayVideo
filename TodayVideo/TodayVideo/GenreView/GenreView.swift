@@ -17,7 +17,7 @@ final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
     var selectedGenre: [Int:Bool] = [:]
 
-    var previousButton: PreviousButton!
+    var prevButton: PreviousButton!
     var nextButton: NextButton!
     let scrollView = UIScrollView()
     let scrollViewContainer = UIView()
@@ -38,8 +38,9 @@ final class GenreView: UIViewController {
     private func drawUI() {
         view.backgroundColor = .background
         
-        previousButton = PreviousButton(location: self)
+        prevButton = PreviousButton(location: self)
         nextButton = NextButton(location: self)
+        nextButton.delegate = self
     }
     
     // MARK: - 버튼 기능
@@ -50,8 +51,6 @@ final class GenreView: UIViewController {
         selectedGenre.forEach { key,value in
             selectedGenre[key] = select
         }
-        
-        makeSelectedGenreString()
     }
     
     @objc private func allGenreSelect() {
@@ -64,8 +63,6 @@ final class GenreView: UIViewController {
                 button.updateState()
             }
         }
-        
-        makeSelectedGenreString()
     }
     
     @objc private func genreSelect(_ sender: FilterButton) {
@@ -83,15 +80,13 @@ final class GenreView: UIViewController {
         if selectFilter.count == 0 {
             controlAllButton(true)
         }
-        
-        makeSelectedGenreString()
     }
     
+    // 선택한 장르(배열)들을 api 요청 파라미터로 만듦
     private func makeSelectedGenresString(genreIDs: [Int]) -> String {
         if genreIDs.count == 1 {
             return String(genreIDs[0])
-        }
-        else if genreIDs.count > 1 {
+        } else if genreIDs.count > 1 {
             var genreString = ""
             
             for idx in 0 ..< genreIDs.count {
@@ -107,7 +102,8 @@ final class GenreView: UIViewController {
         return ""
     }
     
-    private func makeSelectedGenreString() {
+    // 선택한 장르(배열)들을 userdefault에 저장
+    private func saveSelectedGenre() {
         let genreCount = genreButtons.count
         let genre = (selectedGenre.filter { $0.value == true }).map{ $0.key }
         
@@ -121,15 +117,17 @@ final class GenreView: UIViewController {
     }
 }
 
+// MARK: - NextButtonDelegate
+extension GenreView: NextButtonDelegate {
+    func pressed() {
+        saveSelectedGenre()
+    }
+}
+
 // MARK: - GenreViewProtocol
 extension GenreView: GenreViewProtocol {
     func makeGenreFail(_ error: Error) {
-        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default){ action in
-            alert.dismiss(animated: true)
-            }
-        alert.addAction(ok)
-        self.present(alert, animated: true)
+        UIAlertController().fail(error: error, target: self)
     }
     
     func makeGenreSuccess(_ genres: [Genre]) {
@@ -163,7 +161,7 @@ extension GenreView: GenreViewProtocol {
             make.height.equalTo(allButton.height)
         }
         
-        makeSelectedGenreString()
+        saveSelectedGenre()
     }
     
     private func createGenreButtons(_ genres: [Genre]) {
@@ -216,7 +214,7 @@ extension GenreView: GenreViewProtocol {
     private func scrollViewConstraints(width: Int, height: Int) {
         let topMargin: CGFloat = 20
         let bottomMargin: CGFloat = 14
-        let top = previousButton.frame.origin.x + previousButton.frame.size.height + topMargin
+        let top = prevButton.frame.origin.x + prevButton.frame.size.height + topMargin
         let bottom = nextButton.frame.size.height + bottomMargin + self.view.safeAreaInsets.bottom
         let areaHeight = Int(self.view.frame.size.height - top - bottom)
 
@@ -231,7 +229,7 @@ extension GenreView: GenreViewProtocol {
             }
         } else {
             scrollView.snp.makeConstraints { make in
-                make.top.equalTo(previousButton.snp.bottom).offset(topMargin)
+                make.top.equalTo(prevButton.snp.bottom).offset(topMargin)
                 make.bottom.equalTo(nextButton.snp.top).offset(-bottomMargin)
                 make.width.equalTo(width)
                 make.centerX.equalToSuperview()

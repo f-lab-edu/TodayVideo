@@ -35,12 +35,5 @@ class RecommendCell: UICollectionViewCell {
         contentView.addSubview(poster)
         poster.layer.cornerRadius = 30
         poster.backgroundColor = . cardBackground
-//        poster.frame = contentView.bounds
-//        poster.snp.makeConstraints { make in
-//            make.top.equalToSuperview()
-//            make.centerX.equalToSuperview()
-//            make.width.equalTo(200)
-//            make.height.equalTo(height)
-//        }
     }
 }

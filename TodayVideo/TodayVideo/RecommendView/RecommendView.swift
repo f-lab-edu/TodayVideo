@@ -9,13 +9,13 @@ import UIKit
 import SnapKit
 
 protocol RecommendViewProtocol {
-    func makeRecommendation(_ response: [RecommendItems])
+    func makeRecommendation<T: Decodable>(_ response: [T])
     func makeRecommendationFail(_ error: Error)
 }
 
 class RecommendView: UIViewController {
     var presenter: RecommendPresenterProtocol?
-    var items: [RecommendItems] = []
+    var items: [RecommendItem] = []
     
     var previousButton: PreviousButton!
     let cardCollectionView: UICollectionView = {
@@ -105,18 +105,21 @@ class RecommendView: UIViewController {
 
 // MARK: - RecommendViewProtocol
 extension RecommendView: RecommendViewProtocol {
-    func makeRecommendation(_ response: [RecommendItems]) {
-        items = response
-        cardCollectionView.reloadData()
+    func makeRecommendation<T>(_ response: [T]) where T : Decodable {
+        if let tv = response as? [RecommendTVResponse.Items] {
+            items = tv
+        } else {
+            let movie = response as! [RecommendMovieResponse.Items]
+            items = movie
+        }
+        
+        DispatchQueue.main.async {
+            self.cardCollectionView.reloadData()
+        }
     }
     
     func makeRecommendationFail(_ error: any Error) {
-        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default){ action in
-            alert.dismiss(animated: true)
-            }
-        alert.addAction(ok)
-        self.present(alert, animated: true)
+        UIAlertController().fail(error: error, target: self)
     }
 }
 

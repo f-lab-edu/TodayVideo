@@ -9,7 +9,7 @@ import Foundation
 
 protocol RecommendPresenterProtocol {
     func fetchRecommend()
-    func fetchSuccess(response: [RecommendItems])
+    func fetchSuccess<T: Decodable>(response: [T])
     func fetchFail(with error: Error)
     func pushToDetailView()
 }
@@ -23,9 +23,12 @@ final class RecommendPresenter: RecommendPresenterProtocol {
         interator?.fetchRecommend()
     }
     
-    func fetchSuccess(response: [RecommendItems]) {
+    func fetchSuccess<T>(response: [T]) where T : Decodable {
         view?.makeRecommendation(response)
     }
+//    func fetchSuccess(response: [any RecommendItems]) {
+//        view?.makeRecommendation(response)
+//    }
 
     func fetchFail(with error: Error) {
         view?.makeRecommendationFail(error)
