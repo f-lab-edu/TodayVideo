@@ -26,9 +26,6 @@ final class RecommendPresenter: RecommendPresenterProtocol {
     func fetchSuccess<T>(response: [T]) where T : Decodable {
         view?.makeRecommendation(response)
     }
-//    func fetchSuccess(response: [any RecommendItems]) {
-//        view?.makeRecommendation(response)
-//    }
 
     func fetchFail(with error: Error) {
         view?.makeRecommendationFail(error)

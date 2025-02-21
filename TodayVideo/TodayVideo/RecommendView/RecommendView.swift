@@ -20,10 +20,9 @@ class RecommendView: UIViewController {
     var previousButton: PreviousButton!
     let cardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
@@ -31,17 +30,21 @@ class RecommendView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        drawUI()
         presenter?.fetchRecommend()
     }
     
     private func drawUI() {
-        drawBackground()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            self.drawBackground()
+            
+            self.previousButton = PreviousButton(location: self)
+            
+            // recommend video card
+            self.drawVideoCard()
+        }
         
-        previousButton = PreviousButton(location: self)
-        
-        // recommend video card
-        drawVideoCard()
     }
     
     // MARK: - background
@@ -90,8 +93,9 @@ class RecommendView: UIViewController {
         let topMargin = 20
         
         cardCollectionView.register(RecommendCell.self, forCellWithReuseIdentifier: RecommendCell.identifier)
+        cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
-        cardCollectionView.backgroundColor = .yellow
+        cardCollectionView.backgroundColor = .clear
         self.view.addSubview(cardCollectionView)
         
         cardCollectionView.snp.makeConstraints { make in
@@ -106,6 +110,8 @@ class RecommendView: UIViewController {
 // MARK: - RecommendViewProtocol
 extension RecommendView: RecommendViewProtocol {
     func makeRecommendation<T>(_ response: [T]) where T : Decodable {
+        drawUI()
+        
         if let tv = response as? [RecommendTVResponse.Items] {
             items = tv
         } else {
@@ -132,17 +138,27 @@ extension RecommendView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendCell.identifier, for: indexPath)
                 as? RecommendCell else { return UICollectionViewCell() }
+        
+        if let tv = items as? [RecommendTVResponse.Items] {
+            let item = tv[indexPath.item]
+            cell.title.text = item.name
+            cell.genre.text = "action"
+            cell.year.text = item.firstAirDate
+        } else {
+            let movie = items as! [RecommendMovieResponse.Items]
+            let item = movie[indexPath.item]
+            cell.title.text = item.title
+            cell.genre.text = "action"
+            cell.year.text = item.releaseDate
+        }
+        
         return cell
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension RecommendView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = 400
-        let height: CGFloat = 500
-        
-        let size: CGSize = CGSize(width: width, height: height)
-        
-        return size
+        return CGSize(width: view.frame.size.width, height: collectionView.frame.size.height)
     }
 }
