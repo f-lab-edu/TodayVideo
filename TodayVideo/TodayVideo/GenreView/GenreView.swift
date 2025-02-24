@@ -127,7 +127,9 @@ extension GenreView: NextButtonDelegate {
 // MARK: - GenreViewProtocol
 extension GenreView: GenreViewProtocol {
     func makeGenreFail(_ error: Error) {
-        UIAlertController().fail(error: error, target: self)
+        DispatchQueue.main.async {
+            UIAlertController().fail(error: error, target: self)
+        }
     }
     
     func makeGenreSuccess(_ genres: [Genre]) {

@@ -14,8 +14,6 @@ extension UIAlertController {
             alert.dismiss(animated: true)
         }
         alert.addAction(ok)
-        DispatchQueue.main.async {
-            target.present(alert, animated: true)
-        }
+        target.present(alert, animated: true)
     }
 }
