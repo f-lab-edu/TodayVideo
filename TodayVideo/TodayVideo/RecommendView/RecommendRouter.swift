@@ -14,8 +14,8 @@ protocol RecommendRouterProtocol {
 final class RecommendRouter: RecommendRouterProtocol {
     weak var recommendView: RecommendView?
     
-    static func createRecommendViewModule() -> RecommendView {
-        let view = RecommendView()
+    static func createRecommendViewModule(with genres: [Genre]) -> RecommendView {
+        let view = RecommendView(genres: genres)
         let presenter = RecommendPresenter()
         let router = RecommendRouter()
         let interactor = RecommendInteractor()
@@ -30,9 +30,8 @@ final class RecommendRouter: RecommendRouterProtocol {
         return view
     }
     
+    // RecommendRouterProtocol 함수 채택으로 추가해둠
     func pushToRecommendView() {
-        // 다음 화면으로 이동을 위한 처리 코드 입니다.
-//        let recommendView = RecommendRouter.createRecommendViewModule
-//        genreView?.navigationController?.pushViewController(recommendView, animated: true)
+        
     }
 }

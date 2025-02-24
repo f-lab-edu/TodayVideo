@@ -48,6 +48,8 @@
 		CEB800D52D655C4800CB5A98 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800D42D655C4800CB5A98 /* Movie.swift */; };
 		CEB800D72D655C6000CB5A98 /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800D62D655C6000CB5A98 /* TV.swift */; };
 		CEB800D92D680B0D00CB5A98 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800D82D680B0D00CB5A98 /* UIAlertController+Extension.swift */; };
+		CEB800DD2D6C059900CB5A98 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800DA2D6C059900CB5A98 /* DiskCache.swift */; };
+		CEB800DE2D6C059900CB5A98 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB800DB2D6C059900CB5A98 /* ImageCache.swift */; };
 		CEDBD8862D509D290086F6A3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8852D509D290086F6A3 /* Endpoint.swift */; };
 		CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */; };
 		CEDBD88B2D50A91E0086F6A3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */; };
@@ -117,6 +119,8 @@
 		CEB800D42D655C4800CB5A98 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CEB800D62D655C6000CB5A98 /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		CEB800D82D680B0D00CB5A98 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		CEB800DA2D6C059900CB5A98 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		CEB800DB2D6C059900CB5A98 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		CEDBD8852D509D290086F6A3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEDBD8872D509DE80086F6A3 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		CEDBD88A2D50A91E0086F6A3 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				254D7B4E2D4784D900754A38 /* UserdefaultKey.swift */,
+				CEB800DC2D6C059900CB5A98 /* Cache */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -367,6 +372,15 @@
 				CEB800D62D655C6000CB5A98 /* TV.swift */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		CEB800DC2D6C059900CB5A98 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				CEB800DA2D6C059900CB5A98 /* DiskCache.swift */,
+				CEB800DB2D6C059900CB5A98 /* ImageCache.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		CEDBD8892D50A9100086F6A3 /* Endpoint */ = {
@@ -563,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB800D52D655C4800CB5A98 /* Movie.swift in Sources */,
+				CEB800DE2D6C059900CB5A98 /* ImageCache.swift in Sources */,
 				254D7B512D47A9C000754A38 /* PreviousButton.swift in Sources */,
 				254D7B4F2D4784D900754A38 /* UserdefaultKey.swift in Sources */,
 				CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */,
@@ -571,6 +586,7 @@
 				254D7B452D46B47000754A38 /* GenreView.swift in Sources */,
 				CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */,
 				CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */,
+				CEB800DD2D6C059900CB5A98 /* DiskCache.swift in Sources */,
 				CEB800CE2D6451CC00CB5A98 /* UIView+Extension.swift in Sources */,
 				CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */,
 				254D7B472D46B48A00754A38 /* GenrePresenter.swift in Sources */,

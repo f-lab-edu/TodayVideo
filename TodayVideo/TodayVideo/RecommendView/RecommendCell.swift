@@ -15,6 +15,7 @@ class RecommendCell: UICollectionViewCell {
     var title = UILabel()
     var genre = UILabel()
     var year = UILabel()
+    let indicator = UIActivityIndicatorView(style: .large)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,15 +32,24 @@ class RecommendCell: UICollectionViewCell {
         contentView.addSubview(title)
         contentView.addSubview(genre)
         contentView.addSubview(year)
+        contentView.addSubview(indicator)
         
         makePoster()
         makeTitle()
         makeGenre()
         makeYear()
+        makeIndicator()
+    }
+    
+    private func makeIndicator() {
+        indicator.center = contentView.center
+        indicator.color = .buttonSelectedBackground
+        indicator.startAnimating()
     }
     
     private func makePoster() {
         let rate = 1.4
+        poster.clipsToBounds = true
         poster.layer.cornerRadius = 30
         poster.backgroundColor = .cardBackground
         poster.snp.makeConstraints { make in
@@ -80,15 +90,30 @@ class RecommendCell: UICollectionViewCell {
         }
     }
     
-    func configTVCell(with item: RecommendTVResponse.Items) {
+    func configTVCell(with item: RecommendTVResponse.Items, _ genreName: String) {
+        ImageCache.shared.loadImage(item.posterPath) { image in
+            DispatchQueue.main.async {
+                self.poster.image = image
+                self.indicator.stopAnimating()
+            }
+        }
+        
         title.text = item.name
-        genre.text = "item.genreIds[0]"
+        genre.text = genreName
         year.text = item.firstAirDate
+        
     }
     
-    func configMovieCell(with item: RecommendMovieResponse.Items) {
+    func configMovieCell(with item: RecommendMovieResponse.Items, _ genreName: String) {
+        ImageCache.shared.loadImage(item.posterPath) { image in
+            DispatchQueue.main.async {
+                self.poster.image = image
+                self.indicator.stopAnimating()
+            }
+        }
+        
         title.text = item.title
-        genre.text = "item.genreIds[0]"
+        genre.text = genreName
         year.text = item.releaseDate
     }
 }
