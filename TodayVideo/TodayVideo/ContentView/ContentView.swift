@@ -66,7 +66,7 @@ final class ContentView: UIViewController {
         }
         
         // 다음 버튼
-        let _ = NextButton(location: self)
+        _ = NextButton(location: self)
     }
     
     func selectEvent(button1: FilterButton, button2: FilterButton) {

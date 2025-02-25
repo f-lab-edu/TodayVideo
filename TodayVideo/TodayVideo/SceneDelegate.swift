@@ -16,22 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let splashView = SplashRouter.createSplashViewModule()
         let navi = UINavigationController()
-        navi.viewControllers = [splashView]//(rootViewController: splashView)
+        navi.viewControllers = [splashView]
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navi
         window?.makeKeyAndVisible()
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {}
-
-    func sceneDidBecomeActive(_ scene: UIScene) {}
-
-    func sceneWillResignActive(_ scene: UIScene) {}
-
-    func sceneWillEnterForeground(_ scene: UIScene) {}
-
-    func sceneDidEnterBackground(_ scene: UIScene) {}
-
 }
-
