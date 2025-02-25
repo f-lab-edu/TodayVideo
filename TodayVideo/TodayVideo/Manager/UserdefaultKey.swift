@@ -23,3 +23,16 @@ final class UserDefault {
         return UserDefaults.standard.string(forKey: key.rawValue)
     }
 }
+
+class test {
+    func testt() {
+        let value = 0
+        
+        switch value {
+        case 0: break
+        case 1:
+            break
+        default: break
+        }
+    }
+}
