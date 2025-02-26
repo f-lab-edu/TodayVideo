@@ -87,7 +87,6 @@
 <br>
 
 - Unit Test
-  API 모킹 서버 이용
 
 <br>
 
@@ -98,12 +97,17 @@
   -> https://developer.themoviedb.org/reference/intro/getting-started
   
   <br>
+  Base URL -> https://api.themoviedb.org/3
+  <br>
+  Image Base URL -> https://image.tmdb.org/t/p/w500/
+  <br>
+  HTTP Method -> GET
   
   - 장르 선택 화면
   
-    -> https://developer.themoviedb.org/reference/genre-movie-list
+    -> /genre/movie/list
   
-    -> https://developer.themoviedb.org/reference/genre-tv-list
+    -> /genre/tv/list
   
     **request**
   
@@ -126,9 +130,9 @@
   
   - 추천작 화면
   
-    -> https://developer.themoviedb.org/reference/discover-movie
+    -> /discover/movie
   
-    -> https://developer.themoviedb.org/reference/discover-tv
+    -> /discover/tv
   
     **request**
   
@@ -151,7 +155,7 @@
     | --------------------------- | ------ | ------------------------------------------------------------ |
     | genre_ids                   | [Int]  |                                                              |
     | id                          | Int    |                                                              |
-    | poster_path                 | String | [https://image.tmdb.org/t/p/w500/](https://image.tmdb.org/t/p/w500/){poster_path} |
+    | poster_path                 | String |  |
     | title/name                  | String |                                                              |
     | release_date/first_air_date | String |                                                              |
     | total_pages                 | Int    |                                                              |
