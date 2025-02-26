@@ -10,6 +10,9 @@ import Foundation
 class Movie: ContentProtocol {
     typealias RecommendResponse = RecommendMovieResponse
     
+    static let shared = Movie()
+    private init() {}
+    
     let title: String = "영화"
     let type: ContentType = .movie
     

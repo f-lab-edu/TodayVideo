@@ -39,8 +39,8 @@ final class ContentView: UIViewController {
         }
         
         /// 버튼
-        movieButton = FilterButton(title: Movie().title)
-        tvButton = FilterButton(title: TV().title)
+        movieButton = FilterButton(title: Movie.shared.title)
+        tvButton = FilterButton(title: TV.shared.title)
         
         [movieButton, tvButton].forEach { button in
             button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
@@ -68,10 +68,10 @@ final class ContentView: UIViewController {
         let content = Content.shared
         
         if button2 == movieButton {
-            let movie = Movie()
+            let movie = Movie.shared
             content.configure(content: movie)
         } else {
-            let tv = TV()
+            let tv = TV.shared
             content.configure(content: tv)
         }
         

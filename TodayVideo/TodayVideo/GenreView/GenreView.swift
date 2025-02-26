@@ -84,22 +84,13 @@ final class GenreView: UIViewController {
     
     // 선택한 장르(배열)들을 api 요청 파라미터로 만듦
     private func makeSelectedGenresString(genreIDs: [Int]) -> String {
-        if genreIDs.count == 1 {
-            return String(genreIDs[0])
-        } else if genreIDs.count > 1 {
-            var genreString = ""
-            
-            for idx in 0 ..< genreIDs.count {
-                genreString += "\(genreIDs[idx]),"
-            }
-            
-            genreString.removeLast(1)
-            genreString = genreString.replacingOccurrences(of: ",", with: "%2C")
-            
-            return genreString
+        guard !genreIDs.isEmpty else {
+            return ""
         }
         
-        return ""
+        let genreString = genreIDs.map { String($0) }
+        
+        return genreString.joined(separator: "%2C")
     }
     
     // 선택한 장르(배열)들을 userdefault에 저장

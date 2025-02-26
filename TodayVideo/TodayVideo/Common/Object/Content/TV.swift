@@ -10,6 +10,9 @@ import Foundation
 class TV: ContentProtocol {
     typealias RecommendResponse = RecommendTVResponse
     
+    static let shared = TV()
+    private init() {}
+    
     let title: String = "TV 프로그램"
     let type: ContentType = .tv
     

@@ -13,7 +13,7 @@ enum ContentType {
 }
 
 protocol ContentProtocol {
-    associatedtype RecommendResponse
+    associatedtype RecommendResponse: Decodable, ContentRecommendResponse
 
     var type: ContentType { get }
     var title: String { get }
@@ -27,7 +27,7 @@ protocol ContentProtocol {
 
 class Content {
     static let shared = Content()
-    private var _content: any ContentProtocol = Movie()
+    private var _content: any ContentProtocol = Movie.shared
     
     private init() {}
     

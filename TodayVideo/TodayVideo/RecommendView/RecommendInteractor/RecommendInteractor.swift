@@ -22,33 +22,25 @@ final class RecommendInteractor: RecommendInteractorProtocol {
     func fetchRandomRecommend(_ content: any ContentProtocol) {
         let firstPage = 1
         
+        func fetchRecommendation<T: ContentProtocol>(_ content: T) {
+            let endpoint = content.recommend(page: firstPage)
+            
+            Task {
+                do {
+                    let firstResponse = try await requestRecommendTotalPage(endpoint: endpoint)
+                    let endpoint = content.recommend(page: firstResponse.totalPages)
+                    let finalResponse = try await requestRecommendTotalPage(endpoint: endpoint)
+                    self.presenter?.fetchSuccess(response: finalResponse.results)
+                } catch let error {
+                    self.presenter?.fetchFail(with: error)
+                }
+            }
+        }
+        
         if let tv = content as? TV {
-            let endpoint = tv.recommend(page: firstPage)
-            
-            Task {
-                do {
-                    let firstResponse = try await requestRecommendTotalPage(endpoint: endpoint)
-                    let endpoint = tv.recommend(page: firstResponse.totalPages)
-                    let finalResponse = try await requestRecommendTotalPage(endpoint: endpoint)
-                    self.presenter?.fetchSuccess(response: finalResponse.results)
-                } catch let error {
-                    self.presenter?.fetchFail(with: error)
-                }
-            }
-            
+            fetchRecommendation(tv)
         } else if let movie = content as? Movie {
-            let endpoint = movie.recommend(page: firstPage)
-            
-            Task {
-                do {
-                    let firstResponse = try await requestRecommendTotalPage(endpoint: endpoint)
-                    let endpoint = movie.recommend(page: firstResponse.totalPages)
-                    let finalResponse = try await requestRecommendTotalPage(endpoint: endpoint)
-                    self.presenter?.fetchSuccess(response: finalResponse.results)
-                } catch let error {
-                    self.presenter?.fetchFail(with: error)
-                }
-            }
+            fetchRecommendation(movie)
         }
     }
     

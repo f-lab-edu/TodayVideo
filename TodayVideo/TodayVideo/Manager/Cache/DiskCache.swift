@@ -24,7 +24,8 @@ class DiskCache {
     
     // Save image to disk cache
     func saveImage(_ image: UIImage, _ url: URL, _ option: CacheOption) {
-        if option == .onlyMemory || option == .nothing {
+        guard option != .onlyMemory,
+              option != .nothing else {
             return
         }
         

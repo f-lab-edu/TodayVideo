@@ -1,5 +1,5 @@
 //
-//  Recommend.swift
+//  RecommendResponse.swift
 //  TodayVideo
 //
 //  Created by iOS Dev on 2/6/25.
@@ -7,42 +7,20 @@
 
 import Foundation
 
-// MARK: - request
-struct RecommendRequest: Codable, Equatable {
-    var language: String = "ko-KR"
-    var page: Int32? // 1 부터
-    var voteCount: Float = 7
-    var watchRegion: String = "KR"
-    var withGenres: String?
-    var withWatchProviders: String = "8" // 넷플릭스
+protocol ContentRecommendResponse {
+    associatedtype Item: Decodable
     
-    init(page: Int32? = nil, withGenres: String? = nil) {
-        self.page = page
-        self.withGenres = withGenres
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case language
-        case page
-        case voteCount = "vote_count.gte"
-        case watchRegion = "watch_region"
-        case withGenres = "with_genres"
-        case withWatchProviders = "with_watch_providers"
-    }
-    
-    func create(by page: Int) -> RecommendRequest {
-        let page = Int.random(in: 1 ... page)
-        let genre = UserDefault.shared.stringForKey(.selectGenre) ?? ""
-        
-        return RecommendRequest(page: Int32(page), withGenres: genre)
-    }
+    var results: [Item] { get }
+    var totalPages: Int { get }
 }
 
-// MARK: - response
 protocol RecommendItem {}
+
 // 영화
-struct RecommendMovieResponse: Decodable {
-    let results: [Items]
+struct RecommendMovieResponse: Decodable, ContentRecommendResponse {
+    typealias Item = Items
+    
+    let results: [Item]
     let totalPages: Int
     
     enum CodingKeys: String, CodingKey {
@@ -68,8 +46,10 @@ struct RecommendMovieResponse: Decodable {
 }
 
 // 드라마
-struct RecommendTVResponse: Decodable {
-    let results: [Items]
+struct RecommendTVResponse: Decodable, ContentRecommendResponse {
+    typealias Item = Items
+    
+    let results: [Item]
     let totalPages: Int
     
     enum CodingKeys: String, CodingKey {
