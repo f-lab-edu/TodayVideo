@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RecommendRouterProtocol {
-    func pushToRecommendView()
+    func pushToDetailView(with id: Int)
 }
 
 final class RecommendRouter: RecommendRouterProtocol {
@@ -31,7 +31,8 @@ final class RecommendRouter: RecommendRouterProtocol {
     }
     
     // RecommendRouterProtocol 함수 채택으로 추가해둠
-    func pushToRecommendView() {
-        
+    func pushToDetailView(with id: Int) {
+        let detailView = DetailRouter.createDetailViewModule(with: id)
+        recommendView?.navigationController?.pushViewController(detailView, animated: true)
     }
 }

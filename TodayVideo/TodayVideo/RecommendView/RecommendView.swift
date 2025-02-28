@@ -186,6 +186,17 @@ extension RecommendView: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        if let tv = items as? [RecommendTVResponse.Items] {
+            let id = tv[index].id
+            presenter?.pushToDetailView(with: id)
+        } else if let movie = items as? [RecommendMovieResponse.Items] {
+            let id = movie[index].id
+            presenter?.pushToDetailView(with: id)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
