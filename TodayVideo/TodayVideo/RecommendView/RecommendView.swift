@@ -147,7 +147,7 @@ extension RecommendView: RecommendViewProtocol {
 
 // MARK: - UICollectionViewDataSource
 extension RecommendView: UICollectionViewDataSource {    
-    func genreName(by ids: [Int]) -> String {
+    private func genreName(by ids: [Int]) -> String {
         var result = ""
         
         for genre in genres {

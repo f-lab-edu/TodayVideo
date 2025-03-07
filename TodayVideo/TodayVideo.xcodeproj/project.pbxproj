@@ -34,6 +34,8 @@
 		CE298BEC2D7028F400E80FA1 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BEB2D7028F400E80FA1 /* DetailInteractor.swift */; };
 		CE298BEE2D7146EF00E80FA1 /* DetailMovieVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BED2D7146EF00E80FA1 /* DetailMovieVideo.swift */; };
 		CE298BF02D7146FB00E80FA1 /* DetailTVVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BEF2D7146FB00E80FA1 /* DetailTVVideo.swift */; };
+		CE298BF22D76CC8000E80FA1 /* DetailContentVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BF12D76CC8000E80FA1 /* DetailContentVideo.swift */; };
+		CE298BF42D76CCA400E80FA1 /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BF32D76CCA400E80FA1 /* DetailResponse.swift */; };
 		CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC172D2239E100971DB4 /* AppDelegate.swift */; };
 		CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */; };
 		CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* SplashView.swift */; };
@@ -109,6 +111,8 @@
 		CE298BEB2D7028F400E80FA1 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		CE298BED2D7146EF00E80FA1 /* DetailMovieVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieVideo.swift; sourceTree = "<group>"; };
 		CE298BEF2D7146FB00E80FA1 /* DetailTVVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVVideo.swift; sourceTree = "<group>"; };
+		CE298BF12D76CC8000E80FA1 /* DetailContentVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentVideo.swift; sourceTree = "<group>"; };
+		CE298BF32D76CCA400E80FA1 /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		CE9EAC142D2239E100971DB4 /* TodayVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9EAC172D2239E100971DB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -268,8 +272,10 @@
 		CE298BE12D6EDCCB00E80FA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE298BF32D76CCA400E80FA1 /* DetailResponse.swift */,
 				CE298BED2D7146EF00E80FA1 /* DetailMovieVideo.swift */,
 				CE298BEF2D7146FB00E80FA1 /* DetailTVVideo.swift */,
+				CE298BF12D76CC8000E80FA1 /* DetailContentVideo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				CEB800C82D5B2A3200CB5A98 /* Content.swift in Sources */,
 				CE298BDF2D6EB0EE00E80FA1 /* RecommendRequest.swift in Sources */,
 				CE0F3FF82D3771C80058CEAE /* ContentPresenter.swift in Sources */,
+				CE298BF42D76CCA400E80FA1 /* DetailResponse.swift in Sources */,
 				CEB800D92D680B0D00CB5A98 /* UIAlertController+Extension.swift in Sources */,
 				CEB800C12D59E4F100CB5A98 /* RecommendView.swift in Sources */,
 				CE9EAC4B2D223B2D00971DB4 /* SplashRouter.swift in Sources */,
@@ -655,6 +662,7 @@
 				CE298BF02D7146FB00E80FA1 /* DetailTVVideo.swift in Sources */,
 				CEB800BD2D59E4F100CB5A98 /* RecommendResponse.swift in Sources */,
 				CE0F40032D38E0720058CEAE /* NextButton.swift in Sources */,
+				CE298BF22D76CC8000E80FA1 /* DetailContentVideo.swift in Sources */,
 				CE0F40012D38A6590058CEAE /* FilterButton.swift in Sources */,
 				CEDBD88D2D50A9500086F6A3 /* Responsable.swift in Sources */,
 				CEB800BE2D59E4F100CB5A98 /* RecommendInteractor.swift in Sources */,

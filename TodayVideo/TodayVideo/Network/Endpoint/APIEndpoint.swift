@@ -73,24 +73,24 @@ class APIEndpoint {
     func getMovieDetail(with id: Int) -> Endpoint<DetailMovieResponse> {
         return Endpoint(path: Path.movieDetail(id: id).rawValue,
                         method: .get,
-                        queryParameters: ["language": "ko_KR"])
+                        queryParameters: ["language": "ko"])
     }
     
     func getTVDetail(with id: Int) -> Endpoint<DetailTVResponse> {
         return Endpoint(path: Path.tvDetail(id: id).rawValue,
                         method: .get,
-                        queryParameters: ["language": "ko_KR"])
+                        queryParameters: ["language": "ko"])
     }
     
     func getMovieVideo(with id: Int) -> Endpoint<DetailContentVideo> {
         return Endpoint(path: Path.movieVideo(id: id).rawValue,
                         method: .get,
-                        queryParameters: ["language": "ko_KR"])
+                        queryParameters: ["language": "ko"])
     }
     
     func getTvVideo(with id: Int) -> Endpoint<DetailContentVideo> {
         return Endpoint(path: Path.tvVideo(id: id).rawValue,
                         method: .get,
-                        queryParameters: ["language": "ko_KR"])
+                        queryParameters: ["language": "ko"])
     }
 }

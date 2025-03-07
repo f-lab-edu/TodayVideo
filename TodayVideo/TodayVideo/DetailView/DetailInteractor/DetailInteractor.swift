@@ -19,31 +19,32 @@ final class DetailInteractor: DeailInteractorProtocol {
     }
     
     func fetchDetail(_ content: any ContentProtocol, id: Int) {
-        func fetchDetail<T: ContentProtocol>(_ content: T) {
-            
-        }
-        
-        if let tv = content as? TV {
-            let endpoint = APIEndpoint.shared.getTVDetail(with: id)
-            requestDetail(endpoint)
-        } else if let movie = content as? Movie {
-            let endpoint = APIEndpoint.shared.getMovieDetail(with: id)
-            requestDetail(endpoint)
+        if let _ = content as? TV {
+            let detailEndpoint = APIEndpoint.shared.getTVDetail(with: id)
+            let videoEndpoint = APIEndpoint.shared.getTvVideo(with: id)
+            requestDetail(detailEndpoint)
+            requestDetail(videoEndpoint, isRequestVideo: true)
+        } else if let _ = content as? Movie {
+            let detailEndpoint = APIEndpoint.shared.getMovieDetail(with: id)
+            let videoEndpoint = APIEndpoint.shared.getMovieVideo(with: id)
+            requestDetail(detailEndpoint)
+            requestDetail(videoEndpoint, isRequestVideo: true)
         }
     }
     
-    func requestDetail<T: Decodable>(_ endpoint: Endpoint<T>) {
+    func requestDetail<T: Decodable>(_ endpoint: Endpoint<T>, isRequestVideo: Bool? = nil) {
         Network.shared.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                self.presenter?.fetchSuccess(response: response)
+                if isRequestVideo != nil && isRequestVideo! {
+                    self.presenter?.fetchVideoSuccess(response: response as! DetailContentVideo)
+                } else {
+                    self.presenter?.fetchDetailSuccess(response: response)
+                }
+                
             case .failure(let error):
                 self.presenter?.fetchFail(error)
             }
         }
-    }
-    
-    func requestVideo() {
-//        Network.shared.request(with: <#T##RequesteResponsable#>, completion: <#T##(Result<Decodable, any Error>) -> Void#>)
     }
 }

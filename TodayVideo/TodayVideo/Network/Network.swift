@@ -19,11 +19,13 @@ final class Network {
     private init() {}
     
     func request<R: Decodable, E: RequesteResponsable>(with endpoint: E, completion: @escaping (Result<R, Error>) -> Void) where E.Response == R {
-        guard !isFetching else {
-            print("이미 요청이 진행 중입니다.")
-            return
+        if !endpoint.path.contains("videos") {
+            guard !isFetching else {
+                // 이미 요청 진행 중
+                return
+            }
+            isFetching = true
         }
-        isFetching = true
         
         do {
             let urlRequest = try endpoint.getUrlRequest()

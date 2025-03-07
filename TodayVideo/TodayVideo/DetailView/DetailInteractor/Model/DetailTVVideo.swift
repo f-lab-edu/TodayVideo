@@ -8,27 +8,24 @@
 import Foundation
 
 // tv
-struct DetailTVResponse: Decodable {
-    let episodeRunTime: Int
-    let firstAirDate: String
-    let genres: [Item]
+struct DetailTVResponse: Decodable, DetailResponse {
+    let runtime: Int
+    let date: String
+    let genres: [Genre]
     let homepage: String
-    let name: String
-    let posterPath: String
+    let title: String
+    let backdropPath: String
     let voteAverage: Float
+    let overview: String
     
     enum CodingKeys: String, CodingKey {
-        case episodeRunTime = "episode_run_time"
-        case firstAirDate = "first_air_date"
+        case runtime = "episode_run_time"
+        case date = "first_air_date"
         case genres
         case homepage
-        case name
-        case posterPath = "poster_path"
+        case title = "name"
+        case backdropPath = "backdrop_path"
         case voteAverage = "vote_average"
-    }
-    
-    struct Item: Decodable {
-        let id: Int
-        let name: String
+        case overview
     }
 }
