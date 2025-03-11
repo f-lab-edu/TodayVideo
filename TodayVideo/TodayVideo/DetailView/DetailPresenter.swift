@@ -9,8 +9,7 @@ import Foundation
 
 protocol DetailPresenterProtocol {
     func fetchDetail()
-    func fetchDetailSuccess(response: Decodable)
-    func fetchVideoSuccess(response: DetailContentVideo)
+    func fetchDetailSuccess(response: Decodable, video: DetailContentVideo)
     func fetchFail(_ error: Error)
 }
 
@@ -32,12 +31,8 @@ final class DetailPresenter: DetailPresenterProtocol {
         interator?.fetchDetail(with: id)
     }
     
-    func fetchDetailSuccess(response: Decodable) {
-        view?.makeDetailSuccess(with: response)
-    }
-    
-    func fetchVideoSuccess(response: DetailContentVideo) {
-        view?.makeVideoSuccess(with: response)
+    func fetchDetailSuccess(response: Decodable, video: DetailContentVideo) {
+        view?.makeDetailSuccess(response: response, video: video)
     }
     
     func fetchFail(_ error: Error) {

@@ -16,5 +16,6 @@ struct DetailContentVideo: Decodable {
         let name: String
         let key: String
         let site: String
+        let size: Int
     }
 }

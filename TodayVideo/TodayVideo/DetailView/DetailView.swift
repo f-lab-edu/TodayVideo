@@ -7,10 +7,10 @@
 
 import UIKit
 import WebKit
+import SnapKit
 
 protocol DetailViewProtocol {
-    func makeDetailSuccess(with response: Decodable)
-    func makeVideoSuccess(with response: DetailContentVideo)
+    func makeDetailSuccess(response: Decodable, video: DetailContentVideo)
     func makeDetailFail(_ error: Error)
 }
 
@@ -21,7 +21,8 @@ final class DetailView: UIViewController {
     var previousButton: PreviousButton!
     let scrollView = UIScrollView()
     let stackView = UIStackView()
-    var video = WKWebView()
+    let overviewLB = UILabel()
+    let video = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +38,6 @@ final class DetailView: UIViewController {
         presenter?.fetchDetail()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("")
-    }
-    
     private func makeIndicator() {
         view.addSubview(indicator)
         
@@ -54,9 +50,7 @@ final class DetailView: UIViewController {
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.snp.makeConstraints { make in
-//            make.top.leading.bottom.equalToSuperview()
-//            make.width.equalTo(view.frame.size.width)
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -64,12 +58,13 @@ final class DetailView: UIViewController {
         scrollView.addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fill
+        stackView.alignment = .fill
         stackView.spacing = 0
         
         stackView.snp.makeConstraints { make in
-//            make.top.leading.bottom.equalToSuperview()
-//            make.width.equalTo(view.frame.size.width)
-            make.edges.width.equalToSuperview()
+            make.top.leading.trailing.equalTo(scrollView.contentLayoutGuide)
+            make.bottom.equalToSuperview().offset(-17)
+            make.width.equalTo(scrollView.frameLayoutGuide.snp.width)
         }
     }
 
@@ -94,34 +89,7 @@ final class DetailView: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(height)
         }
-//        let halfCircle = UIView()
-//        
-//        halfCircle.backgroundColor = .cardBackground
-//        halfCircle.roundCorners(cornerRadius: height / 2, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
-//        
-//        stackView.addArrangedSubview(halfCircle)
-//        halfCircle.snp.makeConstraints { make in
-//            let safeareaTop = view.safeAreaInsets.top
-//            make.top.equalToSuperview().offset(-safeareaTop)
-//            make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(height + safeareaTop)
-//        }
-        
-        // film image
-//        let filmImageView = UIImageView()
-//        filmImageView.contentMode = .scaleAspectFill
-//        filmImageView.tintColor = .black.withAlphaComponent(0.2)
-//        ImageCache.shared.loadImage(posterPath) { image in
-//            DispatchQueue.main.async {
-//                filmImageView.image = image
-//            }
-//        }
-//   
-//        halfCircle.addSubview(filmImageView)
-//        filmImageView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//        
+
 //        // 제공업체 로고
 //        let provierImageView = UIImageView()
 //        provierImageView.image = .netflix
@@ -182,10 +150,6 @@ final class DetailView: UIViewController {
     }
     
     private func drawOverview(_ overview: String) {
-        let container = UIView()
-        stackView.addArrangedSubview(container)
-        
-        let overviewLB = UILabel()
         let attrString = NSMutableAttributedString(string: overview)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
@@ -196,28 +160,37 @@ final class DetailView: UIViewController {
         overviewLB.font = .systemFont(ofSize: 16)
         overviewLB.textColor = .white
         overviewLB.lineBreakMode = .byWordWrapping
-        container.addSubview(overviewLB)
+        stackView.addArrangedSubview(overviewLB)
         overviewLB.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(4)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.greaterThanOrEqualTo(20)
         }
     }
     
     private func drawVideo() {
         let container = UIView()
         stackView.addArrangedSubview(container)
-        
-        video = WKWebView()
-        video.navigationDelegate = self
         container.addSubview(video)
-        video.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(300)
+        video.scrollView.bounces = false
+        
+        let width = view.frame.size.width
+        let height = (width * 9) / 16
+        
+        container.snp.makeConstraints { make in
+            make.height.equalTo(height + 20)
         }
+        video.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(height)
+            make.bottom.equalToSuperview()
+        }
+        
         DispatchQueue.main.async {
             let embedURLString = "https://www.youtube.com/embed/G2VvqY9UNfE"
-            let embedHTML = "<iframe width=\"100%\" height=\"100%\" src=\(embedURLString) frameborder=0 allowfullscreen></iframe>"
+            let embedHTML = """
+<meta name="viewport" content="width=device-width,minimum-scale=0.95,initial-scale=0.95,user-scalable=no">
+<iframe src="\(embedURLString)" width="\(width)px" height="\(height)px" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" ></iframe>
+"""
             self.video.loadHTMLString(embedHTML, baseURL: nil)
         }
     }
@@ -238,7 +211,7 @@ extension DetailView: DetailViewProtocol {
         drawOverview(response.overview)
     }
     
-    func makeDetailSuccess(with response: Decodable) {
+    func makeDetailSuccess(response: Decodable, video: DetailContentVideo) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
@@ -250,19 +223,14 @@ extension DetailView: DetailViewProtocol {
                 drawUI(by: movie)
             }
             
-            view.bringSubviewToFront(previousButton)
-        }
-    }
-    
-    func makeVideoSuccess(with response: DetailContentVideo) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
             drawVideo()
-            if response.results.isEmpty {
+            if video.results.isEmpty {
                 
             } else {
                 
             }
+            
+            view.bringSubviewToFront(previousButton)
         }
     }
     
@@ -271,8 +239,4 @@ extension DetailView: DetailViewProtocol {
             UIAlertController().fail(error: error, target: self)
         }
     }
-}
-
-extension DetailView: WKNavigationDelegate {
-    
 }

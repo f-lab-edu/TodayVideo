@@ -9,6 +9,7 @@ import Foundation
 
 class TV: ContentProtocol {
     typealias RecommendResponse = RecommendTVResponse
+    typealias DetailResponse = DetailTVResponse
     
     static let shared = TV()
     private init() {}
@@ -23,5 +24,13 @@ class TV: ContentProtocol {
     func recommend(page: Int) -> Endpoint<RecommendTVResponse> {
         let request = RecommendRequest().create(by: page)
         return APIEndpoint.shared.getTVDiscover(with: request)
+    }
+    
+    func detail(id: Int) -> Endpoint<DetailTVResponse> {
+        return APIEndpoint.shared.getTVDetail(with: id)
+    }
+    
+    func video(id: Int) -> Endpoint<DetailContentVideo> {
+        return APIEndpoint.shared.getTvVideo(with: id)
     }
 }

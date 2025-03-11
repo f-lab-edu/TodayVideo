@@ -15,35 +15,38 @@ final class DetailInteractor: DeailInteractorProtocol {
     
     func fetchDetail(with id: Int) {
         let content = Content.shared.content
-        fetchDetail(content, id: id)
-    }
-    
-    func fetchDetail(_ content: any ContentProtocol, id: Int) {
-        if let _ = content as? TV {
-            let detailEndpoint = APIEndpoint.shared.getTVDetail(with: id)
-            let videoEndpoint = APIEndpoint.shared.getTvVideo(with: id)
-            requestDetail(detailEndpoint)
-            requestDetail(videoEndpoint, isRequestVideo: true)
-        } else if let _ = content as? Movie {
-            let detailEndpoint = APIEndpoint.shared.getMovieDetail(with: id)
-            let videoEndpoint = APIEndpoint.shared.getMovieVideo(with: id)
-            requestDetail(detailEndpoint)
-            requestDetail(videoEndpoint, isRequestVideo: true)
+        
+        if let tv = content as? TV {
+            fetchDetail(tv, id: id)
+        } else if let movie = content as? Movie {
+            fetchDetail(movie, id: id)
         }
     }
     
-    func requestDetail<T: Decodable>(_ endpoint: Endpoint<T>, isRequestVideo: Bool? = nil) {
-        Network.shared.request(with: endpoint) { result in
-            switch result {
-            case .success(let response):
-                if isRequestVideo != nil && isRequestVideo! {
-                    self.presenter?.fetchVideoSuccess(response: response as! DetailContentVideo)
-                } else {
-                    self.presenter?.fetchDetailSuccess(response: response)
-                }
-                
-            case .failure(let error):
+    func fetchDetail<T: ContentProtocol>(_ content: T, id: Int) {
+        let detailEndpoint = content.detail(id: id)
+        let videoEndpoint = content.video(id: id)
+        
+        Task {
+            do {
+                let detail = try await requestDetail(detailEndpoint)
+                let video = try await requestDetail(videoEndpoint)
+                self.presenter?.fetchDetailSuccess(response: detail, video: video)
+            } catch let error {
                 self.presenter?.fetchFail(error)
+            }
+        }
+    }
+    
+    func requestDetail<T: Decodable>(_ endpoint: Endpoint<T>) async throws -> Endpoint<T>.Response {
+        return try await withCheckedThrowingContinuation { continuation in
+            Network.shared.request(with: endpoint) { result in
+                switch result {
+                case .success(let response):
+                    continuation.resume(returning: response)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }
