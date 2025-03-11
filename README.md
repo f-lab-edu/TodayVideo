@@ -53,76 +53,19 @@
 
   <img width=500 src="https://github.com/user-attachments/assets/35cc7e85-85b2-4ecd-90d2-3dca8b5b27aa">
 
-  ### 선택 화면 2
+  ### 선택 화면 2 / 추천작 화면
 
   ​	TMDB - Genres - Movie/TV Series 에서 데이터를 받아 장르 카테고리 노출
 
   ​	선택된 장르를 내부 저장하여 추천작 화면으로 이동
+  ​ <br>
+
+  ​        TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
+
+  ​        작품이 선택되면 상세 화면으로 이동    
 
   <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
 
-  ```swift
-  struct GenresRequest: Encodable {
-    let language: String = "ko"
-  }
-  ```
-
-  ```swift
-  struct GenresResponse: Decodable {
-    let id: Int
-    let name: String
-  }
-  ```
-
-  <br>
-
-  ### 추천작 화면
-
-  ​	TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
-
-  ​	작품이 선택되면 상세 화면으로 이동
-
-  <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
-
-  ```swift
-  struct RecommendRequest: Encodable {
-    let language: String = "ko-KR"
-    let page: Int
-    let voteCount: Int = 7
-    let watchRegion: String = "KR"
-    let withGenres: Int
-    let withWatchProviders: Int = 8
-  }
-  ```
-
-  ```swift
-  struct RecommendMovieResponse: Decodable {
-    let results: [Items]
-    
-    struct Items: Decodable {
-      let genreIds: [Int]
-      let id: Int
-      let posterPath: String
-      let title: String
-      let releaseDate: String
-      let totlaPages: Int
-    }
-  }
-  
-  
-  struct RecommendTVResponse: Decodable {
-    let results: [Items]
-    
-    struct Items: Decodable {
-      let genreIds: [Int]
-      let id: Int
-      let posterPath: String
-      let name: String
-      let firstAirDate: String
-      let totlaPages: Int
-    }
-  }
-  ```
 
   <br>
 
@@ -132,152 +75,16 @@
 
   ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
 
-  <img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
+<img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
 
-  ```swift
-  struct DetailMovieRequest: Encodable {
-    let movieId: Int
-    let language: String = "ko-KR"
-  }
-  
-  struct DetailTVRequest: Encodable {
-    let seriesId: Int
-    let language: String = "ko-KR"
-  }
-  ```
+<br>
 
-  ```swift
-  struct DetailMovieResponse: Decodable {
-    let backDropPath: String
-    let genres:[GenresItems]
-    let id: Int
-    let overview: String
-    let releaseDate: String
-    let title: String
-    let runtime: Int
-    
-    struct GenresItems: Decodable {
-      let id: Int
-      let name: String
-    }
-  }
-  
-  
-  struct DetailTVResponse: Decodable {
-    let backDropPath: String
-    let genres:[GenresItems]
-    let id: Int
-    let overview: String
-    let firstAirDate: String
-    let name: String
-    let lastEpisodeToAirruntime: LastEpisodeToAirruntimeItem
-    
-    struct GenresItems: Decodable {
-      let id: Int
-      let name: String
-    }
-    
-    struct LastEpisodeToAirruntimeItem: Decodable {
-      let runtime: Int
-    }
-  }
-  
-  
-  ```
+- 코드 컨벤션
+  SwiftLint 적용
 
-  <br>
+<br>
 
-  출연진 조회
-
-  ```swift
-  struct CreditsMovieRequest: Encodable {
-    let movieId: Int
-    let language: String = "ko-KR"
-  }
-  
-  struct CreditsTVRequest: Encodable {
-    let seriesId: Int
-    let language: String = "ko-KR"
-  }
-  ```
-
-  ```swift
-  struct CreditsResponse: Decodable {
-    let cast: [Items]
-    
-    struct Items: Decodable {
-      let name: String
-      let profielPath: String
-      let character: String
-    }
-  }
-  ```
-
-  <br>
-
-  시청 연령 조회
-
-  ```swift
-  struct CertificationMovieRequest: Encodable {
-    let movieId: Int
-  }
-  
-  struct CertificationTVRequest: Encodable {
-    let seriesId: Int
-  }
-  ```
-
-  ```swift
-  struct CertificationMovieResponse: Decodable {
-    let results: [Itmes]
-    
-    struct Itmes: Decodable {
-      let iso: String
-      let releaseDates: [ReleaseDates]
-      
-      struct ReleaseDates: Decodable {
-        let certification: String
-      }
-    }
-  }
-    
-  
-  struct CertificationTVResponse: Decodable {
-    let results: [Itmes]
-    
-    struct Itmes: Decodable {
-      let iso: String
-      let rating: String
-    }
-  }
-  ```
-
-  <br>
-
-  영상 조회
-
-  ```swift
-  struct VideoMovieRequest: Encodable {
-    let movieId: Int
-    let language: String = "ko-KR"
-  }
-  
-  struct VideoTVRequest: Encodable {
-    let seriesId: Int
-    let language: String = "ko-KR"
-  }
-  ```
-
-  ```swift
-  struct VideoMovieResponse: Decodable {
-    let results: [Itmes]
-    
-    struct Itmes: Decodable {
-      let site: String
-      let key: String
-    }
-  }
-  ```
+- Unit Test
 
 <br>
 
@@ -288,12 +95,17 @@
   -> https://developer.themoviedb.org/reference/intro/getting-started
   
   <br>
+  Base URL -> https://api.themoviedb.org/3
+  <br>
+  Image Base URL -> https://image.tmdb.org/t/p/w500/
+  <br>
+  HTTP Method -> GET
   
   - 장르 선택 화면
   
-    -> https://developer.themoviedb.org/reference/genre-movie-list
+    -> /genre/movie/list
   
-    -> https://developer.themoviedb.org/reference/genre-tv-list
+    -> /genre/tv/list
   
     **request**
   
@@ -316,9 +128,9 @@
   
   - 추천작 화면
   
-    -> https://developer.themoviedb.org/reference/discover-movie
+    -> /discover/movie
   
-    -> https://developer.themoviedb.org/reference/discover-tv
+    -> /discover/tv
   
     **request**
   
@@ -341,7 +153,7 @@
     | --------------------------- | ------ | ------------------------------------------------------------ |
     | genre_ids                   | [Int]  |                                                              |
     | id                          | Int    |                                                              |
-    | poster_path                 | String | [https://image.tmdb.org/t/p/w500/](https://image.tmdb.org/t/p/w500/){poster_path} |
+    | poster_path                 | String |  |
     | title/name                  | String |                                                              |
     | release_date/first_air_date | String |                                                              |
     | total_pages                 | Int    |                                                              |
@@ -350,9 +162,9 @@
   
   - 상세 화면
   
-    -> https://developer.themoviedb.org/reference/movie-details
+    -> /movie/{movie_id}
   
-    -> https://developer.themoviedb.org/reference/tv-series-details
+    -> /tv/{series_id}
   
     **request**
   
@@ -363,110 +175,60 @@
   
     **response**
   
-    | key                         | type   |                                                 |
-    | --------------------------- | ------ | ----------------------------------------------- |
-    | backdrop_path               | String | https://image.tmdb.org/t/p/w500/{backdrop_path} |
-    | genres                      | Array  |                                                 |
-    | id                          | Int    |                                                 |
-    | overview                    | String |                                                 |
-    | release_date/first_air_date | String |                                                 |
-    | title/name                  | String |                                                 |
-    | runtime                     | Int    | 영화 상세 화면용                                |
-    | last_episode_to_airruntime  | Object | TV 시리즈 상세 화면용                           |
+    | key                         | type   |                                |
+    | --------------------------- | ------ | ------------------------------ |
+    | backdrop_path               | String | Image Base URL/{backdrop_path} |
+    | genres                      | Array  |                                |
+    | homepage                    | String |                                |
+    | id                          | Int    |                                |
+    | overview                    | String |                                |
+    | release_date/first_air_date | String |                                |
+    | title/name                  | String |                                |
+    | runtime                     | Int    | 영화 상세 화면용               |
+    | productionCountries         | Object | 영화 상세 화면용               |
+    | last_episode_to_airruntime  | Object | TV 시리즈 상세 화면용          |
   
     *genres
-  
+    
     | key  | type   |
     | ---- | ------ |
     | id   | Int    |
     | name | String |
   
+    *productionCountries
+    
+    | key        | type   |
+    | ---------- | ------ |
+    | iso_3166_1 | String |
+    | name       | String |
+    
     *last_episode_to_airruntime
-  
+    
     | key     | type |
     | ------- | ---- |
     | runtime | Int  |
-  
+    
     <br>
+    
+    - 영상
+    
+    -> /movie/{movie_id}/videos
   
-    -> https://developer.themoviedb.org/reference/movie-credits
-  
-    -> https://developer.themoviedb.org/reference/tv-series-credits
-  
-    출연진
+    -> /tv/{series_id}/videos
   
     **request**
-  
+    
     | parameter          | value                          |
     | :----------------- | :----------------------------- |
     | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
     | language           | ko-KR                          |
-  
+    
     **response**
-  
-    | key  | type  |
-    | ---- | ----- |
-    | cast | Array |
-  
-    | key          | type   |                                                |
-    | ------------ | ------ | ---------------------------------------------- |
-    | name         | String |                                                |
-    | profile_path | String | https://image.tmdb.org/t/p/w500/{profile_path} |
-    | character    | String |                                                |
-  
-    <br>
-  
-    -> https://developer.themoviedb.org/reference/movie-release-dates
-  
-    -> https://developer.themoviedb.org/reference/tv-series-content-ratings
-  
-    시청 연령
-  
-    **request**
-  
-    | parameter          | value                          |
-    | :----------------- | :----------------------------- |
-    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
-  
-    **response**
-  
-    | key     | type  |
-    | ------- | ----- |
-    | results | Array |
-  
-    | key          | type   |                       |
-    | ------------ | ------ | --------------------- |
-    | iso_3166_1   | String | KR인 것만 사용        |
-    | release_date | Array  | 영화 상세 화면용      |
-    | rating       | String | TV 시리즈 상세 화면용 |
-  
-    *release_date
-  
-    | key           | type   |
-    | ------------- | ------ |
-    | certification | String |
-  
-    <br>
-  
-    -> https://developer.themoviedb.org/reference/movie-videos
-  
-    -> https://developer.themoviedb.org/reference/tv-series-videos
-  
-    영상
-  
-    **request**
-  
-    | parameter          | value                          |
-    | :----------------- | :----------------------------- |
-    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
-    | language           | ko-KR                          |
-  
-    **response**
-  
+    
     | key     | type  |                          |
     | ------- | ----- | ------------------------ |
     | results | Array | 비어있으면 view 숨김처리 |
-  
+    
     | key  | type   |                                       |
     | ---- | ------ | ------------------------------------- |
     | site | String | YouTube인 것만 사용                   |
@@ -491,10 +253,9 @@
 | ------ | ------------------------ |
 | FEAT   | 새로운 기능 추가         |
 | FIX    | 오류 및 버그 수정        |
+| REFACT | 리펙토링               |
 | DOCS   | 문서 수정                |
 | STYLE  | 기능 외 수정             |
 | TEST   | 테스트 코드 추가 및 수정 |
 | RENAME | 파일 및 폴더명 수정      |
 | REMOVE | 파일 및 폴더 삭제        |
-
-
