@@ -53,18 +53,16 @@
 
   <img width=500 src="https://github.com/user-attachments/assets/35cc7e85-85b2-4ecd-90d2-3dca8b5b27aa">
 
-  ### 선택 화면 2
+  ### 선택 화면 2 / 추천작 화면
 
   ​	TMDB - Genres - Movie/TV Series 에서 데이터를 받아 장르 카테고리 노출
 
   ​	선택된 장르를 내부 저장하여 추천작 화면으로 이동
   ​ <br>
 
-  ### 추천작 화면
+  ​        TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
 
-  ​    TMDB - Discover - Movie/TV Series 에서 데이터를 받아 추천작 노출
-
-  ​    작품이 선택되면 상세 화면으로 이동   
+  ​        작품이 선택되면 상세 화면으로 이동    
 
   <img width=500 src="https://github.com/user-attachments/assets/d5dbce29-0285-4be2-8d59-d543e808cb51">
 
@@ -77,7 +75,7 @@
 
   ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
 
-  <img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
+<img width=500 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
 
 <br>
 
@@ -164,9 +162,9 @@
   
   - 상세 화면
   
-    -> https://developer.themoviedb.org/reference/movie-details
+    -> /movie/{movie_id}
   
-    -> https://developer.themoviedb.org/reference/tv-series-details
+    -> /tv/{series_id}
   
     **request**
   
@@ -177,110 +175,60 @@
   
     **response**
   
-    | key                         | type   |                                                 |
-    | --------------------------- | ------ | ----------------------------------------------- |
-    | backdrop_path               | String | https://image.tmdb.org/t/p/w500/{backdrop_path} |
-    | genres                      | Array  |                                                 |
-    | id                          | Int    |                                                 |
-    | overview                    | String |                                                 |
-    | release_date/first_air_date | String |                                                 |
-    | title/name                  | String |                                                 |
-    | runtime                     | Int    | 영화 상세 화면용                                |
-    | last_episode_to_airruntime  | Object | TV 시리즈 상세 화면용                           |
+    | key                         | type   |                                |
+    | --------------------------- | ------ | ------------------------------ |
+    | backdrop_path               | String | Image Base URL/{backdrop_path} |
+    | genres                      | Array  |                                |
+    | homepage                    | String |                                |
+    | id                          | Int    |                                |
+    | overview                    | String |                                |
+    | release_date/first_air_date | String |                                |
+    | title/name                  | String |                                |
+    | runtime                     | Int    | 영화 상세 화면용               |
+    | productionCountries         | Object | 영화 상세 화면용               |
+    | last_episode_to_airruntime  | Object | TV 시리즈 상세 화면용          |
   
     *genres
-  
+    
     | key  | type   |
     | ---- | ------ |
     | id   | Int    |
     | name | String |
   
+    *productionCountries
+    
+    | key        | type   |
+    | ---------- | ------ |
+    | iso_3166_1 | String |
+    | name       | String |
+    
     *last_episode_to_airruntime
-  
+    
     | key     | type |
     | ------- | ---- |
     | runtime | Int  |
-  
+    
     <br>
+    
+    - 영상
+    
+    -> /movie/{movie_id}/videos
   
-    -> https://developer.themoviedb.org/reference/movie-credits
-  
-    -> https://developer.themoviedb.org/reference/tv-series-credits
-  
-    출연진
+    -> /tv/{series_id}/videos
   
     **request**
-  
+    
     | parameter          | value                          |
     | :----------------- | :----------------------------- |
     | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
     | language           | ko-KR                          |
-  
+    
     **response**
-  
-    | key  | type  |
-    | ---- | ----- |
-    | cast | Array |
-  
-    | key          | type   |                                                |
-    | ------------ | ------ | ---------------------------------------------- |
-    | name         | String |                                                |
-    | profile_path | String | https://image.tmdb.org/t/p/w500/{profile_path} |
-    | character    | String |                                                |
-  
-    <br>
-  
-    -> https://developer.themoviedb.org/reference/movie-release-dates
-  
-    -> https://developer.themoviedb.org/reference/tv-series-content-ratings
-  
-    시청 연령
-  
-    **request**
-  
-    | parameter          | value                          |
-    | :----------------- | :----------------------------- |
-    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
-  
-    **response**
-  
-    | key     | type  |
-    | ------- | ----- |
-    | results | Array |
-  
-    | key          | type   |                       |
-    | ------------ | ------ | --------------------- |
-    | iso_3166_1   | String | KR인 것만 사용        |
-    | release_date | Array  | 영화 상세 화면용      |
-    | rating       | String | TV 시리즈 상세 화면용 |
-  
-    *release_date
-  
-    | key           | type   |
-    | ------------- | ------ |
-    | certification | String |
-  
-    <br>
-  
-    -> https://developer.themoviedb.org/reference/movie-videos
-  
-    -> https://developer.themoviedb.org/reference/tv-series-videos
-  
-    영상
-  
-    **request**
-  
-    | parameter          | value                          |
-    | :----------------- | :----------------------------- |
-    | movie_id/series_id | 추천작 화면에서 터치된 작품 ID |
-    | language           | ko-KR                          |
-  
-    **response**
-  
+    
     | key     | type  |                          |
     | ------- | ----- | ------------------------ |
     | results | Array | 비어있으면 view 숨김처리 |
-  
+    
     | key  | type   |                                       |
     | ---- | ------ | ------------------------------------- |
     | site | String | YouTube인 것만 사용                   |
