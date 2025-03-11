@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol NextButtonDelegate {
+    func pressed()
+}
+
 final class NextButton: UIButton {
     private var currentView: UIViewController!
+    var delegate: NextButtonDelegate?
     
     init(location: UIViewController) {
         super.init(frame: .zero)
@@ -30,7 +35,7 @@ final class NextButton: UIButton {
             make.width.equalTo(15.4)
             make.height.equalTo(23)
             make.trailing.equalTo(view.snp.trailing).offset(-41.6)
-            make.bottom.equalTo(view.snp.bottom).offset(-78)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-27.27)
         }
     }
     
@@ -39,8 +44,11 @@ final class NextButton: UIButton {
         case is ContentView:
             guard let contentView = currentView as? ContentView else { return }
             contentView.presenter?.pushToGenreView()
-        default: 
-            break
+        case is GenreView:
+            guard let genreView = currentView as? GenreView else { return }
+            genreView.presenter?.pushToRecommendView()
+            delegate?.pressed()
+        default: break
         }
     }
 }

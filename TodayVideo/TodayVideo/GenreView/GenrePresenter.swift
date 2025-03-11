@@ -18,13 +18,15 @@ final class GenrePresenter: GenrePresenterProtocol {
     var view: GenreViewProtocol?
     var interator: GenreInteractorProtocol?
     var router: GenreRouterProtocol?
+    var genres = [Genre]()
     
     func fetchGenres() {
         interator?.fetchGenres()
     }
     
     func fetchSuccess(with genres: [Genre]) {
-        view?.makeGenreButton(genres)
+        self.genres = genres
+        view?.makeGenreSuccess(genres)
     }
     
     func fetchFail(with error: Error) {
@@ -33,7 +35,7 @@ final class GenrePresenter: GenrePresenterProtocol {
     
     func pushToRecommendView() {
         DispatchQueue.main.async {
-            self.router?.pushToRecommendView()
+            self.router?.pushToRecommendView(with: self.genres)
         }
     }
 }

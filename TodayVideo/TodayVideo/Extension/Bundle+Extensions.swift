@@ -29,4 +29,8 @@ extension Bundle {
     var authrization: String {
         return secretValue("AUTH_TOKEN") ?? ""
     }
+    
+    var imageBaseUrl: String {
+        return secretValue("IMAGE_BASE_URL") ?? ""
+    }
 }

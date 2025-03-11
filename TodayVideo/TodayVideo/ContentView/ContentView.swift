@@ -8,11 +8,6 @@
 import UIKit
 import SnapKit
 
-enum Content: String {
-    case movie = "영화"
-    case tv = "TV"
-}
-
 final class ContentView: UIViewController {
     var presenter: ContentPresenterProtocol?
     
@@ -44,8 +39,8 @@ final class ContentView: UIViewController {
         }
         
         /// 버튼
-        movieButton = FilterButton(title: Content.movie.rawValue)
-        tvButton = FilterButton(title: Content.tv.rawValue)
+        movieButton = FilterButton(title: Movie.shared.title)
+        tvButton = FilterButton(title: TV.shared.title)
         
         [movieButton, tvButton].forEach { button in
             button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
@@ -70,6 +65,16 @@ final class ContentView: UIViewController {
     }
     
     func selectEvent(button1: FilterButton, button2: FilterButton) {
+        let content = Content.shared
+        
+        if button2 == movieButton {
+            let movie = Movie.shared
+            content.configure(content: movie)
+        } else {
+            let tv = TV.shared
+            content.configure(content: tv)
+        }
+        
         button1.isSelected = false
         button1.updateState()
         button2.updateState()
@@ -83,12 +88,10 @@ final class ContentView: UIViewController {
         
         sender.isSelected = !sender.isSelected
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {            
             if sender == self.movieButton {
-                UserDefault.shared.setValue(Content.movie.rawValue, key: .selectContent)
                 self.selectEvent(button1: self.tvButton, button2: self.movieButton)
             } else {
-                UserDefault.shared.setValue(Content.tv.rawValue, key: .selectContent)
                 self.selectEvent(button1: self.movieButton, button2: self.tvButton)
             }
         }

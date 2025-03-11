@@ -9,15 +9,18 @@ import UIKit
 import SnapKit
 
 protocol GenreViewProtocol {
-    func makeGenreButton(_ genres: [Genre])
+    func makeGenreSuccess(_ genres: [Genre])
     func makeGenreFail(_ error: Error)
 }
 
 final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
-    var selectedGenre: [Int: Bool] = [:]
+    var selectedGenre: [Int:Bool] = [:]
 
-    let containerView = UIView()
+    var prevButton: PreviousButton!
+    var nextButton: NextButton!
+    let scrollView = UIScrollView()
+    let scrollViewContainer = UIView()
     let allButton = FilterButton(title: "무관")
     var genreButtons = [FilterButton]()
     
@@ -35,22 +38,102 @@ final class GenreView: UIViewController {
     private func drawUI() {
         view.backgroundColor = .background
         
-        _ = PreviousButton(location: self)
-        _ = NextButton(location: self)
+        prevButton = PreviousButton(location: self)
+        nextButton = NextButton(location: self)
+        nextButton.delegate = self
+    }
+    
+    // MARK: - 버튼 기능
+    private func controlAllButton(_ select: Bool) {
+        allButton.isSelected = select
+        allButton.updateState()
+        
+        selectedGenre.forEach { key,value in
+            selectedGenre[key] = select
+        }
+    }
+    
+    @objc private func allGenreSelect() {
+        controlAllButton(!allButton.isSelected)
+        
+        let selectFilter = selectedGenre.filter{$0.value == true}
+        if selectFilter.count > 0 {
+            genreButtons.forEach { button in
+                button.isSelected = false
+                button.updateState()
+            }
+        }
+    }
+    
+    @objc private func genreSelect(_ sender: FilterButton) {
+        sender.isSelected = !sender.isSelected
+        sender.updateState()
+        
+        if allButton.isSelected {
+            controlAllButton(false)
+        }
+        
+        let id = sender.tag
+        selectedGenre[id] = sender.isSelected
+        
+        let selectFilter = selectedGenre.filter{$0.value == true}
+        if selectFilter.count == 0 {
+            controlAllButton(true)
+        }
+    }
+    
+    // 선택한 장르(배열)들을 api 요청 파라미터로 만듦
+    private func makeSelectedGenresString(genreIDs: [Int]) -> String {
+        guard !genreIDs.isEmpty else {
+            return ""
+        }
+        
+        let genreString = genreIDs.map { String($0) }
+        
+        return genreString.joined(separator: "%2C")
+    }
+    
+    // 선택한 장르(배열)들을 userdefault에 저장
+    private func saveSelectedGenre() {
+        let genreCount = genreButtons.count
+        let genre = (selectedGenre.filter { $0.value == true }).map{ $0.key }
+        
+        if genreCount == genre.count {
+            let genreString = ""
+            UserDefault.shared.setValue(genreString, key: .selectGenre)
+        } else {
+            let genreString = makeSelectedGenresString(genreIDs: genre)
+            UserDefault.shared.setValue(genreString, key: .selectGenre)
+        }
+    }
+}
+
+// MARK: - NextButtonDelegate
+extension GenreView: NextButtonDelegate {
+    func pressed() {
+        saveSelectedGenre()
     }
 }
 
 // MARK: - GenreViewProtocol
 extension GenreView: GenreViewProtocol {
-    func makeGenreButton(_ genres: [Genre]) {
+    func makeGenreFail(_ error: Error) {
+        DispatchQueue.main.async {
+            UIAlertController().fail(error: error, target: self)
+        }
+    }
+    
+    func makeGenreSuccess(_ genres: [Genre]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
             // 컨테이너
-            view.addSubview(containerView)
+            scrollView.showsVerticalScrollIndicator = false
+            scrollView.isScrollEnabled = true
+            view.addSubview(scrollView)
             
             // all 버튼
-            containerView.addSubview(allButton)
+            scrollView.addSubview(allButton)
             makeAllButton()
             
             // 장르 버튼
@@ -70,6 +153,8 @@ extension GenreView: GenreViewProtocol {
             make.width.equalTo(allButton.width())
             make.height.equalTo(allButton.height)
         }
+        
+        saveSelectedGenre()
     }
     
     private func createGenreButtons(_ genres: [Genre]) {
@@ -92,7 +177,7 @@ extension GenreView: GenreViewProtocol {
                 height += buttonHeight + buttonMargin
             }
             
-            containerView.addSubview(button)
+            scrollView.addSubview(button)
             button.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(width)
                 make.top.equalToSuperview().offset(height)
@@ -103,7 +188,8 @@ extension GenreView: GenreViewProtocol {
             width += (buttonWidth + buttonMargin)
         }
 
-        containerViewConstraints(width: maxContainerWidth, height: height + buttonHeight)
+        scrollViewConstraints(width: maxContainerWidth, height: height + buttonHeight)
+        
     }
 
     private func createButton(title: String, id: Int) -> FilterButton {
@@ -118,58 +204,29 @@ extension GenreView: GenreViewProtocol {
         return button
     }
 
-    private func containerViewConstraints(width: Int, height: Int) {
-        containerView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(width)
-            make.height.equalTo(height)
-        }
-    }
-    
-    func makeGenreFail(_ error: Error) {
-        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default) { action in
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(ok)
-        self.present(alert, animated: true)
-    }
-    
-    private func controlAllButton(_ select: Bool) {
-        allButton.isSelected = select
-        allButton.updateState()
+    private func scrollViewConstraints(width: Int, height: Int) {
+        let topMargin: CGFloat = 20
+        let bottomMargin: CGFloat = 14
+        let top = prevButton.frame.origin.x + prevButton.frame.size.height + topMargin
+        let bottom = nextButton.frame.size.height + bottomMargin + self.view.safeAreaInsets.bottom
+        let areaHeight = Int(self.view.frame.size.height - top - bottom)
+
+        scrollView.contentSize = CGSize(width: width, height: height)
         
-        selectedGenre.forEach { key, value in
-            selectedGenre[key] = select
-        }
-    }
-    
-    @objc private func allGenreSelect() {
-        controlAllButton(!allButton.isSelected)
-        
-        let selectFilter = selectedGenre.filter{$0.value == true}
-        if !selectFilter.isEmpty {
-            genreButtons.forEach { button in
-                button.isSelected = false
-                button.updateState()
+        // 장르 버튼 들을 놓을 수 있는 영역의 높이 > 장르 버튼 들을 놓기위해 필요한 높이
+        if areaHeight > height {
+            scrollView.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+                make.width.equalTo(width)
+                make.height.equalTo(height)
             }
-        }
-    }
-    
-    @objc private func genreSelect(_ sender: FilterButton) {
-        sender.isSelected = !sender.isSelected
-        sender.updateState()
-        
-        if allButton.isSelected {
-            controlAllButton(false)
-        }
-        
-        let id = sender.tag
-        selectedGenre[id] = sender.isSelected
-        
-        let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.isEmpty {
-            controlAllButton(true)
+        } else {
+            scrollView.snp.makeConstraints { make in
+                make.top.equalTo(prevButton.snp.bottom).offset(topMargin)
+                make.bottom.equalTo(nextButton.snp.top).offset(-bottomMargin)
+                make.width.equalTo(width)
+                make.centerX.equalToSuperview()
+            }
         }
     }
 }

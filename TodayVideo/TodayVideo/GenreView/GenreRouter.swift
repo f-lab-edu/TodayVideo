@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GenreRouterProtocol {
-    func pushToRecommendView()
+    func pushToRecommendView(with genres: [Genre])
 }
 
 final class GenreRouter: GenreRouterProtocol {
@@ -30,9 +30,8 @@ final class GenreRouter: GenreRouterProtocol {
         return view
     }
     
-    func pushToRecommendView() {
-        // 다음 화면으로 이동을 위한 처리 코드 입니다.
-//        let recommendView = RecommendRouter.createRecommendViewModule
-//        genreView?.navigationController?.pushViewController(recommendView, animated: true)
+    func pushToRecommendView(with genres: [Genre]) {
+        let recommendView = RecommendRouter.createRecommendViewModule(with: genres)
+        genreView?.navigationController?.pushViewController(recommendView, animated: true)
     }
 }
