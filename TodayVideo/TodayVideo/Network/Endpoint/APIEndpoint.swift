@@ -25,10 +25,6 @@ class APIEndpoint {
                         queryParameters: ["language":"ko"])
     }
     
-    func getMovieGenres() -> Endpoint<GenresResponse> {
-        return getGenres(path: Path.movieGenre.rawValue)
-    }
-    
     func getTVGenres() -> Endpoint<GenresResponse> {
         return Endpoint(path: Path.tvGenre.rawValue,
                         method: .get,

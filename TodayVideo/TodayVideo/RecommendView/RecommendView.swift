@@ -125,8 +125,7 @@ extension RecommendView: RecommendViewProtocol {
 
             if let tv = response as? [RecommendTVResponse.Items] {
                 self.items = tv
-            } else {
-                let movie = response as! [RecommendMovieResponse.Items]
+            } else if let movie = response as? [RecommendMovieResponse.Items] {
                 self.items = movie
             }
             
@@ -177,8 +176,7 @@ extension RecommendView: UICollectionViewDataSource {
             let item = tv[indexPath.item]
             let genreName = genreName(by: item.genreIds)
             cell.configTVCell(with: item, genreName)
-        } else {
-            let movie = items as! [RecommendMovieResponse.Items]
+        } else if let movie = items as? [RecommendMovieResponse.Items] {
             let item = movie[indexPath.item]
             let genreName = genreName(by: item.genreIds)
             cell.configMovieCell(with: item, genreName)

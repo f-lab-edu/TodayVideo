@@ -57,7 +57,7 @@ final class GenreView: UIViewController {
         controlAllButton(!allButton.isSelected)
         
         let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count > 0 {
+        if !selectFilter.isEmpty {
             genreButtons.forEach { button in
                 button.isSelected = false
                 button.updateState()
@@ -77,7 +77,7 @@ final class GenreView: UIViewController {
         selectedGenre[id] = sender.isSelected
         
         let selectFilter = selectedGenre.filter{$0.value == true}
-        if selectFilter.count == 0 {
+        if selectFilter.isEmpty {
             controlAllButton(true)
         }
     }
