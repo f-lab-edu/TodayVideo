@@ -9,6 +9,7 @@ import Foundation
 
 class Movie: ContentProtocol {
     typealias RecommendResponse = RecommendMovieResponse
+    typealias DetailResponse = DetailMovieResponse
     
     static let shared = Movie()
     private init() {}
@@ -20,8 +21,16 @@ class Movie: ContentProtocol {
         return APIEndpoint.shared.getMovieGenres()
     }
     
-    func recommend(page: Int) -> Endpoint<RecommendMovieResponse> {
+    func recommend(page: Int) -> Endpoint<RecommendResponse> {
         let request = RecommendRequest().create(by: page)
         return APIEndpoint.shared.getMovieDiscover(with: request)
+    }
+    
+    func detail(id: Int) -> Endpoint<DetailResponse> {
+        return APIEndpoint.shared.getMovieDetail(with: id)
+    }
+    
+    func video(id: Int) -> Endpoint<DetailContentVideo> {
+        return APIEndpoint.shared.getMovieVideo(with: id)
     }
 }

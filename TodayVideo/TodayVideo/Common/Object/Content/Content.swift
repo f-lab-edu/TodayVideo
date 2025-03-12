@@ -14,15 +14,20 @@ enum ContentType {
 
 protocol ContentProtocol {
     associatedtype RecommendResponse: Decodable, ContentRecommendResponse
-
+    associatedtype DetailResponse: Decodable
+    
     var type: ContentType { get }
     var title: String { get }
     
     // 장르 화면
     func genres() -> Endpoint<GenresResponse>
     
-    // 추천작 화면 (제네릭 메서드로 타입 추론)
+    // 추천작 화면
     func recommend(page: Int) -> Endpoint<RecommendResponse>
+    
+    // 상세 화면
+    func detail(id: Int) -> Endpoint<DetailResponse>
+    func video(id: Int) -> Endpoint<DetailContentVideo>
 }
 
 class Content {

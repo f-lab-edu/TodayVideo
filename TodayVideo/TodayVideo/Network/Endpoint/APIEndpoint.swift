@@ -11,11 +11,36 @@ class APIEndpoint {
     static let shared = APIEndpoint()
     private init() {}
     
-    enum Path: String {
-        case movieGenre = "/genre/movie/list"
-        case tvGenre = "/genre/tv/list"
-        case movieDiscover = "/discover/movie"
-        case tvDiscover = "/discover/tv"
+    enum Path {
+        case movieGenre
+        case tvGenre
+        case movieDiscover
+        case tvDiscover
+        case movieDetail(id: Int)
+        case tvDetail(id: Int)
+        case movieVideo(id: Int)
+        case tvVideo(id: Int)
+        
+        var rawValue: String {
+            switch self {
+            case .movieGenre:
+                return "/genre/movie/list"
+            case .tvGenre:
+                return "/genre/tv/list"
+            case .movieDiscover:
+                return "/discover/movie"
+            case .tvDiscover:
+                return "/discover/tv"
+            case .movieDetail(let id):
+                return "/movie/\(id)"
+            case .tvDetail(let id):
+                return "/tv/\(id)"
+            case .movieVideo(let id):
+                return "/movie/\(id)/videos"
+            case .tvVideo(let id):
+                return "tv/\(id)/videos"
+            }
+        }
     }
     
     // MARK: - 장르 선택 화면
@@ -42,5 +67,30 @@ class APIEndpoint {
         return Endpoint(path: Path.tvDiscover.rawValue,
                         method: .get,
                         queryParameters: model)
+    }
+    
+    // MARK: - 상세 화면
+    func getMovieDetail(with id: Int) -> Endpoint<DetailMovieResponse> {
+        return Endpoint(path: Path.movieDetail(id: id).rawValue,
+                        method: .get,
+                        queryParameters: ["language": "ko"])
+    }
+    
+    func getTVDetail(with id: Int) -> Endpoint<DetailTVResponse> {
+        return Endpoint(path: Path.tvDetail(id: id).rawValue,
+                        method: .get,
+                        queryParameters: ["language": "ko"])
+    }
+    
+    func getMovieVideo(with id: Int) -> Endpoint<DetailContentVideo> {
+        return Endpoint(path: Path.movieVideo(id: id).rawValue,
+                        method: .get,
+                        queryParameters: ["language": "ko"])
+    }
+    
+    func getTvVideo(with id: Int) -> Endpoint<DetailContentVideo> {
+        return Endpoint(path: Path.tvVideo(id: id).rawValue,
+                        method: .get,
+                        queryParameters: ["language": "ko"])
     }
 }

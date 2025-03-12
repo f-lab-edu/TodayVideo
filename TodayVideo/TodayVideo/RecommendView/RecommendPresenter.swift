@@ -11,7 +11,7 @@ protocol RecommendPresenterProtocol {
     func fetchRecommend()
     func fetchSuccess<T: Decodable>(response: [T])
     func fetchFail(with error: Error)
-    func pushToDetailView()
+    func pushToDetailView(with id: Int)
 }
 
 final class RecommendPresenter: RecommendPresenterProtocol {
@@ -31,9 +31,9 @@ final class RecommendPresenter: RecommendPresenterProtocol {
         view?.makeRecommendationFail(error)
     }
     
-    func pushToDetailView() {
+    func pushToDetailView(with id: Int) {
         DispatchQueue.main.async {
-            self.router?.pushToRecommendView()
+            self.router?.pushToDetailView(with: id)
         }
     }
 }
