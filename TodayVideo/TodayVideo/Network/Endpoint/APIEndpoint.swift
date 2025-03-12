@@ -38,7 +38,7 @@ class APIEndpoint {
             case .movieVideo(let id):
                 return "/movie/\(id)/videos"
             case .tvVideo(let id):
-                return "tv/\(id)/videos"
+                return "/tv/\(id)/videos"
             }
         }
     }

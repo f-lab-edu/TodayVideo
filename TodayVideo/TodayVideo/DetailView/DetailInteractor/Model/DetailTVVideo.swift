@@ -9,17 +9,17 @@ import Foundation
 
 // tv
 struct DetailTVResponse: Decodable, DetailResponse {
-    let runtime: Int
-    let date: String
-    let genres: [Genre]
+    let runtime: Int?
+    let date: String?
+    let genres: [Genre]?
     let homepage: String
-    let title: String
-    let backdropPath: String
+    let title: String?
+    let backdropPath: String?
     let voteAverage: Float
-    let overview: String
+    let overview: String?
     
     enum CodingKeys: String, CodingKey {
-        case runtime = "episode_run_time"
+        case runtime
         case date = "first_air_date"
         case genres
         case homepage

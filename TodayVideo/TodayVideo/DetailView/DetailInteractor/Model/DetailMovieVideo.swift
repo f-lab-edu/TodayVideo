@@ -8,14 +8,14 @@
 import Foundation
 
 struct DetailMovieResponse: Decodable, DetailResponse {
-    let genres: [Genre]
+    let genres: [Genre]?
     let homepage: String
-    let overview: String
-    let backdropPath: String
+    let overview: String?
+    let backdropPath: String?
     let productionCountries: [Production]
-    let date: String
-    let runtime: Int
-    let title: String
+    let date: String?
+    let runtime: Int?
+    let title: String?
     let voteAverage: Float
     
     enum CodingKeys: String, CodingKey {
