@@ -96,13 +96,13 @@ final class RecommendViewTest: XCTestCase {
             let expected = RecommendMovieResponse(results:
                                                     [
                                                         RecommendMovieResponse.Items(
-                                                            genreIds: [28,878,35,10751],
+                                                            genreIds: [28, 878, 35, 10751],
                                                             id: 939243,
                                                             posterPath: "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
                                                             title: "Sonic the Hedgehog 3",
                                                             releaseDate: "2024-12-19"),
                                                         RecommendMovieResponse.Items(
-                                                            genreIds: [28,12,53],
+                                                            genreIds: [28, 12, 53],
                                                             id: 539972,
                                                             posterPath: "/nrlfJoxP1EkBVE9pU62L287Jl4D.jpg",
                                                             title: "Kraven the Hunter",
@@ -174,7 +174,7 @@ final class RecommendViewTest: XCTestCase {
             let response = try JSONDecoder().decode(RecommendTVResponse.self, from: jsonData)
             let expected = RecommendTVResponse(results:
                                                     [
-                                                        RecommendTVResponse.Items(genreIds: [35,10767],
+                                                        RecommendTVResponse.Items(genreIds: [35, 10767],
                                                                                   id: 6809,
                                                                                   posterPath: "/sc7Uy9ynFn3FLbVldF64Izi9RSD.jpg",
                                                                                   name: "El hormiguero",

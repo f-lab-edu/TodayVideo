@@ -68,10 +68,11 @@ class RecommendView: UIViewController {
         // circle
         let rate = 2.4
         let height = self.view.frame.size.height / rate
+        let radius = height / 2
         let blueHalfCircle = UIView()
         
         blueHalfCircle.backgroundColor = .buttonSelectedBackground
-        blueHalfCircle.roundCorners(cornerRadius: height / 2, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        blueHalfCircle.roundCorners(cornerRadius: radius, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         
         self.view.addSubview(blueHalfCircle)
         blueHalfCircle.snp.makeConstraints { make in
@@ -119,7 +120,7 @@ class RecommendView: UIViewController {
 
 // MARK: - RecommendViewProtocol
 extension RecommendView: RecommendViewProtocol {
-    func makeRecommendation<T>(_ response: [T]) where T : Decodable {
+    func makeRecommendation<T>(_ response: [T]) where T: Decodable {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 

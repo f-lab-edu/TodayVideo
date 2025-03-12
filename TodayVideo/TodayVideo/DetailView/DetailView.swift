@@ -106,11 +106,12 @@ final class DetailView: UIViewController {
         // 상단 circle 포스터 이미지
         let rate = 2.4
         let height = self.view.frame.size.height / rate
+        let radius = height / 2
         let filmImageView = UIImageView()
         
         filmImageView.contentMode = .scaleAspectFill
         filmImageView.tintColor = .black.withAlphaComponent(0.2)
-        filmImageView.roundCorners(cornerRadius: height / 2, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        filmImageView.roundCorners(cornerRadius: radius, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         
         if let posterPath = posterPath {
             ImageCache.shared.loadImage(posterPath) { image in
@@ -169,7 +170,7 @@ final class DetailView: UIViewController {
         paragraphStyle.lineSpacing = 4
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                 value: paragraphStyle,
-                                range: NSMakeRange(0, attrString.length))
+                                range: NSRange(location: 0, length: attrString.length))
         informationLB.attributedText = attrString
         informationLB.textAlignment = .center
         informationLB.numberOfLines = 0
@@ -191,7 +192,7 @@ final class DetailView: UIViewController {
             paragraphStyle.lineSpacing = 4
             attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                     value: paragraphStyle,
-                                    range: NSMakeRange(0, attrString.length))
+                                    range: NSRange(location: 0, length: attrString.length))
             overviewLB.attributedText = attrString
             overviewLB.textAlignment = .left
             overviewLB.numberOfLines = 0

@@ -23,6 +23,7 @@ disabled_rules:
   - inclusive_language                     # 포괄적 언어 사용 (인종, 성별, 사회경제적 지위를 나타내는 언어 사용금지)
   - statement_position                     # 구문 위치 제한 (else, catch 등이 선언 바로 뒤 한칸 공백 후 위치함) - 선택 필요
   - todo                                   # TODO, FIXME 주석 제한
+  - line_length                            # 행 길이 제한
 
 # 옵트 인 룰
 opt_in_rules:
@@ -61,12 +62,12 @@ colon:
   apply_to_dictionaries: false             # 딕셔너리에서 콜론이 키 옆에 있어야 하는 룰 미적용
 
 # 행 길이 커스텀 정의
-line_length:
-  warning: 120
-  ignores_function_declarations: true
-  ignores_comments: true                   # 코멘트에 대해 행 길이 제한 미적용
-  ignores_interpolated_strings: true       # 보간된 문자열 행 길이 제한 미적용
-  ignores_urls: true                       # URL에 대해 행 길이 제한 미적용
+# line_length:
+#   warning: 120
+#   ignores_function_declarations: true
+#   ignores_comments: true                   # 코멘트에 대해 행 길이 제한 미적용
+#   ignores_interpolated_strings: true       # 보간된 문자열 행 길이 제한 미적용
+#   ignores_urls: true                       # URL에 대해 행 길이 제한 미적용
 
 # 룰 적용 제외할 파일
 excluded:
