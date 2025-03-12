@@ -65,7 +65,6 @@ class ImageCache {
             return
         }
         
-        
         let key = url.absoluteString as NSString
         memoryCache.setObject(image, forKey: key)
     }

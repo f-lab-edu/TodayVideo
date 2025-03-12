@@ -23,7 +23,7 @@ final class RecommendPresenter: RecommendPresenterProtocol {
         interator?.fetchRecommend()
     }
     
-    func fetchSuccess<T>(response: [T]) where T : Decodable {
+    func fetchSuccess<T>(response: [T]) where T: Decodable {
         view?.makeRecommendation(response)
     }
 

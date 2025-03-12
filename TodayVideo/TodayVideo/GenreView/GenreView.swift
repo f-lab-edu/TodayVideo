@@ -15,7 +15,7 @@ protocol GenreViewProtocol {
 
 final class GenreView: UIViewController {
     var presenter: GenrePresenterProtocol?
-    var selectedGenre: [Int:Bool] = [:]
+    var selectedGenre: [Int: Bool] = [:]
 
     var prevButton: PreviousButton!
     var nextButton: NextButton!
@@ -48,7 +48,7 @@ final class GenreView: UIViewController {
         allButton.isSelected = select
         allButton.updateState()
         
-        selectedGenre.forEach { key,value in
+        selectedGenre.forEach { key, value in
             selectedGenre[key] = select
         }
     }

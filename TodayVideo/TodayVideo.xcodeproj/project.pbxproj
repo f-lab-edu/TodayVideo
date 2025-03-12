@@ -36,6 +36,8 @@
 		CE298BF02D7146FB00E80FA1 /* DetailTVVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BEF2D7146FB00E80FA1 /* DetailTVVideo.swift */; };
 		CE298BF22D76CC8000E80FA1 /* DetailContentVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BF12D76CC8000E80FA1 /* DetailContentVideo.swift */; };
 		CE298BF42D76CCA400E80FA1 /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE298BF32D76CCA400E80FA1 /* DetailResponse.swift */; };
+		CE5B6BBD2D81597500C7CFBF /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B6BBC2D81597500C7CFBF /* VideoCell.swift */; };
+		CE5B6BBF2D817AED00C7CFBF /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B6BBE2D817AED00C7CFBF /* UIScrollView+Extension.swift */; };
 		CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC172D2239E100971DB4 /* AppDelegate.swift */; };
 		CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */; };
 		CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* SplashView.swift */; };
@@ -113,6 +115,8 @@
 		CE298BEF2D7146FB00E80FA1 /* DetailTVVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVVideo.swift; sourceTree = "<group>"; };
 		CE298BF12D76CC8000E80FA1 /* DetailContentVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentVideo.swift; sourceTree = "<group>"; };
 		CE298BF32D76CCA400E80FA1 /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
+		CE5B6BBC2D81597500C7CFBF /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		CE5B6BBE2D817AED00C7CFBF /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		CE9EAC142D2239E100971DB4 /* TodayVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9EAC172D2239E100971DB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */,
 				CEB800CD2D6451CC00CB5A98 /* UIView+Extension.swift */,
 				CEB800D82D680B0D00CB5A98 /* UIAlertController+Extension.swift */,
+				CE5B6BBE2D817AED00C7CFBF /* UIScrollView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				CE298BE42D7028A700E80FA1 /* DetailView.swift */,
+				CE5B6BBC2D81597500C7CFBF /* VideoCell.swift */,
 				CE298BE72D7028D100E80FA1 /* DetailPresenter.swift */,
 				CE298BE92D7028DA00E80FA1 /* DetailRouter.swift */,
 				CE298BE62D7028B600E80FA1 /* DetailInteractor */,
@@ -292,7 +298,6 @@
 		CE9EAC0B2D2239E100971DB4 = {
 			isa = PBXGroup;
 			children = (
-				CEB800CB2D5DD8F700CB5A98 /* .swiftlint.yml */,
 				CE9EAC162D2239E100971DB4 /* TodayVideo */,
 				CE9EAC2D2D2239E300971DB4 /* TodayVideoTests */,
 				CE9EAC152D2239E100971DB4 /* Products */,
@@ -655,6 +660,7 @@
 				CE298BE52D7028A700E80FA1 /* DetailView.swift in Sources */,
 				CE0F3FF32D374BA40058CEAE /* UIColor+Extensions.swift in Sources */,
 				254D7B432D46977E00754A38 /* Network.swift in Sources */,
+				CE5B6BBD2D81597500C7CFBF /* VideoCell.swift in Sources */,
 				254D7B452D46B47000754A38 /* GenreView.swift in Sources */,
 				CE0F3FF62D37714B0058CEAE /* ContentView.swift in Sources */,
 				CEDBD8882D509DE80086F6A3 /* APIEndpoint.swift in Sources */,
@@ -693,6 +699,7 @@
 				CEDBD88F2D50A9E00086F6A3 /* Encodable+Extensions.swift in Sources */,
 				CEB800BF2D59E4F100CB5A98 /* RecommendPresenter.swift in Sources */,
 				CE298BEE2D7146EF00E80FA1 /* DetailMovieVideo.swift in Sources */,
+				CE5B6BBF2D817AED00C7CFBF /* UIScrollView+Extension.swift in Sources */,
 				CE0F40052D39D2B80058CEAE /* String+Extension.swift in Sources */,
 				CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */,
 				CE0F3FFA2D3771D40058CEAE /* ContentRouter.swift in Sources */,

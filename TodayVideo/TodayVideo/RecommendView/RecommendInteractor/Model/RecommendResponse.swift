@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ContentRecommendResponse {
+protocol ContentRecommendResponse: Equatable {
     associatedtype Item: Decodable
     
     var results: [Item] { get }
@@ -18,6 +18,10 @@ protocol RecommendItem {}
 
 // 영화
 struct RecommendMovieResponse: Decodable, ContentRecommendResponse {
+    static func == (lhs: RecommendMovieResponse, rhs: RecommendMovieResponse) -> Bool {
+        return lhs == rhs
+    }
+    
     typealias Item = Items
     
     let results: [Item]
@@ -47,6 +51,10 @@ struct RecommendMovieResponse: Decodable, ContentRecommendResponse {
 
 // 드라마
 struct RecommendTVResponse: Decodable, ContentRecommendResponse {
+    static func == (lhs: RecommendTVResponse, rhs: RecommendTVResponse) -> Bool {
+        return lhs == rhs
+    }
+    
     typealias Item = Items
     
     let results: [Item]
