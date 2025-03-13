@@ -56,22 +56,6 @@ final class DetailView: UIViewController {
         timerForShowScrollIndicator = nil
     }
 
-    private func videoScrollIndicatorColor() {
-        DispatchQueue.main.async {
-            self.videoCollection.scrollIndicators.vertical?.backgroundColor = .buttonSelectedBackground
-        }
-    }
-    
-    private func startTimerVideoScrollIndicator() {
-        self.timerForShowScrollIndicator = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.showScrollIndicatorsInContacts), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func showScrollIndicatorsInContacts() {
-        UIView.animate(withDuration: 0.001) {
-            self.videoCollection.flashScrollIndicators()
-        }
-    }
-    
     private func makeIndicator() {
         view.addSubview(indicator)
         
@@ -80,35 +64,58 @@ final class DetailView: UIViewController {
         indicator.startAnimating()
     }
     
+    private func videoScrollIndicatorColor() {
+        DispatchQueue.main.async {
+            self.videoCollection.scrollIndicators.vertical?.backgroundColor = .buttonSelectedBackground
+        }
+    }
+    
+    private func startTimerVideoScrollIndicator() {
+        self.timerForShowScrollIndicator = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.showScrollIndicatorsInContacts), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func showScrollIndicatorsInContacts() {
+        UIView.animate(withDuration: 1.5) {
+            self.videoCollection.flashScrollIndicators()
+        }
+    }
+    
     private func drawScrollView() {
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
     private func drawStackView() {
         scrollView.addSubview(stackView)
+        
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 0
-        
+        stackView.spacing = 20
+
         stackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(scrollView.contentLayoutGuide)
-            make.bottom.equalToSuperview().offset(-17)
-            make.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            make.edges.equalToSuperview()
+            make.width.equalTo(view.frame.size.width)
         }
     }
 
     private func drawTopPoster(with posterPath: String?) {
         // 상단 circle 포스터 이미지
         let rate = 2.4
-        let height = self.view.frame.size.height / rate
-        let radius = height / 2
-        let filmImageView = UIImageView()
+        let height = view.frame.size.height / rate
         
+        let contatiner = UIView()
+        stackView.addArrangedSubview(contatiner)
+        contatiner.snp.makeConstraints { make in
+            make.height.equalTo(height)
+        }
+        
+        let filmImageView = UIImageView()
+        let radius = height / 2
         filmImageView.contentMode = .scaleAspectFill
         filmImageView.tintColor = .black.withAlphaComponent(0.2)
         filmImageView.roundCorners(cornerRadius: radius, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
@@ -120,42 +127,31 @@ final class DetailView: UIViewController {
                 }
             }
         }
-        stackView.addArrangedSubview(filmImageView)
+        
+        contatiner.addSubview(filmImageView)
         filmImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(height)
+//            make.height.equalTo(height)
+            make.width.equalTo(view.frame.size.width)
+            make.edges.equalToSuperview()
         }
 
-        // 제공업체 로고
-        let provierImageView = UIImageView()
-        provierImageView.image = .netflix
-        provierImageView.contentMode = .scaleAspectFit
-        filmImageView.addSubview(provierImageView)
-        provierImageView.snp.makeConstraints { make in
-            make.centerY.equalTo(previousButton.snp.centerY)
-            make.trailing.equalToSuperview().offset(-14)
-            make.width.height.equalTo(50)
-        }
+        
     }
     
     private func drawTitle(_ title: String?) {
         if let title = title {
-            let container = UIView()
-            stackView.addArrangedSubview(container)
-            
+            let contatiner = UIView()
+            stackView.addArrangedSubview(contatiner)
             let titleLB = UILabel()
-            titleLB.textAlignment = .center
+            titleLB.textAlignment = .left
             titleLB.numberOfLines = 0
             titleLB.lineBreakMode = .byWordWrapping
             titleLB.text = title
             titleLB.font = .boldSystemFont(ofSize: 22)
             titleLB.textColor = .white
-            container.addSubview(titleLB)
+            contatiner.addSubview(titleLB)
             titleLB.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(25)
                 make.leading.trailing.equalToSuperview().inset(16)
-                make.bottom.equalToSuperview().offset(-12)
             }
         }
     }
@@ -164,24 +160,27 @@ final class DetailView: UIViewController {
         let container = UIView()
         stackView.addArrangedSubview(container)
         
-        let informationLB = UILabel()
-        let attrString = NSMutableAttributedString(string: information)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                value: paragraphStyle,
-                                range: NSRange(location: 0, length: attrString.length))
-        informationLB.attributedText = attrString
-        informationLB.textAlignment = .center
-        informationLB.numberOfLines = 0
-        informationLB.font = .systemFont(ofSize: 16)
-        informationLB.textColor = .white
-        container.addSubview(informationLB)
-        informationLB.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(4)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().offset(-12)
-        }
+//        let informationLB = UILabel()
+//        let aa = "MutableAttributedString(string: information)MutableAttributedString(string: information)"
+//        let attrString = NSMutableAttributedString(string: aa)
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = 4
+//        attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
+//                                value: paragraphStyle,
+//                                range: NSRange(location: 0, length: attrString.length))
+//        
+//        
+//        informationLB.numberOfLines = 0
+//        informationLB.font = .systemFont(ofSize: 16)
+//        informationLB.textColor = .white
+//        informationLB.attributedText = attrString
+//        informationLB.textAlignment = .center
+//        container.addSubview(informationLB)
+//        informationLB.snp.makeConstraints { make in
+////            make.top.equalToSuperview().offset(4)
+//            make.leading.trailing.equalToSuperview().inset(16)
+////            make.bottom.equalToSuperview().offset(-12)
+//        }
     }
 
     private func drawOverview(_ overview: String?) {
@@ -207,15 +206,15 @@ final class DetailView: UIViewController {
     }
     
     private func drawVideo() {
-        let container = UIView()
-        stackView.addArrangedSubview(container)
+//        let container = UIView()
+//        stackView.addArrangedSubview(container)
         
         let width = view.frame.size.width
         let height = (width * 9) / 16
         
-        container.snp.makeConstraints { make in
-            make.height.equalTo(height + 20)
-        }
+//        container.snp.makeConstraints { make in
+//            make.height.equalTo(height + 20)
+//        }
         
         videoCollection.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.id)
         videoCollection.delegate = self
@@ -223,13 +222,27 @@ final class DetailView: UIViewController {
         videoCollection.isPagingEnabled = true
         videoCollection.showsVerticalScrollIndicator = false
         videoCollection.flashScrollIndicators()
-        container.addSubview(videoCollection)
+//        container.addSubview(videoCollection)
+        stackView.addArrangedSubview(videoCollection)
         
         videoCollection.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.leading.trailing.equalToSuperview()
+            //make.top.equalToSuperview().offset(12)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(height)
-            make.bottom.equalToSuperview()
+//            make.bottom.equalToSuperview()
+        }
+    }
+    
+    private func makeProvider() {
+        // 제공업체 로고
+        let provierImageView = UIImageView()
+        provierImageView.image = .netflix
+        provierImageView.contentMode = .scaleAspectFit
+        view.addSubview(provierImageView)
+        provierImageView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(27.27)
+            make.trailing.equalToSuperview().offset(-41.6)
+            make.width.height.equalTo(50)
         }
     }
 }
@@ -270,7 +283,7 @@ extension DetailView: DetailViewProtocol {
         drawTopPoster(with: response.backdropPath)
         drawTitle(response.title)
         drawInformation(information(with: response))
-        drawOverview(response.overview)
+//        drawOverview(response.overview)
     }
     
     func makeDetailSuccess(response: Decodable, video: DetailContentVideo) {
@@ -285,10 +298,10 @@ extension DetailView: DetailViewProtocol {
                 drawUI(by: movie)
             }
             
-            if !video.results.isEmpty {
-                videos = video.results
-                drawVideo()
-            }
+//            if !video.results.isEmpty {
+//                videos = video.results
+//                drawVideo()
+//            }
             
             view.bringSubviewToFront(previousButton)
         }
@@ -317,7 +330,7 @@ extension DetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.size.width
+        let width = view.frame.size.width - 32
         let height = (width * 9) / 16
         
         return CGSize(width: width, height: height)
