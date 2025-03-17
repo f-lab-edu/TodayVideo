@@ -13,4 +13,10 @@ extension String {
         let attributes: [NSAttributedString.Key: Any] = [.font: font]
         return self.size(withAttributes: attributes).width
     }
+    
+    func height(size: CGFloat) -> CGFloat {
+        let font = UIFont.systemFont(ofSize: size)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        return self.size(withAttributes: attributes).height
+    }
 }
