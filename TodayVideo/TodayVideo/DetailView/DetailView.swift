@@ -140,51 +140,63 @@ final class DetailView: UIViewController {
     
     private func drawTitle(_ title: String?) {
         if let title = title {
-            let contatiner = UIView()
-            stackView.addArrangedSubview(contatiner)
+            let fontSize: CGFloat = 22
+            let titleHeight = title.height(size: fontSize)
+            let container = UIView()
+            stackView.addArrangedSubview(container)
+            container.snp.makeConstraints { make in
+                make.height.equalTo(titleHeight)
+            }
+            
             let titleLB = UILabel()
             titleLB.textAlignment = .left
             titleLB.numberOfLines = 0
             titleLB.lineBreakMode = .byWordWrapping
             titleLB.text = title
-            titleLB.font = .boldSystemFont(ofSize: 22)
+            titleLB.font = .boldSystemFont(ofSize: fontSize)
             titleLB.textColor = .white
-            contatiner.addSubview(titleLB)
+            container.addSubview(titleLB)
             titleLB.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview()
                 make.leading.trailing.equalToSuperview().inset(16)
             }
         }
     }
-    
+
     private func drawInformation(_ information: String) {
         let container = UIView()
         stackView.addArrangedSubview(container)
         
-//        let informationLB = UILabel()
-//        let aa = "MutableAttributedString(string: information)MutableAttributedString(string: information)"
-//        let attrString = NSMutableAttributedString(string: aa)
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 4
-//        attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
-//                                value: paragraphStyle,
-//                                range: NSRange(location: 0, length: attrString.length))
-//        
-//        
-//        informationLB.numberOfLines = 0
-//        informationLB.font = .systemFont(ofSize: 16)
-//        informationLB.textColor = .white
-//        informationLB.attributedText = attrString
-//        informationLB.textAlignment = .center
-//        container.addSubview(informationLB)
-//        informationLB.snp.makeConstraints { make in
-////            make.top.equalToSuperview().offset(4)
-//            make.leading.trailing.equalToSuperview().inset(16)
-////            make.bottom.equalToSuperview().offset(-12)
-//        }
+        let informationLB = UILabel()
+        let attrString = NSMutableAttributedString(string: information)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                value: paragraphStyle,
+                                range: NSRange(location: 0, length: attrString.length))
+        informationLB.numberOfLines = 0
+        informationLB.font = .systemFont(ofSize: 16)
+        informationLB.textColor = .white
+        informationLB.attributedText = attrString
+        informationLB.textAlignment = .center
+        
+        let height = informationLB.height()
+        container.snp.makeConstraints { make in
+            make.height.equalTo(height)
+        }
+        
+        container.addSubview(informationLB)
+        informationLB.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
     }
 
     private func drawOverview(_ overview: String?) {
         if let overview = overview {
+            let container = UIView()
+            stackView.addArrangedSubview(container)
+            
             let overviewLB = UILabel()
             let attrString = NSMutableAttributedString(string: overview)
             let paragraphStyle = NSMutableParagraphStyle()
@@ -192,29 +204,37 @@ final class DetailView: UIViewController {
             attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                     value: paragraphStyle,
                                     range: NSRange(location: 0, length: attrString.length))
-            overviewLB.attributedText = attrString
-            overviewLB.textAlignment = .left
+            
             overviewLB.numberOfLines = 0
             overviewLB.font = .systemFont(ofSize: 16)
             overviewLB.textColor = .white
             overviewLB.lineBreakMode = .byWordWrapping
-            stackView.addArrangedSubview(overviewLB)
+            overviewLB.attributedText = attrString
+            overviewLB.textAlignment = .left
+            
+            let height = overviewLB.height()
+            container.snp.makeConstraints { make in
+                make.height.equalTo(height)
+            }
+            
+            container.addSubview(overviewLB)
             overviewLB.snp.makeConstraints { make in
+                make.top.equalToSuperview()
                 make.leading.trailing.equalToSuperview().inset(16)
             }
         }
     }
     
     private func drawVideo() {
-//        let container = UIView()
-//        stackView.addArrangedSubview(container)
+        let container = UIView()
+        stackView.addArrangedSubview(container)
         
         let width = view.frame.size.width
         let height = (width * 9) / 16
         
-//        container.snp.makeConstraints { make in
-//            make.height.equalTo(height + 20)
-//        }
+        container.snp.makeConstraints { make in
+            make.height.equalTo(height)
+        }
         
         videoCollection.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.id)
         videoCollection.delegate = self
@@ -222,14 +242,11 @@ final class DetailView: UIViewController {
         videoCollection.isPagingEnabled = true
         videoCollection.showsVerticalScrollIndicator = false
         videoCollection.flashScrollIndicators()
-//        container.addSubview(videoCollection)
-        stackView.addArrangedSubview(videoCollection)
+        container.addSubview(videoCollection)
         
         videoCollection.snp.makeConstraints { make in
-            //make.top.equalToSuperview().offset(12)
+            make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(height)
-//            make.bottom.equalToSuperview()
         }
     }
     
@@ -283,7 +300,7 @@ extension DetailView: DetailViewProtocol {
         drawTopPoster(with: response.backdropPath)
         drawTitle(response.title)
         drawInformation(information(with: response))
-//        drawOverview(response.overview)
+        drawOverview(response.overview)
     }
     
     func makeDetailSuccess(response: Decodable, video: DetailContentVideo) {
@@ -298,10 +315,10 @@ extension DetailView: DetailViewProtocol {
                 drawUI(by: movie)
             }
             
-//            if !video.results.isEmpty {
-//                videos = video.results
-//                drawVideo()
-//            }
+            if !video.results.isEmpty {
+                videos = video.results
+                drawVideo()
+            }
             
             view.bringSubviewToFront(previousButton)
         }

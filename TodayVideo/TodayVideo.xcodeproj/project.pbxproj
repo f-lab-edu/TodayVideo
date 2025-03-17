@@ -67,6 +67,7 @@
 		CEDBD88D2D50A9500086F6A3 /* Responsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88C2D50A9500086F6A3 /* Responsable.swift */; };
 		CEDBD88F2D50A9E00086F6A3 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */; };
 		CEDBD8912D50ABB10086F6A3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD8902D50ABB10086F6A3 /* NetworkError.swift */; };
+		CEDBF1102D87AFA6006F0E9C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBF10F2D87AFA6006F0E9C /* UILabel+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		CEDBD88C2D50A9500086F6A3 /* Responsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsable.swift; sourceTree = "<group>"; };
 		CEDBD88E2D50A9E00086F6A3 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		CEDBD8902D50ABB10086F6A3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CEDBF10F2D87AFA6006F0E9C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FFB8528AC96E0E4545364CA7 /* Pods_TodayVideo_TodayVideoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayVideo_TodayVideoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -240,6 +242,7 @@
 				CEB800CD2D6451CC00CB5A98 /* UIView+Extension.swift */,
 				CEB800D82D680B0D00CB5A98 /* UIAlertController+Extension.swift */,
 				CE5B6BBE2D817AED00C7CFBF /* UIScrollView+Extension.swift */,
+				CEDBF10F2D87AFA6006F0E9C /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			files = (
 				CEB800D52D655C4800CB5A98 /* Movie.swift in Sources */,
 				CEB800DE2D6C059900CB5A98 /* ImageCache.swift in Sources */,
+				CEDBF1102D87AFA6006F0E9C /* UILabel+Extension.swift in Sources */,
 				254D7B512D47A9C000754A38 /* PreviousButton.swift in Sources */,
 				254D7B4F2D4784D900754A38 /* UserdefaultKey.swift in Sources */,
 				CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */,
