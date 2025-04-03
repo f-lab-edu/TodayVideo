@@ -41,7 +41,6 @@
 		CE9EAC182D2239E100971DB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC172D2239E100971DB4 /* AppDelegate.swift */; };
 		CE9EAC1A2D2239E100971DB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */; };
 		CE9EAC1C2D2239E100971DB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC1B2D2239E100971DB4 /* SplashView.swift */; };
-		CE9EAC1F2D2239E100971DB4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC1E2D2239E100971DB4 /* Base */; };
 		CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC202D2239E200971DB4 /* Assets.xcassets */; };
 		CE9EAC242D2239E200971DB4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9EAC232D2239E200971DB4 /* Base */; };
 		CE9EAC492D223B2300971DB4 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EAC482D223B2300971DB4 /* SplashPresenter.swift */; };
@@ -122,7 +121,6 @@
 		CE9EAC172D2239E100971DB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CE9EAC1B2D2239E100971DB4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		CE9EAC1E2D2239E100971DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9EAC202D2239E200971DB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9EAC232D2239E200971DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9EAC252D2239E200971DB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 			children = (
 				CE9EAC172D2239E100971DB4 /* AppDelegate.swift */,
 				CE9EAC192D2239E100971DB4 /* SceneDelegate.swift */,
-				CE9EAC1D2D2239E100971DB4 /* Main.storyboard */,
 				CE9EAC202D2239E200971DB4 /* Assets.xcassets */,
 				CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */,
 				CE9EAC252D2239E200971DB4 /* Info.plist */,
@@ -555,7 +552,6 @@
 				25AF1EF42D6969D000E81EC2 /* Secret.plist in Resources */,
 				CE9EAC212D2239E200971DB4 /* Assets.xcassets in Resources */,
 				CE9EAC242D2239E200971DB4 /* Base in Resources */,
-				CE9EAC1F2D2239E100971DB4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,14 +727,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE9EAC1D2D2239E100971DB4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE9EAC1E2D2239E100971DB4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE9EAC222D2239E200971DB4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -884,10 +872,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "오늘뭐봄";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -916,10 +904,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "오늘뭐봄";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
