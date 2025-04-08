@@ -6,7 +6,7 @@
 
 
 
-![스크린샷 2025-04-08 오후 4.20.51](/Users/user/Library/Application Support/typora-user-images/스크린샷 2025-04-08 오후 4.20.51.png)
+<img src="https://github.com/user-attachments/assets/c7ec5915-54f6-4ea1-8084-7ac81dda29f1">
 
 ### 넷플릭스는 볼 건 많은데 볼 만한게 없어...
 
@@ -28,14 +28,13 @@
 
 ## ⚙️ 아키텍처
 
-- CI/CD
-  SwiftLint
+- **CI/CD**<br>
+  > SwiftLint<br>
+  > Fastlane
 
-  Fastlane
+- **Unit Test**
 
-- Unit Test
-
-- VIPER
+- **VIPER**
 
   <img align="left" width="200" src="https://github.com/user-attachments/assets/fc337395-208a-4687-b480-0cb250b7b6a8">
   <br>
