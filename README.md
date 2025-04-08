@@ -6,7 +6,7 @@
 
 
 
-<img src="https://github.com/user-attachments/assets/38c14767-65ef-49d7-974a-7b5a7fbb8b10">
+![스크린샷 2025-04-08 오후 4.20.51](/Users/user/Library/Application Support/typora-user-images/스크린샷 2025-04-08 오후 4.20.51.png)
 
 ### 넷플릭스는 볼 건 많은데 볼 만한게 없어...
 
@@ -27,6 +27,13 @@
 <br>
 
 ## ⚙️ 아키텍처
+
+- CI/CD
+  SwiftLint
+
+  Fastlane
+
+- Unit Test
 
 - VIPER
 
@@ -80,15 +87,6 @@
 
   ​	Details, Credits, ReleaseDates/ContentRatings, Videos 동시 호출하여 받은 데이터 노출
   <img width=400 src="https://github.com/user-attachments/assets/6fa0182a-777d-4fc5-85a5-0665392b8994">
-
-<br>
-
-- 코드 컨벤션
-  SwiftLint 적용
-
-<br>
-
-- Unit Test
 
 <br>
 
