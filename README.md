@@ -1,6 +1,7 @@
 
 
- <img src="https://github.com/user-attachments/assets/81215a04-dcc8-4d39-b486-ca786fab685a">
+ <img src="https://github.com/user-attachments/assets/81215a04-dcc8-4d39-b486-ca786fab685a"><br>
+ 2025.04.09 앱스토어 출시
 
 #### **원하는 조건을 설정하여 랜덤하게 작품을 추천해주는 앱.** 
 
